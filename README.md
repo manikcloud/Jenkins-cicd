@@ -50,7 +50,7 @@ history | cut -c 8-
 
 ```
 # Jenkins URL with port 8080
-- http://x.x.x.x.64:8080/
+- http://x.x.x.x:8080/
 
 replace x with your ip 
 
