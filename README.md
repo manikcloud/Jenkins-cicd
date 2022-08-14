@@ -26,9 +26,9 @@ cd  demo
 ## GIT & Ubuntu SSH connection
 ```
 ssh-keygen 
-_rsa.pub 
 
-git clone git@github.com:manikcloud/Jenkins-cicd.git
+"Hit enter button 3 time"
+
 cat ~/.ssh/id_rsa.pub 
 git clone git@github.com:manikcloud/Jenkins-cicd.git
 history 
