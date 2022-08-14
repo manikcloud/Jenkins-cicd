@@ -18,3 +18,8 @@ PG DO - CI/CD Pipeline with Jenkins Simplilearn
 ```
 git --version 
 ```
+## cretae Dir 
+```
+mkdir demo 
+cd  demo 
+```
