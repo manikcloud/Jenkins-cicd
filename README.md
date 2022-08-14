@@ -34,3 +34,17 @@ git clone git@github.com:manikcloud/Jenkins-cicd.git
 history 
 history | cut -c 8- 
 ```
+
+# JENKINS INSTALLATION 
+
+```
+sudo apt install openjdk-8-jdk
+sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt install jenkins
+sudo /etc/init.d/jenkins start
+service jenkins status 
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+history | cut -c 8- 
+```
