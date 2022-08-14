@@ -12,3 +12,4 @@ PG DO - CI/CD Pipeline with Jenkins Simplilearn
 -	Step 5 : Click on Launch Instance 
 -	Step 6 : Select your VM and Click connect 
 -	Step 7 :  You can see the terminal 
+-	Step: Showing Github example
