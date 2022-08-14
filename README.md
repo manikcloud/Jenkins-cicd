@@ -66,7 +66,7 @@ replace x with your ip
 -	Click on Save the rule
 ```
 
-#common error
+# common error
 
 ```
 getting "E: Unable to locate package openjdk-8-jdk" message on java update
