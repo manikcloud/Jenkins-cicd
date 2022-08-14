@@ -23,3 +23,16 @@ git --version
 mkdir demo 
 cd  demo 
 ```
+## GIT & Ubuntu SSH connection
+```
+ssh-keygen 
+
+
+cat id_rsa.pub 
+cd -
+git clone git@github.com:manikcloud/Jenkins-cicd.git
+cat ~/.ssh/id_rsa.pub 
+git clone git@github.com:manikcloud/Jenkins-cicd.git
+history 
+history | cut -c 8- 
+```
