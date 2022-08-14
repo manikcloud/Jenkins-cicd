@@ -35,8 +35,7 @@ history
 history | cut -c 8- 
 ```
 
-# JENKINS INSTALLATION 
-
+# JENKINS INSTALLATION on UBUNTU 18.04, for Ubunt 22.04 please skip the step 3 & 4
 ```
 sudo apt-get update
 sudo apt install openjdk-8-jdk
@@ -50,6 +49,10 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 history | cut -c 8- 
 
 ```
+# Jenkins URL with port 8080
+- http://x.x.x.x.64:8080/
+
+replace x with your ip 
 
 # Change Security group rule for Jenkins 
 ```
@@ -61,4 +64,17 @@ history | cut -c 8-
 -	Select custom TCP and put port 8080
 -	Custom ip should be 0.0.0.0/0
 -	Click on Save the rule
+```
+
+#common error
+
+```
+getting "E: Unable to locate package openjdk-8-jdk" message on java update
+```
+
+# Resolution 
+Run this command
+
+```
+sudo apt update
 ```
