@@ -82,6 +82,13 @@ sudo apt update
 dashboard>manage>jenkins>manage plugins>maven integration
 
 
+
+# Jenkis Setting
+
+```
+Java_Home
+/usr/lib/jvm/java-8-openjdk-amd64/
+```
 # References: 
 1. https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 2. https://maven.apache.org/download.cgi
