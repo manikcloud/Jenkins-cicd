@@ -45,7 +45,7 @@ sudo apt-get update
 sudo apt install jenkins
 sudo /etc/init.d/jenkins start
 sudo service jenkins status 
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+OR sudo cat /home/labsuser/jenkins/secrets/initialAdminPassword
 history | cut -c 8- 
 
 ```
@@ -88,6 +88,13 @@ dashboard>manage>jenkins>manage plugins>maven integration
 ```
 Java_Home
 /usr/lib/jvm/java-8-openjdk-amd64/
+```
+
+# Post Build Step
+
+```
+java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+
 ```
 # References: 
 1. https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
