@@ -83,7 +83,7 @@ dashboard>manage>jenkins>manage plugins>maven integration
 
 
 
-# Jenkis Setting
+# Jenkins Setting
 
 ```
 Java_Home
