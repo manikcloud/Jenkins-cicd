@@ -44,7 +44,7 @@ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sour
 sudo apt-get update
 sudo apt install jenkins
 sudo /etc/init.d/jenkins start
-service jenkins status 
+sudo service jenkins status 
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 history | cut -c 8- 
 
