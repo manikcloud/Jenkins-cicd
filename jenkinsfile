@@ -13,9 +13,9 @@ pipeline {
                         echo 'A Fourth time Hello' 
         			}     
     		}
-            stage('Date') {          	 
+            stage('Day') {          	 
         			steps {               	 
-            			echo "date & time is: $date"
+            			echo 'date & time is: Sunday'
             			
         			}     
     		}	
