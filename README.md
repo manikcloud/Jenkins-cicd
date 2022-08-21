@@ -96,6 +96,14 @@ Java_Home
 java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 
 ```
+
+# This project is parameterized
+```
+echo "User First name is : $First_Name"
+echo "User Last name is : $Last_Name"
+echo "User Gender is : $Sex"
+
+```
 # References: 
 1. https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 2. https://maven.apache.org/download.cgi
