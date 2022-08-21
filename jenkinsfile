@@ -1,23 +1,25 @@
-pipeline {	 
-	agent any	 
-		stages {     	 
-    		stage('First Stage') {
-        			steps {               	 
-            			echo 'Hello World'          
-        			}     	 
-    		}     	 
-    		stage('Second Stage') {          	 
-        			steps {               	 
-            			echo 'Hello Again'               	 
-            			echo 'A third time Hello'         	
-                        echo 'A Fourth time Hello' 
-        			}     
-    		}
-            stage('Day') {          	 
-        			steps {               	 
-            			echo 'date & time is: Sunday'
-            			
-        			}     
-    		}	
+pipeline {
+	agent any
+	tools {
+    	maven 'my_mvn'
 	}
+	stages {
+    	stage("Checkout") {   
+        	steps {               	 
+            	git url: 'https://github.com/manikcloud/Jenkins-cicd.git'          	 
+           	 
+        	}    
+    	}
+    	stage('Build') {
+        	steps {
+        	sh "mvn compile"  	 
+        	}
+    	}
+   	 
+    	stage("Unit test") {          	 
+        	steps {  	 
+            	sh "mvn test"          	 
+       	}
+}
+}
 }
