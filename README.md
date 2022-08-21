@@ -1,109 +1,83 @@
-# Jenkins-cicd
-PG DO - CI/CD Pipeline with Jenkins Simplilearn 
-
-# AWS Ubuntu VM Provisioning steps
--	Step 1:  Click on Launch Instance 
--	Step 2 : Click on Software Image (AMI)
--	Select Ubuntu 
--	Step 4: Key pair name – required
--	Click on Create new key pair
--	Put key pair name Jenkins-sl
--	& Download it 
--	Step 5 : Click on Launch Instance 
--	Step 6 : Select your VM and Click connect 
--	Step 7 :  You can see the terminal 
--	Step: Showing Github example
-
-# Git Status
+# Lesson 5 Demo 2: Building Continuous Integration Pipelines in Jenkins
 ```
-git --version 
-```
-## cretae Dir 
-```
-mkdir demo 
-cd  demo 
-```
-## GIT & Ubuntu SSH connection
-```
-ssh-keygen 
+This section will guide you to: 
+●	Build Continuous Integration Pipelines in jenkins
 
-"Hit enter button 3 time"
+This lab has two sub-sections, namely:
+   1 Building a Maven project
+   2 Creating a Pipeline to build the project
+     
+Step 1:  Building a Maven project
+●	Log in to your Github account
+●	Click on the plus icon next to the profile picture and select New repository from the drop-down menu
+ 
 
-cat ~/.ssh/id_rsa.pub 
-git clone git@github.com:manikcloud/Jenkins-cicd.git
-history 
-history | cut -c 8- 
-```
+●	Fill the required fields in the create repository form
+●	Click on the Create Repository button
+●	Click on the Clone or download button and copy the URL
+●	Go to start.spring.io/ 
 
-# JENKINS INSTALLATION on UBUNTU 18.04, for Ubunt 22.04 please skip the step 3 & 4
-```
-sudo apt-get update
-sudo apt install openjdk-8-jdk
-sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
-sudo apt install jenkins
-sudo /etc/init.d/jenkins start
-sudo service jenkins status 
-OR sudo cat /home/labsuser/jenkins/secrets/initialAdminPassword
-history | cut -c 8- 
-
-```
-# Jenkins URL with port 8080
-- http://x.x.x.x:8080/
-
-replace x with your ip 
-
-# Change Security group rule for Jenkins 
-```
--	Select your instance 
--	Down below select your security tab 
--	Click on the Security groups sg-0c51908b5fa4abf75 (launch-wizard-2)
--	Click on the action 
--	Click on EDIT INBOUND RULE
--	Select custom TCP and put port 8080
--	Custom ip should be 0.0.0.0/0
--	Click on Save the rule
-```
-
-# common error
-
-```
-getting "E: Unable to locate package openjdk-8-jdk" message on java update
-```
-
-# Resolution 
-Run this command
-
-```
-sudo apt update
-```
-# Plugin Installation 
-dashboard>manage>jenkins>manage plugins>maven integration
+●	Select Maven as the project type
+●	Fill Group and Artifact with appropriate values. For example, com.simplilearn and Calculator
+●	Add Web (Spring Web) to Dependencies
+●	Select Packaging: Jar
+●	Select Java: 8
+●	Click on Generate Project
+●	The generated skeleton project should be downloaded as a zip file
+●	Open the terminal and navigate to an appropriate location
+●	Run git clone [URL] to clone the repository
+●	Unzip the downloaded spring boot project to the cloned repository
+(cd Downloads
+unzip Calculator.zip)
+●	Copy the contents of Calculator folder present in downloads and paste it into your repository folder)
+●	Commit the changes to the remote SCM
+●	Run git add .
+●	Run git commit -m “Add logic and test” 
+●	Run git push -u origin master
 
 
+Step 2:  Creating a Pipeline
+●	Go to Jenkins dashboard
+●	Click on New Item
+●	Enter a name for your build job
+●	Select Pipeline as the build job type
+ 
+●	Click OK
+●	Scroll down to the Pipeline section and enter the script below:
+pipeline {
+	agent any
+	tools {
+    	maven 'my_mvn'
+	}
+	stages {
+    	stage("Checkout") {   
+        	steps {               	 
+            	git url: '<YourGithubRepoURL>'          	 
+           	 
+        	}    
+    	}
+    	stage('Build') {
+        	steps {
+        	sh "mvn compile"  	 
+        	}
+    	}
+   	 
+    	stage("Unit test") {          	 
+        	steps {  	 
+            	sh "mvn test"          	 
+       	}
+}
+}
+}
+●	Click Save
+ 
+●	Click Build Now in the project window to make sure that the build works. Jenkins will now build your project.
+●	Click on the Build History to view the build results
+●	Click on the Logs to view the build logs in each stage
 
-# Jenkins Setting
+``` 
 
-```
-Java_Home
-/usr/lib/jvm/java-8-openjdk-amd64/
-```
 
-# Post Build Step
 
-```
-java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 
-```
 
-# This project is parameterized
-```
-echo "User First name is : $First_Name"
-echo "User Last name is : $Last_Name"
-echo "User Gender is : $Sex"
-
-```
-# References: 
-1. https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
-2. https://maven.apache.org/download.cgi
