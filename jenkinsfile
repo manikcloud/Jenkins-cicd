@@ -6,9 +6,14 @@ pipeline {
 	stages {
     	stage("Checkout") {   
         	steps {               	 
-            	git url: 'https://github.com/manikcloud/Jenkins-cicd.git'          	 
+            	git branch: 'session5.2_pipeline', url: 'https://github.com/manikcloud/Jenkins-cicd.git'        	 
            	 
         	}    
+    	}
+    	stage('clean') {
+        	steps {
+        	sh "mvn clean"  	 
+        	}
     	}
     	stage('Build') {
         	steps {
