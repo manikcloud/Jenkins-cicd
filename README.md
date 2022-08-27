@@ -15,24 +15,19 @@ Step 1: Installing SonarQube 7.8
 ●	From the historical downloads section at the bottom of the page download the community edition of sonarqube7.8
 ●	Run the following command in the terminal to extract the sonarqube-7.8 zip file:
 cd Downloads
-sudo unzip sonarqube-7.8.zip -d /opt/sonarqube 
-cd
-sudo useradd sonar
-sudo -i
-sudo vi /opt/sonarqube/sonarqube-7.8/bin/linux-x86-64/sonar.sh
-<!-- 
-
-
-
- 
-●	Save and exit the file using [esc] shift: wq
-●	Run the following commands to start the sonarqube server
-sudo chown -R sonar:sonar /opt/sonarqube/sonarqube-7.8 -->
 
 ```
-# Run Sonarqube sh file 
+# Download Run Sonarqube sh file 
 ```
-/opt/sonarqube/sonarqube-7.8/bin/linux-x86-64/sonar.sh console
+cd ~/Downloads
+ll -arth 
+sudo unzip sonarqube-9.6.0.59041.zip -d /opt/sonarqube 
+whoami
+ll
+sudo chown -R varunmanikoutlo: sonarqube
+sh /opt/sonarqube/sonarqube-9.6.0.59041/bin/linux-x86-64/sonar.sh console
+history > ~/varun/Jenkins-cicd/history.txt
+
 
 
 
