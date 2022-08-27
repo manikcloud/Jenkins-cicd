@@ -1,123 +1,176 @@
-# Lesson 6 Demo 1: CI with Junit in Jenkins
-
-```
+# Lesson 6 Demo 2: Code Coverage with JaCoCo
 This section will guide you to:
-●	Connect Git and GitHub repository with Jenkins along with Junit tests
-
+●	Perform code coverage using JaCoCo in Jenkins for a Maven application.
+``` 
 This guide has four subsections, namely:
-1.	Logging into Jenkins
-2.	Adding Junit dependencies and classes in Maven project
-3.	Creating a Jenkins job for Maven project
-4.	Building the Jenkins job
+1.	Logging to Jenkins
+2.	Adding JaCoCo in Jenkins
+3.	Adding JaCoCo in Maven project
+4.	Creating Jenkins job for Maven project
 
-Step 1: Logging into Jenkins
+Step 1: Login to Jenkins
 
 ●	Open your browser and navigate to localhost:8081
-●	Provide your username and password and click on Login
+●	Provide your username and password and click on Login.
+Step 2: Add JaCoCo plugin in Jenkins
 
-Step 2: Adding Junit dependencies and classes in Maven project
+●	Navigate to Manage Jenkins -> Plugin Manager -> Available and find JaCoCo Plugin
+●	Click on Install without restart
+Step 3: Adding JaCoCo in Maven project
 
-●	Create a maven project by executing the following command in the terminal of your lab:
-mvn archetype:generate -DgroupId=jenkinsDemo -DartifactId=jenkinsDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-●	Run the below commands to navigate inside the maven project:
-cd /home/labsuser/jenkinsDemo
+●	Create a maven project by executing the following command:
+
+mvn archetype:generate -DgroupId=CodeCoverageDemo -DartifactId=MathOperations -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+●	Navigate to the maven project as shown below:
+cd /home/labsuser/MathOperations
 vi pom.xml
+
  
-●	Add the below code in the <dependencies> section of the pom.xml file of your Maven project
-<dependency>
-<groupId>junit</groupId>
-<artifactId>junit</artifactId>
-<version>4.12</version>
-</dependency>
-<dependency>
-<groupId>org.seleniumhq.selenium</groupId>
-<artifactId>selenium-java</artifactId>
-<version>3.10.0</version>
-</dependency>
+
+
+●	Delete the existing code in the pom.xml file and add the following code:
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>CodeCoverageDemo</groupId>
+  <artifactId>MathOperations</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>MathOperations</name>
+  <url>http://maven.apache.org</url>
+<properties>
+		<jacoco.version>0.7.5.201505241946</jacoco.version>
+		<junit.version>4.12</junit.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<skipMain>true</skipMain>
+					<skip>true</skip>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+
+							<dataFile>target/jacoco.exec</dataFile>
+							<!-- Sets the output directory for the code coverage report. -->
+							<outputDirectory>target/jacoco-ut</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<systemPropertyVariables>
+						<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
 ●	Save the file and exit using the command [esc] shift+:wq
-●	Delete the src/main folder using the commands given below:
-cd /home/labsuser/jenkinsDemo/src
-rm -r main
-●	Considering you are in the src folder, navigate to src/test/java, and create a file JenkinsDemo.java using the following commands:
-cd /home/labsuser/jenkinsDemo/src/test/java
-vi JenkinsDemo.java
+●	Run the following commands:
+cd /home/labsuser/MathOperations/src/main/java/CodeCoverageDemo
+rm App.java
+●	Create a file Operations.java using the below command:
+vi Operations.java 
 
-●	Add the following code in JenkinsDemo.java:
-             import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+●	Add the following code in Operations.java file:
 
-/**
- * Created by 
- * Sample junit test code to integrate by
- */
-public class JenkinsDemo
-{
-    private static String Base_Url = "https://www.facebook.com";
-    private WebDriver driver;
+package CodeCoverageDemo;
 
-    @Before
-    public void setUp()
-    {
-        driver = new ChromeDriver();
-        driver.get(Base_Url);
-    }
+public class Operations {
 
-    @After
-    public void after()
-    {
-        driver.quit();
-    }
+	public Integer add(Integer a, Integer b)
+	{
+		return a+b;
+	}
 
-    @Test
-    public void testCasePassed()
-    {
-        Assert.assertTrue(driver.findElement(By.xpath("//form[@id='login_form']")).isDisplayed());
-    }
-
-    @Test
-    public void testCaseFailed()
-    {
-        Assert.assertTrue(driver.findElement(By.xpath("//form[@id='failed case']")).isDisplayed());
-    }
-
-    @Ignore
-    @Test
-    public void testCaseIgnored()
-    {
-        Assert.assertTrue(driver.findElement(By.xpath("//form[@id='ignored case']")).isDisplayed());
-    }
 }
+
 ●	Save the file and exit using the command [esc] shift+:wq
-●	Your directory structure should only have these files. 
-●	Run the following command to delete any unnecessary files or folder structures:
-rm -r jenkinsDemo
+●	Now navigate to /MathOperations/src/test/java/CodeCoverageDemo by running the commands given below:
+cd /home/labsuser/MathOperations/src/test/java/CodeCoverageDemo
+rm AppTest.java
+●	Create a file Operations.java using the below command:
+vi OperationsTest.java 
 
-Step 3: Creating a Jenkins job for Maven project
+●	Add the following code in OperationsTest.java file:
 
-●	To create a new job in Jenkins, open the Jenkins dashboard with your Jenkins URL. 
-For example, http://localhost:8081/
-●	Click on New Item. Enter the item name, select Maven Project, and click OK.
-●	Once you click OK, the page will be redirected to its project form. 
+package CodeCoverageDemo;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class OperationsTest {
+
+        @Test
+        public void testAdd()
+        {
+                Operations operations = new Operations();
+                Integer actual = operations.add(2, 6);
+                Integer expected = 8;
+                assertEquals(expected, actual);
+        }
+}
+
+●	Save the file and exit using the command [esc] shift+:wq
+
+Step 4: Creating Jenkins job for Maven project
+
+●	To create a new job in Jenkins, open the Jenkins dashboard with your Jenkins URL. For example, http://localhost:8081/
+●	Click on New Item. Enter the item name, select Maven Project and click OK
+●	Once you click OK, the page will be redirected to its project form.
 ●	In the Build section of your job, for Root POM give the path of the pom.xml in your local system as shown: 
-/home/labsuser/jenkinsDemo/pom.xml
+/home/labsuser/MathOperations/pom.xml
 
 
-
-
-
-
-            
-Step 4: Building the Jenkins job
-
-●	Build the job and check the status on the console for the test cases executed.
+●	Build the job
+●	You can see the console output for the status of the build
 
  
-
  
+
+
+
 ```
