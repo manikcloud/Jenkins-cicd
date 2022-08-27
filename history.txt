@@ -1,0 +1,241 @@
+ll
+cd Downloads
+ll
+git clone git@github.com:manikcloud/jenkins-pipeline.git
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
+git clone git@github.com:manikcloud/jenkins-pipeline.git
+cd jenkins-pipeline
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\ngit clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting\nvim ~/.zshrc 
+source ~/.zshrc
+git 
+cp ../calculator.zip
+cp ../calculator.zip .
+ll
+unzip calculator.zip
+rm calculator.zip
+ll
+vim jenkins
+git add .
+git commit -am"add all files "
+git push 
+git config --global user.email "you@example.com"
+git push 
+git add . 
+git commit -am"add all files 1"
+git add . 
+git commit -am"add all files 1"
+git push 
+ll
+git add .  && git commit -am"add all files 1"
+git push 
+git status 
+ll
+cd ..
+cd jenkins-pipeline
+git status 
+ll
+cd calculator
+ll
+cd ..
+mv calculator/* .
+ll
+git status 
+git add .  && git commit -am"add all files 1"
+git push 
+rm calculator
+rm -rf calculator
+ll
+git status 
+ll
+git status 
+exit
+ll
+git status 
+git add .  && git commit -am"add all files 1"
+git push 
+git status 
+git add .  && git commit -am"add all files 1"
+git push 
+git status 
+mvn clean install 
+git status 
+ll
+ll target
+mvn archetype:generate -DgroupId=jenkinsDemo -DartifactId=jenkinsDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+git add .  && git commit -am"add all files 1"
+git push 
+ll
+cd jenkinsDemo
+ll
+cd src
+ll
+rm -rf main
+ll
+cd ..
+ll
+mvn install 
+mvn clean  install 
+ll
+rm -r jenkinsDemo
+cd ..
+rm -r jenkinsDemo
+ll
+cd jenkinsDemo
+mvn clean  install 
+mvn clean test
+mvn clean
+mvn clean test
+mvn clean  install cd ..
+cd ..
+ll
+rm -rf jenkinsDemo
+ll
+mvn archetype:generate -DgroupId=jenkinsDemo -DartifactId=jenkinsDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false\n
+cd jenkinsDemo
+ll
+mvn clean  install 
+git switch session_6.02
+git add .  && git commit -am"add all files 1"
+git push 
+git switch session_6.02
+git status 
+git switch -c session_6.02
+ll
+cd ..
+ll
+rm -rf jenkinsDemo
+mvn archetype:generate -DgroupId=CodeCoverageDemo -DartifactId=MathOperations -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+cd MathOperations
+ll
+mvn clean  install 
+git add .  && git commit -am"add all files 1"
+git push 
+ll
+cd ..
+ll
+cd MathOperations
+mvn test
+mvn clean test
+mvn clean test package
+git add .  && git commit -am"add all files 1"
+git push 
+ll
+git switch -c session_6.03
+ll
+cd ..
+ll
+rm -rf MathOperations
+ll
+cp ~/Downloads/ReviewAnalyser.zip .
+unzip ReviewAnalyser.zip
+ll
+cd ReviewAnalyser
+mvn clean compile
+mvn test
+ll
+pwd
+mvn clean
+git add .  && git commit -am"add all files 1"
+git push 
+git add .  && git commit -am"add all files 1"
+git push 
+git switch -c session_6.04
+ll
+cd ..
+ll
+rm -rf ReviewAnalyser
+git add .  && git commit -am"add all files 1"
+git push 
+ll
+mvn clean install 
+mvn install -Dmaven.test.failure.ignore=true clover:instrument clover:aggregate -N clover:aggregate clover:clover
+mvn clean
+mvn install -Dmaven.test.failure.ignore=true clover:instrument clover:aggregate -N clover:aggregate clover:clover
+cd Jenkins-cicd
+ll
+mvn cean install 
+cp ~/Downloads/ReviewAnalyser.zip .
+ll
+unzip ReviewAnalyser.zip
+ll
+rm ReviewAnalyser
+rm ReviewAnalyser.zip
+ll
+cd ReviewAnalyser
+ll
+mvn cean install 
+mvn clean install 
+git add .  && git commit -am"add all files 1" && git push 
+install -Dmaven.test.failure.ignore=true clover:instrument clover:aggregate -N clover:aggregate clover:clover
+mvn install -Dmaven.test.failure.ignore=true clover:instrument clover:aggregate -N clover:aggregate clover:clover
+git add .  && git commit -am"add all files 1" && git push 
+git status 
+git add .  && git commit -am"add all files 1" && git push 
+git switch -c session_6.05
+ll
+cd ..
+ll
+rm -rf ReviewAnalyser
+unzip ~/Downloads/apache-jmeter-5.5_src.zip
+ll ~/Downloads
+ll
+cd apache-jmeter-5.5
+ll
+./jmeter
+./bin/jmeter
+cd bin
+ll
+pwd
+./jmeter
+./jmeterls
+ls
+sh jmeter.sh
+ll
+la
+ls
+ll examples
+git switch -c session_7.0_sonarqube
+ll
+cd ..
+ll
+cd ..
+ll
+rm -rf apache-jmeter-5.5
+ll
+cd ~/Downloads
+ll
+unzip sonarqube-9.6.0.59041.zip
+ll
+cd sonarqube-9.6.0.59041
+ll
+sudo useradd sonar
+sudo vi /opt/sonarqube/sonarqube-7.8/bin/linux-x86-64/sonar.sh
+ll
+sudo vim bin/linux-x86-64/sonar.sh 
+pwd
+cd ..
+mv sonarqube-9.6.0.59041 sonarqube
+sudo chown -R sonar: sonarqube
+sonarqube/bin/linux-x86-64/sonar.sh console
+ll
+vim sonarqube/bin/linux-x86-64/sonar.sh
+sudo vim sonarqube/bin/linux-x86-64/sonar.sh
+sonarqube/bin/linux-x86-64/sonar.sh console
+whoami
+sudo chown -R varunmanikoutlo: sonarqube
+sudo vim sonarqube/bin/linux-x86-64/sonar.sh
+sonarqube/bin/linux-x86-64/sonar.sh console
+cd -
+cd ~/varun/Jenkins-cicd
+git add .  && git commit -am"add all files 1" 
+git push 
+
+cd ~/Downloads
+ll -arth 
+sudo unzip sonarqube-9.6.0.59041.zip -d /opt/sonarqube 
+whoami
+ll
+sudo chown -R varunmanikoutlo: sonarqube
+sh /opt/sonarqube/sonarqube-9.6.0.59041/bin/linux-x86-64/sonar.sh console
+history > ~/varun/Jenkins-cicd/history.txt

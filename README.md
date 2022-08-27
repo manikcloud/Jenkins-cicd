@@ -1,108 +1,102 @@
-#Lesson 6 Demo 4: Code Coverage with Clover
+#Lesson 7 Demo 2: SonarQube with Jenkins
 
 This section will guide you to:
-●	Perform code coverage using Clover in Jenkins for a Maven application
-``` 
+●	Integrate SonarQube with Jenkins
+```
 This guide has three subsections, namely:
-1.	Logging into Jenkins
-2.	Adding Clover in Jenkins and Maven project
-3.	Creating Jenkins job for Maven 
+1.	Installing SonarQube 7.8 
+2.	Installing and configuring SonarQube plugin in Jenkins
+3.	Creating a Jenkins job and running Sonarqube Scanner 
 
-Step 1: Logging into Jenkins
+Note: SonarQube 7.5 is already installed in the lab. We will need SonarQube 7.8 for this demo. Install SonarQube 7.8 using the steps given below. You need to have JDK 1.8, Maven configured  in order to proceed with this demo.
 
-●	Open your browser and navigate to localhost:8081
-●	Provide your username and password and click on Login
-Step 2: Adding Clover in Jenkins and Maven project
+Step 1: Installing SonarQube 7.8 
+●	Open the browser in the lab and navigate to https://www.sonarqube.org/downloads/
+●	From the historical downloads section at the bottom of the page download the community edition of sonarqube7.8
+●	Run the following command in the terminal to extract the sonarqube-7.8 zip file:
+cd Downloads
 
-●	Click on the eclipse executable in /opt/eclipse or run the following command in the terminal to open eclipse in your lab:
-/opt/eclipse/eclipse
-●	Create a basic Maven project in Eclipse
-Click on File->New ->Project-> maven->maven project
+```
+# Download Run Sonarqube sh file 
+```
+cd ~/Downloads
+ll -arth 
+sudo unzip sonarqube-9.6.0.59041.zip -d /opt/sonarqube 
+whoami
+ll
+sudo chown -R varunmanikoutlo: sonarqube
+sh /opt/sonarqube/sonarqube-9.6.0.59041/bin/linux-x86-64/sonar.sh console
+history > ~/varun/Jenkins-cicd/history.txt
 
+
+
+
+
+
+
+
+
+
+
+ 
+Note: Closing this terminal window will stop/kill the sonarqube process. Do not close this terminal window till you complete the demo.
+●	Open the browser and navigate to http://localhost:9000
+ 
+●	Log in to sonarqube server with System Administrator credentials (admin/admin) 
+●	Go to Administration > Security > Users > Tokens 
+
+ 
+●	Click on token and generate a token with name: Jenkins as shown below:
+ 
+●	Copy the generated token and note it down. It will be used in Jenkins for Sonar authentication
+
+Step 2: Installing and configuring SonarQube plugin in Jenkins
+
+●	Go to Manage Jenkins > Manage Plugins > Available > search for SonarQube Scanner> Click on install without restart
  
  
 
-●	In the New Maven Project Dialog box, enter the following details:
+●	Go to Jenkins dashboard > Manage Jenkins > Manage Credentials
+ 
+●	Click on Jenkins as shown above and in the Global credentials unrestricted page, click on  Add Credentials
+ 
+●	Select the kind as Secret text from the drop-down. Paste the token that you had earlier copied from the sonarqube server into the Secret field. Give the ID and description as shown below and click on ok.
+ 
+You will see the credentials added in the Global credentials page
+ 
+●	Go to Jenkins dashboard > Manage Jenkins > Configure system > SonarQube servers section > Click on the checkbox Enable injection of sonarqube server configuration as build environment variable
+●	Click on Add SonarQube > provide a name (ex: LocalSonarQube) and Server URL as http://localhost:9000. Select the authentication token from the list and click on Apply and Save as shown below:
+ 
+●	Go to Manage Jenkins > Global Tool Configuration > Scroll for SonarQube Scanner > Add SonarQube Scanner > provide a name (ex: LocalSonarScanner), check Install automatically and select the version 3.2.0 from the drop-down list as shown below:
+ 
 
+Step 3: Creating a Jenkins job and running Sonarqube Scanner
 
-group id: simplilearn
-artifact id: CloverDemo 
-●	Add the below code after the <version> section in the pom.xml file: 
-<build>
-<plugins>
-<plugin>
-<groupId>com.atlassian.maven.plugins</groupId>
-<artifactId>clover-maven-plugin</artifactId>
-<configuration>
-<generatePdf>true</generatePdf>
-<generateXml>true</generateXml>
-<generateHtml>false</generateHtml>
-<generateJson>false</generateJson>
-</configuration>
-<executions>
-<execution>
-<phase>generate-sources</phase>
-<goals>
-<goal>instrument</goal>
-</goals>
-</execution>
-</executions>
-</plugin>
-</plugins>
-<pluginManagement>
-<plugins>
-<plugin>
-<groupId>org.eclipse.m2e</groupId>
-<artifactId>lifecycle-mapping</artifactId>
-<version>1.0.0</version>
-<configuration>
-<lifecycleMappingMetadata>
-<pluginExecutions>
-<pluginExecution>
-<pluginExecutionFilter>
-<groupId> com.atlassian.maven.plugins </groupId>
-<artifactId> clover-maven-plugin </artifactId>
-<versionRange>[4.1.2,)</versionRange>
-<goals>
-<goal>instrument</goal>
-</goals>
-</pluginExecutionFilter>
-<action>
-<ignore/>
-</action>
-</pluginExecution>
-</pluginExecutions>
-</lifecycleMappingMetadata>
-</configuration>
-</plugin>
-</plugins>
-</pluginManagement>
-</build>
+●	Create a new job > provide a name (ex: Sonar-Jenkins), and select project type as freestyle
+●	Under SCM select Git and enter the git repository of the simple-java-maven-app that we had created earlier in the demo 4 of lesson 3
 
-●	After adding the code in pom.xml, save the file and then right click on your project folder in eclipse and select maven-> update project
-●	In your Jenkins, install the Clover plugin via Manage Jenkins -> Manage Plugins -> Under Available tab search for Clover Plugin
-●	Click on Install without restart
+ 
+●	In the build section click on Add a build step and select the option Execute SonarQube Scanner from the drop-down list.
+ 
 
+●	Enter the details in the Analysis properties section as shown below:
+
+#Required metadata
+sonar.projectKey=com.mycompany.app:my-app
+sonar.projectName=my-app
+sonar.projectVersion=1.0
+#Path to Source directory
+sonar.sources= ./src
+sonar.java.binaries=.
+
+ 
+●	Click on Apply and Save
+●	Build the job
+●	On successful completion of the build from the console output you can see the project in the sonarqube server by clicking the link as shown in the output
  
 
 
-
-
-Step 3: Creating Jenkins job for Maven
-
-●	To create a new job in Jenkins, open the Jenkins dashboard with your Jenkins URL. For example, http://localhost:8081/
-●	Click on New Item. Enter the item name, select Maven Project and click OK.
-●	Once you click OK, the page will be redirected to its project form. 
-●	In the Build section of your job, for Root POM give the path of the pom.xml in your local system as shown: 
-/home/labsuser/workspace/CloverDemo/pom.xml
-●	Specify the following goals and options for maven as:
-install -Dmaven.test.failure.ignore=true clover:instrument clover:aggregate -N clover:aggregate clover:clover
-
-
-●	Build the job and see the logs in the console output
-
+ You can also check the report on the sonarqube server. From the job dashboard, click on the sonarqube icon, and then click on Projects. You can see the report as shown below:
  
-
-
 
 ```
