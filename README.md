@@ -17,9 +17,9 @@ Step 1: Installing SonarQube 7.8
 cd Downloads
 sudo unzip sonarqube-7.8.zip -d /opt/sonarqube 
 cd
-sudo useradd sonar
+<!-- sudo useradd sonar
 sudo -i
-sudo vi /opt/sonarqube/sonarqube-7.8/bin/linux-x86-64/sonar.sh
+sudo vi /opt/sonarqube/sonarqube-7.8/bin/linux-x86-64/sonar.sh -->
 
 
 
