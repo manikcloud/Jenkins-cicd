@@ -30,7 +30,7 @@ sudo vi /opt/sonarqube/sonarqube-7.8/bin/linux-x86-64/sonar.sh
 sudo chown -R sonar:sonar /opt/sonarqube/sonarqube-7.8 -->
 
 ```
-#Run Sonarqube sh file 
+# Run Sonarqube sh file 
 ```
 /opt/sonarqube/sonarqube-7.8/bin/linux-x86-64/sonar.sh console
 
