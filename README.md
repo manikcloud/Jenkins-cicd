@@ -38,7 +38,7 @@ Step 2: Create slave nodes
 
 ```
 sudo mkdir /opt/jenkins
-cd opt/jenkins
+cd /opt/jenkins
 sudo wget http://localhost:8081/jnlpJars/agent.jar
 ```
 
