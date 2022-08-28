@@ -1,6 +1,15 @@
 # Simple Python Flask Dockerized Application#
 
-Build the image using the following command
+- Git clone &
+```
+git clone https://github.com/manikcloud/Jenkins-cicd.git
+
+```
+- change the branch
+```
+git switch  python-flask-app
+```
+## Build the image using the following command
 
 ```bash
 $ docker build -t flask-app:latest .
