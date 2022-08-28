@@ -27,23 +27,24 @@ Step 2: Create slave nodes
  
 ●	Click on Save
 ●	Once the configuration is complete, you can see the slave machine on the dashboard.
- 
+``` 
 
 ●	Click on the slave-node-1 
 
 ●	Create a directory at the path specified as the Remote root directory
 
-sudo mkdir /opt/jenkins
-
-cd opt/jenkins
 
 ●	Download the jar file in the /opt/jenkins by running the following command:
 
+```
+sudo mkdir /opt/jenkins
+cd opt/jenkins
 sudo wget http://localhost:8081/jnlpJars/agent.jar
+```
 
 ●	Now copy the command shown in the agent slave-node-1
  
-
+```
 ●	Run the command to start the slave node
 sudo java -jar agent.jar -jnlpUrl http://localhost:8081/computer/slave-node-1/slave-agent.jnlp -workDir "/opt/jenkins"
  
