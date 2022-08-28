@@ -47,8 +47,7 @@ sudo wget http://localhost:8081/jnlpJars/agent.jar
 ●	Run the command to start the slave node
 
 ```
-sudo java -jar agent.jar -jnlpUrl http://localhost:8081/computer/slave-node-1/slave-agent.jnlp -workDir "/opt/jenkins"
-
+sudo java -jar agent.jar -jnlpUrl http://localhost:8081/computer/slave-node-1/jenkins-agent.jnlp -secret 148b28d72377036274a65403bd41f9fcae30d710aaacc2a6590fb7e031e893e4 -workDir "/opt/jenkins"
 ```
 ●	The slave node will show as connected to the master UI
  
