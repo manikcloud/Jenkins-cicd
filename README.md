@@ -1,7 +1,7 @@
-Lesson 9 Demo 1: Create Multiple Slave Nodes
+# Lesson 9 Demo 1: Create Multiple Slave Nodes
 This section will guide you to:
 ●	Create a master/slave architecture in Jenkins.
-
+```
 Please Note: You need to have Jenkins installed to proceed with this demo.
 
 This guide has two subsections, namely:
@@ -49,3 +49,4 @@ sudo java -jar agent.jar -jnlpUrl http://localhost:8081/computer/slave-node-1/sl
  
 ●	The slave node will show as connected to the master UI
  
+```
