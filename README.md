@@ -1,53 +1,15 @@
-# Tomcat Project 
-0. Git clone & 
+# Simple Python Flask Dockerized Application#
 
-```
-git clone https://github.com/manikcloud/Jenkins-cicd.git
-```
+Build the image using the following command
 
-00. change the branch
-
-```
-git switch  addressbook  
-```
-1. Install tomcat
- ```
-sudo apt update -y
-sudo apt install tomcat9 tomcat9-admin -y
-
-```
-2. change the port number 8080 to 8090
-
-- sudo vim  /var/lib/tomcat9/conf/server.xml
-
-```
- <Connector port="8090" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
-
-
+```bash
+$ docker build -t simple-flask-app:latest .
 ```
 
-- Restart tomcat
+Run the Docker container using the command shown below.
 
-``` 
-sudo systemctl restart tomcat9
-
-```
-- Go to pom location and run the below command
-
-```
- mvn clean install 
-```
-- copy and paste the war file in tomcat webapp location 
-```
-sudo cp target/addressbook.war /var/lib/tomcat9/webapps/ -v
+```bash
+$ docker run -d -p 5000:5000 simple-flask-app
 ```
 
-- url 
-```
-http://localhost:8090/addressbook/
-
-```
-
-
+The application will be accessible at http:127.0.0.1:5000 or if you are using boot2docker then first find ip address using `$ boot2docker ip` and the use the ip `http://<host_ip>:5000`
