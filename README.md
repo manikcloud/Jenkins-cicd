@@ -1,102 +1,68 @@
-#Lesson 7 Demo 2: SonarQube with Jenkins
+Addressbook Tutorial
+====================
 
-This section will guide you to:
-●	Integrate SonarQube with Jenkins
+This tutorial teaches you some of the basic concepts in [Vaadin Framework](https://vaadin.com). It is meant to be
+a fast read for learning how to get started - not an example on how application should be
+designed. Please note this example uses and requires Java 8 to work.
+
+![Addressbook Screenshot](addressbook_screenshot.png "Addressbook Screenshot")
+
+
+Running the example from the command line
+-------------------
 ```
-This guide has three subsections, namely:
-1.	Installing SonarQube 7.8 
-2.	Installing and configuring SonarQube plugin in Jenkins
-3.	Creating a Jenkins job and running Sonarqube Scanner 
-
-Note: SonarQube 7.5 is already installed in the lab. We will need SonarQube 7.8 for this demo. Install SonarQube 7.8 using the steps given below. You need to have JDK 1.8, Maven configured  in order to proceed with this demo.
-
-Step 1: Installing SonarQube 7.8 
-●	Open the browser in the lab and navigate to https://www.sonarqube.org/downloads/
-●	From the historical downloads section at the bottom of the page download the community edition of sonarqube7.8
-●	Run the following command in the terminal to extract the sonarqube-7.8 zip file:
-cd Downloads
-
+$ mvn jetty:run
 ```
-# Download Run Sonarqube sh file 
-```
-cd ~/Downloads
-ll -arth 
-sudo unzip sonarqube-9.6.0.59041.zip -d /opt/sonarqube 
-whoami
-ll
-sudo chown -R varunmanikoutlo: sonarqube
-sh /opt/sonarqube/sonarqube-9.6.0.59041/bin/linux-x86-64/sonar.sh console
-history > ~/varun/Jenkins-cicd/history.txt
+
+Open [http://localhost:8080/](http://localhost:8080/)
 
 
+Importing in IntelliJ IDEA 14
+--------------------
+These instructions were tested on IntelliJ IDEA 14 CE. You can get it from https://www.jetbrains.com/idea/
 
+To get the project up and running in IDEA, do:
+- File -> New -> Project from Version Control -> Git
+- The URL to use is https://github.com/vaadin/addressbook.git
+- If you get a message about "Non-managed pom.xml file found". Choose "Add as Maven Project"
+- If you get a message about no JDK or SDK being selected. Choose "Configure" and select your installed JDK. You can also set the JDK using File -> Project Structure
+- To start the project, find the "Maven Projects" tab on the right hand side of the screen and navigate to
+  - Vaadin Web Application -> Plugins -> jetty -> jetty:run
+  - Click the play button or right click and select Run (Select Debug instead to run in debug mode)
 
+You should now have a Jetty server running on localhost:8080. Navigate to http://localhost:8080 to play with the application
 
+Importing in NetBeans 8
+--------------------
+These instructions were tested on NetBeans 8.0.2. You can get it from https://www.netbeans.org
 
+To checkout and run the project in NetBeans, do:
+- Team -> Git -> Clone
+- Set repository URL to https://github.com/vaadin/addressbook.git
+- Finish
+- Right click the imported project (Vaadin Addressbook Application) and select Run
+- Select GlassFish Server 4.1 -> Remember in Current IDE Session -> OK
 
+You should now have a GlassFish server running on localhost:8080 and a browser tab should also be automatically opened with this location
 
+Importing in Eclipse
+--------------------
+These instructions were tested on Eclipse IDE for Java EE Developers Luna SR2. You can get it from http://eclipse.org/downloads/
 
+To checkout and run the project in Eclipse, do:
+- File -> Import...
+- Check out Maven Projects from SCM
+- Choose Git from SCM menu
+  - If you do not see "Git" in the SCM menu, click "Find more SCM connectors in the m2e Marketplace" and install "m2e-egit". Restart Eclipse and start over.
+- Set the repository URL to https://github.com/vaadin/addressbook.git
+- Right click the imported "addressbook" and choose Run As -> Maven Build...
+  - Set the goal to "jetty:run" and click "Run"
 
+You should now have a Jetty server running on localhost:8080. Navigate to [http://localhost:8080/](http://localhost:8080/) to play with the application
 
- 
-Note: Closing this terminal window will stop/kill the sonarqube process. Do not close this terminal window till you complete the demo.
-●	Open the browser and navigate to http://localhost:9000
- 
-●	Log in to sonarqube server with System Administrator credentials (admin/admin) 
-●	Go to Administration > Security > Users > Tokens 
+To use the built in server adapters of Eclipse, instead of doing "Run As -> Maven Build..." you can do
+- Run As -> Run on Server
+- Select the server you want to run on, e.g. Apache Tomcat 8 and click ok
+- *Do not use the suggested J2EE Preview server* as it is outdated, deprecated and does not support Servlet 3, which is required for this application
 
- 
-●	Click on token and generate a token with name: Jenkins as shown below:
- 
-●	Copy the generated token and note it down. It will be used in Jenkins for Sonar authentication
-
-Step 2: Installing and configuring SonarQube plugin in Jenkins
-
-●	Go to Manage Jenkins > Manage Plugins > Available > search for SonarQube Scanner> Click on install without restart
- 
- 
-
-●	Go to Jenkins dashboard > Manage Jenkins > Manage Credentials
- 
-●	Click on Jenkins as shown above and in the Global credentials unrestricted page, click on  Add Credentials
- 
-●	Select the kind as Secret text from the drop-down. Paste the token that you had earlier copied from the sonarqube server into the Secret field. Give the ID and description as shown below and click on ok.
- 
-You will see the credentials added in the Global credentials page
- 
-●	Go to Jenkins dashboard > Manage Jenkins > Configure system > SonarQube servers section > Click on the checkbox Enable injection of sonarqube server configuration as build environment variable
-●	Click on Add SonarQube > provide a name (ex: LocalSonarQube) and Server URL as http://localhost:9000. Select the authentication token from the list and click on Apply and Save as shown below:
- 
-●	Go to Manage Jenkins > Global Tool Configuration > Scroll for SonarQube Scanner > Add SonarQube Scanner > provide a name (ex: LocalSonarScanner), check Install automatically and select the version 3.2.0 from the drop-down list as shown below:
- 
-
-Step 3: Creating a Jenkins job and running Sonarqube Scanner
-
-●	Create a new job > provide a name (ex: Sonar-Jenkins), and select project type as freestyle
-●	Under SCM select Git and enter the git repository of the simple-java-maven-app that we had created earlier in the demo 4 of lesson 3
-
- 
-●	In the build section click on Add a build step and select the option Execute SonarQube Scanner from the drop-down list.
- 
-
-●	Enter the details in the Analysis properties section as shown below:
-
-#Required metadata
-sonar.projectKey=com.mycompany.app:my-app
-sonar.projectName=my-app
-sonar.projectVersion=1.0
-#Path to Source directory
-sonar.sources= ./src
-sonar.java.binaries=.
-
- 
-●	Click on Apply and Save
-●	Build the job
-●	On successful completion of the build from the console output you can see the project in the sonarqube server by clicking the link as shown in the output
- 
-
-
- You can also check the report on the sonarqube server. From the job dashboard, click on the sonarqube icon, and then click on Projects. You can see the report as shown below:
- 
-
-```
+*** End of documentation
