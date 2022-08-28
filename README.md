@@ -1,4 +1,15 @@
 # Tomcat Project 
+0. Git clone & 
+
+```
+git clone https://github.com/manikcloud/Jenkins-cicd.git
+```
+
+00. change the branch
+
+```
+git switch  addressbook  
+```
 1. Install tomcat
  ```
 sudo apt install tomcat9 tomcat9-admin
