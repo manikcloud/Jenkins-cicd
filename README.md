@@ -18,7 +18,9 @@ sudo apt install tomcat9 tomcat9-admin
 
 - Restart tomcat
 
-``` sudo systemctl restart tomcat9
+``` 
+sudo systemctl restart tomcat9
+
 ```
 - Go to pom location and run the below command
 
@@ -30,6 +32,10 @@ sudo apt install tomcat9 tomcat9-admin
 sudo cp target/addressbook.war /var/lib/tomcat9/webapps/
 ```
 
--
+- url 
+```
+http://localhost:8090/addressbook/
+
+```
 
 
