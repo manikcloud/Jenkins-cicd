@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.manikdemo.utilities.TestLogger" time="0.063" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.manikdemo.utilities.TestLogger" time="0.062" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.16+8-post-Ubuntu-0ubuntu120.04"/>
@@ -58,9 +58,9 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testGetErrorMessage1" classname="com.manikdemo.utilities.TestLogger" time="0.035"/>
-  <testcase name="testGetErrorMessage2" classname="com.manikdemo.utilities.TestLogger" time="0.032"/>
-  <testcase name="testGetErrorMessage3" classname="com.manikdemo.utilities.TestLogger" time="0.032"/>
-  <testcase name="testGetErrorMessage4" classname="com.manikdemo.utilities.TestLogger" time="0.053"/>
-  <testcase name="testGetErrorMessage5" classname="com.manikdemo.utilities.TestLogger" time="0.051"/>
+  <testcase name="testGetErrorMessage3" classname="com.manikdemo.utilities.TestLogger" time="0.061"/>
+  <testcase name="testGetErrorMessage4" classname="com.manikdemo.utilities.TestLogger" time="0.059"/>
+  <testcase name="testGetErrorMessage5" classname="com.manikdemo.utilities.TestLogger" time="0.062"/>
+  <testcase name="testGetErrorMessage1" classname="com.manikdemo.utilities.TestLogger" time="0.055"/>
+  <testcase name="testGetErrorMessage2" classname="com.manikdemo.utilities.TestLogger" time="0.04"/>
 </testsuite>

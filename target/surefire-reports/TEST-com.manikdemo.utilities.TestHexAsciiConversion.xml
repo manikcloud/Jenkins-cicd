@@ -58,8 +58,8 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testHexToAsciiValid" classname="com.manikdemo.utilities.TestHexAsciiConversion" time="0.005"/>
-  <testcase name="testAsciiToHexNull" classname="com.manikdemo.utilities.TestHexAsciiConversion" time="0.004"/>
-  <testcase name="testHextoAsciiNull" classname="com.manikdemo.utilities.TestHexAsciiConversion" time="0.004"/>
   <testcase name="testAsciiToHexValid" classname="com.manikdemo.utilities.TestHexAsciiConversion" time="0.008"/>
+  <testcase name="testAsciiToHexNull" classname="com.manikdemo.utilities.TestHexAsciiConversion" time="0.003"/>
+  <testcase name="testHexToAsciiValid" classname="com.manikdemo.utilities.TestHexAsciiConversion" time="0.009"/>
+  <testcase name="testHextoAsciiNull" classname="com.manikdemo.utilities.TestHexAsciiConversion" time="0.003"/>
 </testsuite>
