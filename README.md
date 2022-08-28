@@ -51,3 +51,19 @@ sudo java -jar agent.jar -jnlpUrl http://localhost:8081/computer/slave-node-1/je
 ```
 ●	The slave node will show as connected to the master UI
  
+
+# 9.2 Build job with slave machine
+●	Create a new freestyle job.
+```
+●	In the configuration page, check the Restrict where this project can be run option as shown in the screenshot below and select slave-node-1
+
+ 
+
+●	Provide the URL to the repository of the source code in the Source Code Management section
+Please note: you can use the sample-git repository that we had created in the earlier demos
+ 
+
+●	Click on Apply and then click on Save
+●	Build the job and check the output in the console
+
+```
