@@ -12,7 +12,8 @@ git switch  addressbook
 ```
 1. Install tomcat
  ```
-sudo apt install tomcat9 tomcat9-admin
+sudo apt update -y
+sudo apt install tomcat9 tomcat9-admin -y
 
 ```
 2. change the port number 8080 to 8090
@@ -40,7 +41,7 @@ sudo systemctl restart tomcat9
 ```
 - copy and paste the war file in tomcat webapp location 
 ```
-sudo cp target/addressbook.war /var/lib/tomcat9/webapps/
+sudo cp target/addressbook.war /var/lib/tomcat9/webapps/ -v
 ```
 
 - url 
