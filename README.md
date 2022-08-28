@@ -1,53 +1,51 @@
-# Tomcat Project 
-0. Git clone & 
+Lesson 9 Demo 1: Create Multiple Slave Nodes
+This section will guide you to:
+●	Create a master/slave architecture in Jenkins.
 
-```
-git clone https://github.com/manikcloud/Jenkins-cicd.git
-```
+Please Note: You need to have Jenkins installed to proceed with this demo.
 
-00. change the branch
+This guide has two subsections, namely:
+1.	Login to Jenkins
+2.	Create slave nodes
 
-```
-git switch  addressbook  
-```
-1. Install tomcat
- ```
-sudo apt update -y
-sudo apt install tomcat9 tomcat9-admin -y
+Step 1: Log in to Jenkins
+●	Open your browser and navigate to localhost:8081
+●	Provide your username and password and click on Login
+Step 2: Create slave nodes
+●	Navigate to Manage Jenkins
+●	Click on Configure Global Security
+ 
+●	Scroll down to Agents and enable inbound traffic at port 9007
+●	Click on Apply and then click on Save
+●	Navigate to Manage Jenkins
+●	Click on Manage Node and Clouds
+●	Click on New Node
+●	Enter a node_name (slave-node-1) and check the permanent agent button
+●	Click on Ok
+ 
+●	Provide name, number of executors, root directory path, label, usage, launch method, as shown below:
+ 
+●	Click on Save
+●	Once the configuration is complete, you can see the slave machine on the dashboard.
+ 
 
-```
-2. change the port number 8080 to 8090
+●	Click on the slave-node-1 
 
-- sudo vim  /var/lib/tomcat9/conf/server.xml
+●	Create a directory at the path specified as the Remote root directory
 
-```
- <Connector port="8090" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
+sudo mkdir /opt/jenkins
 
+cd opt/jenkins
 
-```
+●	Download the jar file in the /opt/jenkins by running the following command:
 
-- Restart tomcat
+sudo wget http://localhost:8081/jnlpJars/agent.jar
 
-``` 
-sudo systemctl restart tomcat9
+●	Now copy the command shown in the agent slave-node-1
+ 
 
-```
-- Go to pom location and run the below command
-
-```
- mvn clean install 
-```
-- copy and paste the war file in tomcat webapp location 
-```
-sudo cp target/addressbook.war /var/lib/tomcat9/webapps/ -v
-```
-
-- url 
-```
-http://localhost:8090/addressbook/
-
-```
-
-
+●	Run the command to start the slave node
+sudo java -jar agent.jar -jnlpUrl http://localhost:8081/computer/slave-node-1/slave-agent.jnlp -workDir "/opt/jenkins"
+ 
+●	The slave node will show as connected to the master UI
+ 
