@@ -18,8 +18,10 @@ sudo apt install tomcat9 tomcat9-admin -y
 ```
 2. change the port number 8080 to 8090
 
-- sudo vim  /var/lib/tomcat9/conf/server.xml
-
+```
+sudo vim  /var/lib/tomcat9/conf/server.xml
+```
+- Find port 8080 and change to 8090
 ```
  <Connector port="8090" protocol="HTTP/1.1"
                connectionTimeout="20000"
