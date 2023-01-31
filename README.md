@@ -35,7 +35,7 @@ history
 history | cut -c 8- 
 ```
 
-# JENKINS INSTALLATION on UBUNTU 18.04, for Ubuntu 22.04 please skip the step 3 & 4
+# Jenkins installation on UBUNTU 18.04 & Ubuntu 22.04 (Please skip the step 2 & 3 for 22.04)
 
 ### Step 1
 ```
@@ -61,8 +61,9 @@ sudo service jenkins status
 ### Step 5: Jenkins default password
 ```
 sudo cat /home/labsuser/jenkins/secrets/initialAdminPassword
-````
-### Step 5
+```
+### Step 6: History command
+
 ```
 history | cut -c 8- 
 
@@ -70,7 +71,7 @@ history | cut -c 8-
 # Jenkins URL with port 8080
 - http://x.x.x.x:8080/
 
-replace x with your ip 
+Replace x with your ip 
 
 # Change Security group rule for Jenkins 
 ```
