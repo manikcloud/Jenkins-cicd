@@ -85,7 +85,7 @@ Replace x with your ip
 -	Click on Save the rule
 ```
 
-# common error
+# Common error
 
 ```
 getting "E: Unable to locate package openjdk-8-jdk" message on java update
@@ -95,7 +95,7 @@ getting "E: Unable to locate package openjdk-8-jdk" message on java update
 Run this command
 
 ```
-sudo apt update
+sudo apt update -y
 ```
 # Plugin Installation 
 dashboard>manage>jenkins>manage plugins>maven integration
