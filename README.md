@@ -3,9 +3,11 @@
 - https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 
 
-## Build with Maven option in jenkins 
-## pom.xml file required
-## Commands
+⦁	 Build with Maven option in jenkins 
+
+⦁	 pom.xml file required
+
+⦁	Commands
 
 # Creating a Project
 You need somewhere for your project to reside. Create a directory somewhere and start a shell in that directory. On your command line, execute the following Maven goal:
