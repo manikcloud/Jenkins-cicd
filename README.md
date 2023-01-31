@@ -35,17 +35,35 @@ history
 history | cut -c 8- 
 ```
 
-# JENKINS INSTALLATION on UBUNTU 18.04, for Ubunt 22.04 please skip the step 3 & 4
+# JENKINS INSTALLATION on UBUNTU 18.04, for Ubuntu 22.04 please skip the step 3 & 4
+
+### Step 1
 ```
-sudo apt-get update
-sudo apt install openjdk-8-jdk
+sudo apt-get update -y && sudo apt install openjdk-8-jdk -y
+```
+### Step 2: Downloading Key
+```
 sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add
+```
+
+### Step 3: Adding Key
+```
 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
-sudo apt install jenkins
+```
+
+### Step 4: Jenkins Package installation
+```
+sudo apt-get update -y
+sudo apt install jenkins -y
 sudo /etc/init.d/jenkins start
 sudo service jenkins status 
-OR sudo cat /home/labsuser/jenkins/secrets/initialAdminPassword
+```
+### Step 5: Jenkins default password
+```
+sudo cat /home/labsuser/jenkins/secrets/initialAdminPassword
+````
+### Step 5
+```
 history | cut -c 8- 
 
 ```
