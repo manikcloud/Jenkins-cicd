@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
  
   <groupId>com.mycompany.app</groupId>
-  <artifactId>varun-app</artifactId>
+  <artifactId>my-app</artifactId>
   <version>1.0-SNAPSHOT</version>
  
   <properties>
