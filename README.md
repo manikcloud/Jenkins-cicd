@@ -74,12 +74,18 @@ $ cd /home/labsuser/Downloads
 $ unzip apache-maven-3.6.3-bin.zip
 ```
 ⦁	Go to Manage Jenkins from the Jenkins dashboard and select Global Tool Configuration
+
 ⦁	Scroll down to the Maven section and click on Add Maven
  
 ⦁	You can choose to install automatically by ticking the checkbox and specifying the version, or uncheck the box and enter the local path if you want to configure manually.
+
 ⦁	Enter a name for the installation (For Example: my_maven)
+
 ⦁	Uncheck the Install automatically checkbox.
-⦁	Paste the path to the Maven file in the MAVEN_HOME field (/home/labsuser/Downloads/apache-maven-3.6.3) and click Save
+
+⦁	Paste the path to the Maven file in the MAVEN_HOME field (/home/labsuser/Downloads/apache-maven-3.6.
+
+⦁	click Save
 
  
 ⦁	You can now find Maven project as an option under New Item.
@@ -89,6 +95,7 @@ $ unzip apache-maven-3.6.3-bin.zip
 			
 ## Step 2:   Configuring the JDK
 ⦁	Go to Manage Jenkins from the Jenkins dashboard and select Global Tool Configuration
+
 ⦁	Scroll down to the JDK Section and click on Add JDK
  
 
