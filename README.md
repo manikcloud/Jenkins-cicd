@@ -1,30 +1,44 @@
 # Java
+## References: 
+- https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+
 
 ## Build with Maven option in jenkins 
 ## pom.xml file required
+## Commands
+
+# Creating a Project
+You need somewhere for your project to reside. Create a directory somewhere and start a shell in that directory. On your command line, execute the following Maven goal:
 
 ```
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
- 
-  <groupId>com.mycompany.app</groupId>
-  <artifactId>my-app</artifactId>
-  <version>1.0-SNAPSHOT</version>
- 
-  <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-  </properties>
- 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-</project>
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 
 ```
+
+You will notice that the generate goal created a directory with the same name given as the artifactId. Change into that directory.
+
+```
+cd my-app
+
+```
+
+## Build the Project
+```
+mvn package
+
+```
+
+- validate
+- generate-sources
+- process-sources
+- generate-resources
+- process-resources
+- compile
+
+
+You may test the newly compiled and packaged JAR with the following command:
+```
+java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+Which will print the quintessential:
+```
+Hello World!
