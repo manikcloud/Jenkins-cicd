@@ -37,3 +37,11 @@ sudo docker build -t flask-app:$BUILD_ID .
 sudo docker run -d -p 5000:5000 flask-app:$BUILD_ID
 
 ```
+
+## Common Error
+ Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: connect: permission denied
+
+- to overcome this error plz run the below command:
+```
+chmod 777 /var/run/docker.sock
+```
