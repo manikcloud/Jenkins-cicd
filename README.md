@@ -67,11 +67,11 @@ sudo vim /etc/tomcat9/tomcat-users.xml
 Open this file and below lines
 
 ```
-  <role rolename="admin-gui"/>
-  <role rolename="manager-gui"/>
-  <user username="admin" password="admin" roles="manager-gui,admin-gui"/>
+
+   <role rolename="admin-gui,manager-gui,manager-script,manager-jmx,manager-status,admin-gui"/>
+  <user username="admin" password="admin" roles="manager-gui,admin-gui,manager-script"/>
   <user username="robot" password="admin" roles="manager-script"/>
-```
+  ```
 
 ### Restart your Tomacat sever
 
