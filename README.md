@@ -12,13 +12,13 @@ git switch  python-flask-app
 ## Build the image using the following command
 
 ```bash
-$ docker build -t flask-app:latest .
+sudo docker build -t flask-app:latest .
 ```
 
 Run the Docker container using the command shown below.
 
 ```bash
-$ docker run -d -p 5000:5000 flask-app
+sudo docker run -d -p 5000:5000 flask-app
 
 ```
 
