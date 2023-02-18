@@ -1,4 +1,4 @@
-# INtegration of Sonarqube 7.8 version with Jenkins on EC2 instance 
+# Integration of Sonarqube 7.8 version with Jenkins on EC2 instance 
 This section will guide you to:
 ●	Integrate SonarQube with Jenkins
 ```
@@ -33,7 +33,7 @@ sudo useradd sonar
 sudo chown -R sonar:sonar /opt/sonarqube
 ```
 
-### Add this lin in sonar.sh file 
+### Add this line in sonar.sh file 
 ```
 vim /opt/sonarqube/bin/linux-x86-64/sonar.sh 
 
