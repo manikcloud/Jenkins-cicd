@@ -1,4 +1,4 @@
-# Lesson 7 Demo 2: SonarQube version 9.6 with Jenkins on ec2 instance 
+# SonarQube 7.8 version with Jenkins on EC2 instance 
 This section will guide you to:
 ●	Integrate SonarQube with Jenkins
 ```
@@ -102,7 +102,9 @@ sonar.java.binaries=.
 ```
  
 ●	Click on Apply and Save
+
 ●	Build the job
+
 ●	On successful completion of the build from the console output you can see the project in the sonarqube server by clicking the link as shown in the output
  
 
