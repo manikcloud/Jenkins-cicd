@@ -1,13 +1,45 @@
-#Lesson 7 Demo 2: SonarQube version 9.6 with Jenkins on ec2 instance 
+# Lesson 7 Demo 2: SonarQube version 9.6 with Jenkins on ec2 instance 
 
 ## Downlaod your sonar package 
+### NOTE: Make sure you have SUDO right on ec2 machine 
+- please sudo -i before doing anythin in this project
 
 ```
-sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.6.zip
+sudo -i 
 
-unzip sonarqube-7.9.6.zip
+sudo apt install unzip wget -y
 
-mv sonarqube-7.9.6.zip sonarqube
+cd /opt/
+
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip
+
+unzip sonarqube-7.8.zip 
+ll
+mv sonarqube-7.8 sonarqube
+ll
+```
+### Add Sonar User & Change Ownership of sonarqube diretory 
+```
+sudo useradd sonar
+
+sudo chown -R sonar:sonar /opt/sonarqube
+```
+
+###
+Add this lin in sonar.sh file 
+```
+vim /opt/sonarqube/bin/linux-x86-64/sonar.sh 
+
+RUN_AS_USER=sonar
+```
+### Run Sonarqube
+
+```
+/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+
+OR
+
+/opt/sonarqube/bin/linux-x86-64/sonar.sh console
 ```
 
 
