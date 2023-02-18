@@ -1,4 +1,21 @@
-#Lesson 7 Demo 2: SonarQube with Jenkins
+#Lesson 7 Demo 2: SonarQube version 9.6 with Jenkins on ec2 instance 
+
+## Downlaod your sonar package 
+
+```
+sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.6.zip
+
+unzip sonarqube-7.9.6.zip
+
+mv sonarqube-7.9.6.zip sonarqube
+```
+
+
+
+
+
+
+
 
 This section will guide you to:
 ●	Integrate SonarQube with Jenkins
