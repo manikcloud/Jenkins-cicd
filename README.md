@@ -1,4 +1,4 @@
-# SonarQube 7.8 version with Jenkins on EC2 instance 
+# INtegration of Sonarqube 7.8 version with Jenkins on EC2 instance 
 This section will guide you to:
 ●	Integrate SonarQube with Jenkins
 ```
@@ -51,7 +51,7 @@ OR
 
 ### Note: Closing this terminal window will stop/kill the sonarqube process. Do not close this terminal window till you complete the demo.
 
-●	Open the browser and navigate to http://localhost:9000 OR  http://you_vm_ip:9000
+●	Open the browser and navigate to http://localhost:9000 OR  http://your_vm_ip:9000 (ex: http://3.91.21.117:9000/)
  
 ●	Log in to sonarqube server with System Administrator credentials (admin/admin) 
 ●	Go to Administration > Security > Users > Tokens 
