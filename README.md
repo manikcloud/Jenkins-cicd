@@ -78,3 +78,12 @@ Open this file and below lines
 ```
 sudo systemctl restart tomcat9
 ```
+
+## log in to this url 
+
+http://3.91.21.117:8090/manager/html
+
+##  Deploy your war file 
+Choose your WAR file to deploy in the GUI and access your application here:
+
+http://3.91.21.117:8090/addressbook/
