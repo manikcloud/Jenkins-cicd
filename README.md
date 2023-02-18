@@ -24,3 +24,16 @@ sudo docker run -d -p 5000:5000 flask-app
 
 - The application will be accessible at http:127.0.0.1:5000 
 - If you are using AWS EC2 VM then first find ip address  and the use the ip `http://<host_ip>:5000`
+
+
+# Jenkins Job setup "execute shell"
+
+```
+
+echo "running python-flask-app project"
+#sudo docker rmi `docker images -aq` -f
+sudo docker rm -f `docker ps -aq` 
+sudo docker build -t flask-app:$BUILD_ID .
+sudo docker run -d -p 5000:5000 flask-app:$BUILD_ID
+
+```
