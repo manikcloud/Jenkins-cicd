@@ -1,8 +1,16 @@
 # Lesson 7 Demo 2: SonarQube version 9.6 with Jenkins on ec2 instance 
+This section will guide you to:
+●	Integrate SonarQube with Jenkins
+```
+This guide has three subsections, namely:
+1.	Installing SonarQube 7.8 
+2.	Installing and configuring SonarQube plugin in Jenkins
+3.	Creating a Jenkins job and running Sonarqube Scanner 
+```
 
-## Downlaod your sonar package 
-### NOTE: Make sure you have SUDO right on ec2 machine 
-- please sudo -i before doing anythin in this project
+## Downlaod your Sonarqube package 
+### NOTE: Make sure you have SUDO rights on EC2 virtual machine 
+- sudo -i before doing anythin in this project
 
 ```
 sudo -i 
@@ -25,8 +33,7 @@ sudo useradd sonar
 sudo chown -R sonar:sonar /opt/sonarqube
 ```
 
-###
-Add this lin in sonar.sh file 
+### Add this lin in sonar.sh file 
 ```
 vim /opt/sonarqube/bin/linux-x86-64/sonar.sh 
 
@@ -42,54 +49,9 @@ OR
 /opt/sonarqube/bin/linux-x86-64/sonar.sh console
 ```
 
+### Note: Closing this terminal window will stop/kill the sonarqube process. Do not close this terminal window till you complete the demo.
 
-
-
-
-
-
-
-This section will guide you to:
-●	Integrate SonarQube with Jenkins
-```
-This guide has three subsections, namely:
-1.	Installing SonarQube 7.8 
-2.	Installing and configuring SonarQube plugin in Jenkins
-3.	Creating a Jenkins job and running Sonarqube Scanner 
-
-Note: SonarQube 7.5 is already installed in the lab. We will need SonarQube 7.8 for this demo. Install SonarQube 7.8 using the steps given below. You need to have JDK 1.8, Maven configured  in order to proceed with this demo.
-
-Step 1: Installing SonarQube 7.8 
-●	Open the browser in the lab and navigate to https://www.sonarqube.org/downloads/
-●	From the historical downloads section at the bottom of the page download the community edition of sonarqube7.8
-●	Run the following command in the terminal to extract the sonarqube-7.8 zip file:
-cd Downloads
-
-```
-# Download Run Sonarqube sh file 
-```
-cd ~/Downloads
-ll -arth 
-sudo unzip sonarqube-9.6.0.59041.zip -d /opt/sonarqube 
-whoami
-ll
-sudo chown -R varunmanikoutlo: sonarqube
-sh /opt/sonarqube/sonarqube-9.6.0.59041/bin/linux-x86-64/sonar.sh console
-history > ~/varun/Jenkins-cicd/history.txt
-
-
-
-
-
-
-
-
-
-
-
- 
-Note: Closing this terminal window will stop/kill the sonarqube process. Do not close this terminal window till you complete the demo.
-●	Open the browser and navigate to http://localhost:9000
+●	Open the browser and navigate to http://localhost:9000 OR  http://you_vm_ip:9000
  
 ●	Log in to sonarqube server with System Administrator credentials (admin/admin) 
 ●	Go to Administration > Security > Users > Tokens 
@@ -99,7 +61,7 @@ Note: Closing this terminal window will stop/kill the sonarqube process. Do not 
  
 ●	Copy the generated token and note it down. It will be used in Jenkins for Sonar authentication
 
-Step 2: Installing and configuring SonarQube plugin in Jenkins
+## Step 2: Installing and configuring SonarQube plugin in Jenkins
 
 ●	Go to Manage Jenkins > Manage Plugins > Available > search for SonarQube Scanner> Click on install without restart
  
@@ -119,7 +81,7 @@ You will see the credentials added in the Global credentials page
 ●	Go to Manage Jenkins > Global Tool Configuration > Scroll for SonarQube Scanner > Add SonarQube Scanner > provide a name (ex: LocalSonarScanner), check Install automatically and select the version 3.2.0 from the drop-down list as shown below:
  
 
-Step 3: Creating a Jenkins job and running Sonarqube Scanner
+## Step 3: Creating a Jenkins job and running Sonarqube Scanner
 
 ●	Create a new job > provide a name (ex: Sonar-Jenkins), and select project type as freestyle
 ●	Under SCM select Git and enter the git repository of the simple-java-maven-app that we had created earlier in the demo 4 of lesson 3
@@ -129,7 +91,7 @@ Step 3: Creating a Jenkins job and running Sonarqube Scanner
  
 
 ●	Enter the details in the Analysis properties section as shown below:
-
+```
 #Required metadata
 sonar.projectKey=com.mycompany.app:my-app
 sonar.projectName=my-app
@@ -137,7 +99,7 @@ sonar.projectVersion=1.0
 #Path to Source directory
 sonar.sources= ./src
 sonar.java.binaries=.
-
+```
  
 ●	Click on Apply and Save
 ●	Build the job
@@ -145,7 +107,5 @@ sonar.java.binaries=.
  
 
 
- You can also check the report on the sonarqube server. From the job dashboard, click on the sonarqube icon, and then click on Projects. You can see the report as shown below:
+- You can also check the report on the sonarqube server. From the job dashboard, click on the sonarqube icon, and then click on Projects. You can see the report as shown below:
  
-
-```
