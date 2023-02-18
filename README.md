@@ -51,5 +51,30 @@ sudo cp target/addressbook.war /var/lib/tomcat9/webapps/ -v
 http://localhost:8090/addressbook/
 
 ```
+# Configuring Tomcat Web Management Interface
 
+- At this point, you should be able to access Tomcat with a web browser on port 8090. The web management interface is not accessible because we have not created a user yet.
 
+- Tomcat users and roles are defined in the tomcat-users.xml file. This file is a template with comments and examples showing how to create a user or role.
+
+- In this example, we’ll create a user with “admin-gui” and “manager-gui” roles. The “admin-gui” role allows the user to access the /host-manager/html URL and create, delete, and otherwise manage virtual hosts. The “manager-gui” role allows the user to deploy and undeploy web application without having to restart the entire container through the /host-manager/html interface.
+
+- Open the tomcat-users.xml file and create a new user, as shown belo
+
+```
+sudo vim /etc/tomcat9/tomcat-users.xml
+```
+Open this file and below lines
+
+```
+  <role rolename="admin-gui"/>
+  <role rolename="manager-gui"/>
+  <user username="admin" password="admin" roles="manager-gui,admin-gui"/>
+  <user username="robot" password="admin" roles="manager-script"/>
+```
+
+### Restart your Tomacat sever
+
+```
+sudo systemctl restart tomcat9
+```
