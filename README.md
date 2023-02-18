@@ -1,4 +1,17 @@
+# Integration of Sonarqube Docker with Jenkins on EC2 instance 
+### Minimum 8 GB RAM required for seamless performance
+
+```
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+
+```
+#### Once your instance is up and running, Log in to http://localhost:9000 using System Administrator credentials:
+
+- login: admin
+- password: admin
+
 # Integration of Sonarqube 7.8 version with Jenkins on EC2 instance 
+### Minimum 8 GB RAM required for seamless performance
 This section will guide you to:
 ●	Integrate SonarQube with Jenkins
 ```
