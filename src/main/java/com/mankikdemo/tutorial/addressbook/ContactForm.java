@@ -19,7 +19,7 @@ import com.vaadin.v7.ui.TextField;
  * This is a form component inherited from VerticalLayout. Use
  * Use BeanFieldGroup to bind data fields from DTO to UI fields.
  * Similarly named field by naming convention or customized
- * with @PropertyId annotation.
+ * with @PropertyId  annotation.
  */
 public class ContactForm extends FormLayout {
 
