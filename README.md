@@ -8,7 +8,7 @@ git clone https://github.com/manikcloud/Jenkins-cicd.git
 00. change the branch
 
 ```
-git switch  addressbook  
+git switch  8.1-addressbook  
 ```
 1. Install tomcat
  ```
