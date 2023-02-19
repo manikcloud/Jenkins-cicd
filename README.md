@@ -24,7 +24,7 @@ git clone https://github.com/manikcloud/Jenkins-cicd.git
 ```
 - change the branch
 ```
-git switch  python-flask-app
+git switch  8.2-python-flask-app
 ```
 ## Build the image using the following command
 
