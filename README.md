@@ -1,3 +1,20 @@
+# Installing Docker in Ubuntu 
+
+```
+sudo apt install docker.io -y
+sudo systemctl start docker 
+sudo systemctl enable docker 
+
+```
+
+# Installing Docker in Amazon linux
+```
+sudo yum install docker -y 
+sudo systemctl start docker 
+sudo systemctl enable docker 
+
+```
+
 # Simple Python Flask Dockerized Application#
 
 - Git clone &
