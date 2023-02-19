@@ -24,6 +24,7 @@ sudo vim  /var/lib/tomcat9/conf/server.xml
 - Find port 8080 and change to 8090
 ```
  <Connector port="8090" protocol="HTTP/1.1"
+               address="0.0.0.0"
                connectionTimeout="20000"
                redirectPort="8443" />
 
