@@ -4,6 +4,11 @@
 ```
 git clone https://github.com/manikcloud/Jenkins-cicd.git
 ```
+00. Chang the directory 
+
+```
+cd Jenkins-cicd
+```
 
 00. change the branch
 
