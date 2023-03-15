@@ -35,7 +35,7 @@ history
 history | cut -c 8- 
 ```
 
-# Jenkins installation on UBUNTU 18.04 & Ubuntu 22.04 (Please skip the step 2 & 3 for 22.04)
+# Jenkins installation on UBUNTU 18.04 & Ubuntu 22.04 
 
 ### Step 1
 ```
@@ -53,8 +53,7 @@ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sour
 
 ### Step 4: Jenkins Package installation
 ```
-sudo apt-get update -y
-sudo apt install jenkins -y
+sudo apt-get update -y && sudo apt install jenkins -y
 sudo /etc/init.d/jenkins start
 sudo service jenkins status 
 ```
