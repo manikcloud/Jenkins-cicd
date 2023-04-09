@@ -1,7 +1,5 @@
 #!/bin/bash
 sudo apt update && sudo apt upgrade -y
-sudo apt-get remove needrestart -y
-sudo apt install -y python3.8 git
 
 sudo apt install default-jdk -y
 
