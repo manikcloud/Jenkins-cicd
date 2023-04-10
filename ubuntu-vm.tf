@@ -48,7 +48,7 @@ resource "aws_instance" "ubuntu" {
     user        = "ubuntu"
     private_key = file("./deployer")
     host        = self.public_ip
-    timeout     = "1m"
+    timeout     = "10m"
   }
   # Remotely execute commands to install Java, Python, Jenkins
   provisioner "remote-exec" {
