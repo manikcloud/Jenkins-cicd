@@ -102,3 +102,13 @@ git push -u origin master
 ⦁	Click on the Console Output to view the build logs.
 
 
+# Gradle Project on Linux terminal 
+
+```
+mkdir my_gradle
+cd my_gradle/
+gradle init --type java-application
+
+./gradlew run
+
+```
