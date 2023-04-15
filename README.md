@@ -126,3 +126,17 @@ echo "User Gender is : $Sex"
 # References: 
 1. https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 2. https://maven.apache.org/download.cgi
+
+
+| Feature                   | Scripted Pipeline                                            | Declarative Pipeline                                         |
+|---------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
+| Syntax                    | Groovy-based DSL                                             | YAML-based DSL                                               |
+| Structure                 | Procedural style, with stages defined as functions           | Declarative style, with stages defined as steps               |
+| Stage definition          | Defined using `stage` step and block                         | Defined using `stages` section and `stage` steps             |
+| Parallel stages           | Defined using `parallel` step and block                      | Defined using `parallel` directive                            |
+| Agent definition          | Defined using `node` step and block                          | Defined using `agent` directive                               |
+| Environment variables     | Defined using `env` map at the top of the script             | Defined using `environment` directive                         |
+| Post-build actions        | Defined using `post` section                                 | Defined using `post` directive                                |
+| Flow control              | Uses traditional `if-else` statements and loops              | Uses a declarative `when` directive for flow control          |
+| Error handling            | Uses `try-catch-finally` statements for error handling        | Uses `catchError` and `error` directives for error handling   |
+| Shared libraries support  | Supported                                                     | Supported                                                     |
