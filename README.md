@@ -1,142 +1,81 @@
-# Jenkins-cicd 
-PG DO - CI/CD Pipeline with Jenkins Simplilearn 
+#Jenkins Parameterized Job for Provisioning AWS EC2 Instances
+##Overview
+This Jenkins job allows you to provision AWS EC2 instances on-demand using a parameterized build. You can specify the instance type, AMI ID, key pair, security group, and other options as parameters when running the job.
 
-# AWS Ubuntu VM Provisioning steps
--	Step 1:  Click on Launch Instance 
--	Step 2 : Click on Software Image (AMI)
--	Select Ubuntu 
--	Step 4: Key pair name – required
--	Click on Create new key pair
--	Put key pair name Jenkins-sl
--	& Download it 
--	Step 5 : Click on Launch Instance 
--	Step 6 : Select your VM and Click connect 
--	Step 7 :  You can see the terminal 
--	Step: Showing Github example
+##Prerequisites
+Before you can use this job, you will need:
 
-# Git Status
-```
-git --version 
-```
-## cretae Dir 
-```
-mkdir demo 
-cd  demo 
-```
-## GIT & Ubuntu SSH connection
-```
-ssh-keygen 
+* A Jenkins server installed and configured with the AWS CLI plugin.
+* AWS CLI installed on the Jenkins server.
+* An AWS IAM user with the necessary permissions to launch and terminate EC2 instances.
+* A default VPC and a default subnet in your AWS account.
 
-"Hit enter button 3 time"
+##Configuration
+Open the Jenkins web interface and create a new job.
 
-cat ~/.ssh/id_rsa.pub 
-git clone git@github.com:manikcloud/Jenkins-cicd.git
-history 
-history | cut -c 8- 
-```
+Set the job type to "Freestyle project".
 
-# Jenkins installation on UBUNTU 18.04 & Ubuntu 22.04 (Please skip the step 2 & 3 for 22.04)
+Under "General" settings, check "This project is parameterized" and add the following parameters:
 
-### Step 1
-```
-sudo apt-get update -y && sudo apt install openjdk-8-jdk -y
-```
-### Step 2: Downloading Key
-```
-sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add
-```
+instance_type: the instance type (e.g. t2.micro)
+ami_id: the AMI ID for the instance
+key_pair: the name of the key pair to use for SSH access
+security_group: the name of the security group to use for the instance
+count: the number of instances to launch (default: 1)
+Under "Source Code Management", select your Git repository and branch.
 
-### Step 3: Adding Key
-```
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-```
+Under "Build", add a new "Execute shell" build step and paste the following 
 
-### Step 4: Jenkins Package installation
-```
-sudo apt-get update -y
-sudo apt install jenkins -y
-sudo /etc/init.d/jenkins start
-sudo service jenkins status 
-```
-### Step 5: Jenkins default password
-```
-sudo cat /home/labsuser/jenkins/secrets/initialAdminPassword
-```
-### Step 6: History command
+##script:
 
 ```
-history | cut -c 8- 
+#!/bin/bash
 
-```
-# Jenkins URL with port 8080
-- http://x.x.x.x:8080/
+# Launch EC2 instances
+aws ec2 run-instances \
+  --image-id $ami_id \
+  --instance-type $instance_type \
+  --count $count \
+  --key-name $key_pair \
+  --security-groups $security_group \
+  --region us-east-1
 
-Replace x with your ip 
+# Wait for instances to launch
+sleep 20
 
-# Change Security group rule for Jenkins 
-```
--	Select your instance 
--	Down below select your security tab 
--	Click on the Security groups sg-0c51908b5fa4abf75 (launch-wizard-2)
--	Click on the action 
--	Click on EDIT INBOUND RULE
--	Select custom TCP and put port 8080
--	Custom ip should be 0.0.0.0/0
--	Click on Save the rule
+# Check instance status
+for i in $(seq 1 $count); do
+  instance_id=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=jenkins-ec2" \
+    --query "Reservations[].Instances[$i].InstanceId" \
+    --output text \
+    --region us-east-1)
+  echo "Instance $i: $instance_id"
+  status=$(aws ec2 describe-instance-status \
+    --instance-ids $instance_id \
+    --query "InstanceStatuses[].InstanceState.Name" \
+    --output text \
+    --region us-east-1)
+  while [ "$status" == "pending" ]; do
+    echo "Instance $i is still launching. Waiting 10 seconds..."
+    sleep 10
+    status=$(aws ec2 describe-instance-status \
+      --instance-ids $instance_id \
+      --query "InstanceStatuses[].InstanceState.Name" \
+      --output text \
+      --region us-east-1)
+  done
+  echo "Instance $i is now $status"
+done
 ```
 
-# Common error
+Save the job configuration.
 
-```
-getting "E: Unable to locate package openjdk-8-jdk" message on java update
-```
-
-# Resolution 
-Run this command
-
-```
-sudo apt update -y
-```
-# Plugin Installation 
-dashboard>manage>jenkins>manage plugins>maven integration
+##Usage
+To use the job, simply go to the Jenkins web interface and run the job. Enter the desired values for the parameters and click "Build". The job will launch the specified number of EC2 instances with the specified configuration.
 
 
 
-# Jenkins Setting
-
-```
-Java_Home
-/usr/lib/jvm/java-8-openjdk-amd64/
-```
-
-# Post Build Step
-
-```
-java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
-
-```
-
-# This project is parameterized
-```
-echo "User First name is : $First_Name"
-echo "User Last name is : $Last_Name"
-echo "User Gender is : $Sex"
-
-```
-# References: 
-1. https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
-2. https://maven.apache.org/download.cgi
 
 
-| Feature                   | Scripted Pipeline                                            | Declarative Pipeline                                         |
-|---------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
-| Syntax                    | Groovy-based DSL                                             | YAML-based DSL                                               |
-| Structure                 | Procedural style, with stages defined as functions           | Declarative style, with stages defined as steps               |
-| Stage definition          | Defined using `stage` step and block                         | Defined using `stages` section and `stage` steps             |
-| Parallel stages           | Defined using `parallel` step and block                      | Defined using `parallel` directive                            |
-| Agent definition          | Defined using `node` step and block                          | Defined using `agent` directive                               |
-| Environment variables     | Defined using `env` map at the top of the script             | Defined using `environment` directive                         |
-| Post-build actions        | Defined using `post` section                                 | Defined using `post` directive                                |
-| Flow control              | Uses traditional `if-else` statements and loops              | Uses a declarative `when` directive for flow control          |
-| Error handling            | Uses `try-catch-finally` statements for error handling        | Uses `catchError` and `error` directives for error handling   |
-| Shared libraries support  | Supported                                                     | Supported                                                     |
+
