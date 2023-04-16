@@ -9,10 +9,21 @@ pipeline {
     	}
     	stage("Stage-2") {   
         	steps {               	 
-            	echo 'hello World Again'
+            	echo 'hello World Again 2'
         	}    
     	}		
-    	
+
+    	stage("Stage-3") {   
+        	steps {               	 
+            	echo 'hello-World Again 3'
+        	}    
+    	}
+    	stage("Stage-4") {   
+        	steps {               	 
+            	echo 'hello World Again 4'
+        	}    
+    	}		
+    	    	
 }
 }
 
