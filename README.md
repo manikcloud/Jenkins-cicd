@@ -55,7 +55,9 @@ Follow these steps to obtain your Jenkins API token:
 3. Click "Configure" in the left sidebar.
 4. Scroll down to the "API Token" section and click on "Add new Token."
 5. Name your token and click "Generate."
-6. Copy the generated token. **Note**: Save the token as you won't be able to view it again.
+6. Copy the generated token.
+
+**Note**: Save the token as you won't be able to view it again.
 
 Now, modify the curl command to include your Jenkins username and API token:
 
