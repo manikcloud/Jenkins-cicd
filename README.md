@@ -45,7 +45,7 @@ echo $my_param
 curl -X GET <YourJenkinsJobUrl>/buildWithParameters?token=Sam
 ```
 
-### Error and Error Resolution
+# Error and Error Resolution
 If you receive an "Authentication required" error, it means that Jenkins requires authentication to perform the remote build trigger. To fix this issue, you need to provide your Jenkins username and API token in the curl command.
 
 Follow these steps to obtain your Jenkins API token:
