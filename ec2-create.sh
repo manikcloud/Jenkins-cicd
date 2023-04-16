@@ -7,11 +7,12 @@
 # COUNT=3
 # REGION="us-east-1"
 
+
 aws ec2 run-instances \
     --image-id $AMI_ID \
     --instance-type $INSTANCE_TYPE \
     --count $COUNT \
-    --key-name $KEY_NAME \
+    --key-name $KEY_PAIR_NAME \
     --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value='$TAG_NAME'}]' \
     --region $REGION
 
