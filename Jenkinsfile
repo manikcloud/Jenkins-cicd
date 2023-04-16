@@ -10,12 +10,12 @@ pipeline {
            	 
         	}    
     	}
-    	stage('clean') {
+    	stage('Maven Clean') {
         	steps {
         	sh "mvn clean"  	 
         	}
     	}
-    	stage('Build') {
+    	stage('Maven Build') {
         	steps {
         	sh "mvn compile"  	 
         	}
