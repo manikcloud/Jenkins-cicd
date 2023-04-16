@@ -1,4 +1,4 @@
-# Lesson 5 Demo 2: Building Continuous Integration Pipelines in Jenkins
+# Lesson 5 Demo 2: Building Continuous Integration Pipelines in Jenkins WITHOUT JENKINSFILE
 
 This section will guide you to: 
 
