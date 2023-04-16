@@ -1,11 +1,11 @@
 #!/bin/bash
 
-AMI_ID="ami-0c55b159cbfafe1f0"
-INSTANCE_TYPE="t2.micro"
-KEY_NAME="<key_pair_name>"
-TAG_NAME="awscli"
-COUNT=3
-REGION="us-east-1"
+# AMI_ID="ami-0c55b159cbfafe1f0"
+# INSTANCE_TYPE="t2.micro"
+# KEY_NAME="<key_pair_name>"
+# TAG_NAME="awscli"
+# COUNT=3
+# REGION="us-east-1"
 
 aws ec2 run-instances \
     --image-id $AMI_ID \
