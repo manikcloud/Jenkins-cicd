@@ -31,14 +31,6 @@
           <target>11</target>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.3.0</version>
-        <configuration>
-          <classifier>your-classifier</classifier>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 </project>
