@@ -1,164 +1,43 @@
-# Jenkins Parameterized Job for Provisioning AWS EC2 Instances
-## Overview
-This Jenkins job allows you to provision AWS EC2 instances on-demand using a parameterized build. You can specify the instance type, AMI ID, key pair, security group, and other options as parameters when running the job.
+Copy code
+# Lesson 4 Demo 7: Building From Tags
 
-## Prerequisites
-Before you can use this job, you will need:
+This section will guide you to: 
+- Configure a build job in Jenkins to build from a Git tag
 
-* A Jenkins server installed and configured with the AWS CLI plugin.
-* AWS CLI installed on the Jenkins server.
-* An AWS IAM user with the necessary permissions to launch and terminate EC2 instances.
-* A default VPC and a default subnet in your AWS account.
+This lab has three sub-sections, namely:
+1. Adding the Git parameter plugin to Jenkins
+2. Creating a tag in Git
+3. Building a project from a Git tag in Jenkins
 
-## Configuration
-* Open the Jenkins web interface and create a new job.
+## Step 1: Adding the Git parameter plugin to Jenkins
+- Go to Jenkins dashboard.
+- Click on Manage Jenkins in the Jenkins dashboard and select Manage Plugins.
+- Under the Available tab, search for Git Parameter and select it.
+- Click on Install without restart, and the plugin will be installed.
 
-* Set the job type to "Freestyle project".
+## Step 2: Creating a tag in Git
+- Go to https://github.com/manikcloud/Jenkins-cicd.git and open the repository.
+- Click on the releases tab.
+- Click on the Create a new release button.
+- Enter a tag name and fill out the other form fields.
+- Click Publish release at the bottom.
 
-* Under "General" settings, check "This project is parameterized" and add the following parameters:
-
-1. instance_type: the instance type (e.g. t2.micro)
-2. ami_id: the AMI ID for the instance
-3. key_pair: the name of the key pair to use for SSH access
-4. security_group: the name of the security group to use for the instance
-5. count: the number of instances to launch (default: 1)
-* Under "Source Code Management", select your Git repository and branch.
-
-* Under "Build", add a new "Execute shell" build step and paste the following 
-
-## script:
-
-
-```
-#!/bin/bash
-
-# Launch EC2 instances
-aws ec2 run-instances \
-  --image-id $ami_id \
-  --instance-type $instance_type \
-  --count $count \
-  --key-name $key_pair \
-  --security-groups $security_group \
-  --region us-east-1
-
-# Wait for instances to launch
-sleep 20
-
-# Check instance status
-for i in $(seq 1 $count); do
-  instance_id=$(aws ec2 describe-instances \
-    --filters "Name=tag:Name,Values=jenkins-ec2" \
-    --query "Reservations[].Instances[$i].InstanceId" \
-    --output text \
-    --region us-east-1)
-  echo "Instance $i: $instance_id"
-  status=$(aws ec2 describe-instance-status \
-    --instance-ids $instance_id \
-    --query "InstanceStatuses[].InstanceState.Name" \
-    --output text \
-    --region us-east-1)
-  while [ "$status" == "pending" ]; do
-    echo "Instance $i is still launching. Waiting 10 seconds..."
-    sleep 10
-    status=$(aws ec2 describe-instance-status \
-      --instance-ids $instance_id \
-      --query "InstanceStatuses[].InstanceState.Name" \
-      --output text \
-      --region us-east-1)
-  done
-  echo "Instance $i is now $status"
-done
-```
-
-Save the job configuration.
-
-## Usage
-* To use the job, simply go to the Jenkins web interface and run the job. 
-* Enter the desired values for the parameters and click "Build". 
-
-The job will launch the specified number of EC2 instances with the specified configuration.
-_________________________________________________
-
-# Jenkins Parameterized Job for EC2 Instance Deletion
-This guide will walk you through the process of creating a Jenkins parameterized job that uses AWS CLI to delete EC2 instances.
-
-## Prerequisites
-Before proceeding with the steps below, you will need:
-
-* An EC2 instance(s) running on AWS
-* AWS CLI installed on the Jenkins server
-* AWS CLI configured with access key and secret key
-* Jenkins server installed and running
-
-## Step 1: Creating a Jenkins Parameterized Job
-1. Open your Jenkins dashboard and click on "New Item"
-2. Enter a name for your new job and select "Freestyle project" as the job type
-3. Check the "This build is parameterized" box
-4. Click "Add Parameter" and select "String Parameter"
-5. Enter "INSTANCE_ID" as the name and leave the default value blank
-6. Click "Save"
-
-## Step 2: Configuring the Jenkins Job
-In the "Build" section, click "Add build step" and select "Execute shell"
-
-Enter the following script:
-
-```
-
-#!/bin/bash
-
-# AMI_ID="ami-0c55b159cbfafe1f0"
-# INSTANCE_TYPE="t2.micro"
-# KEY_NAME="<key_pair_name>"
-# TAG_NAME="awscli"
-# COUNT=3
-# REGION="us-east-1"
-
-INSTANCE_IDS=$(aws ec2 describe-instances \
-    --filters "Name=tag:Name,Values=$TAG_NAME" \
-    --query 'Reservations[*].Instances[*].InstanceId' \
-    --output text \
-    --region $REGION)
-
-echo "Terminating instances: $INSTANCE_IDS"
-aws ec2 terminate-instances --instance-ids $INSTANCE_IDS --region $REGION
-
-echo "Waiting for instances to terminate..."
-sleep 20
-
-for INSTANCE_ID in $INSTANCE_IDS; do
-    INSTANCE_STATE=$(aws ec2 describe-instances \
-        --instance-ids $INSTANCE_ID \
-        --query 'Reservations[0].Instances[0].State.Name' \
-        --output text \
-        --region $REGION)
-
-    if [ "$INSTANCE_STATE" = "terminated" ]; then
-        echo "Instance $INSTANCE_ID has been terminated."
-    else
-        echo "Instance $INSTANCE_ID has not been terminated. Something went wrong."
-    fi
-done
-
-```
-Click "Save"
-
-## Step 3: Running the Jenkins Job
-* Click "Build with Parameters"
-* Enter the instance ID of the EC2 instance you want to delete
-* Click "Build"
-* The job will run and terminate the specified EC2 instance.
-
-
-# Verifying the EC2 Instance Termination
-Log in to your AWS console
-Navigate to the EC2 dashboard
-Verify that the specified EC2 instance has been terminated.
-
-Congratulations! You have successfully created a Jenkins parameterized job that uses AWS CLI to delete EC2 instances.
-
-
-
-
-
-
+## Step 3: Building a project from a Git tag in Jenkins
+- Go to Jenkins dashboard.
+- Click on New Item in the Jenkins dashboard.
+- Enter a name for your build job.
+- Select Freestyle project as the build job type.
+- Click OK.
+- On the configuration page, select the checkbox next to the text that states, This project is parameterized.
+- Click on the Add parameter button that appears.
+- From the drop-down menu that appears, select Git parameter.
+- Name the Git parameter tag, and choose parameter type Tag.
+- Add a default value (main).
+- Scroll down to the Source Code Management section and select Git.
+- Enter the link to the repository in the field that appears: https://github.com/manikcloud/Jenkins-cicd.git
+- In the Branches to Build field, enter the variable name as, ${tag}
+- Click Save.
+- Click Build With Parameters in the project window to make sure the build works.
+- In the page that appears, accept the defaults if correct or enter the tag value, and click the Build button. Jenkins will now build your project.
+- Click on the Build History to view the build results.
+- Click on the Console Output to view the build logs.
