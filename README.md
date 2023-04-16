@@ -37,7 +37,7 @@ This lab has two sub-sections, namely:
 - Navigate to the root directory where the pom.xml is.
 - Open a new text file and add the following script to it.
 
-```groovy
+```
 pipeline {
     agent any
     stages {
@@ -76,9 +76,11 @@ On the configuration page, scroll down to the Pipeline section.
 
 Change Definition from Pipeline script to Pipeline script from SCM.
 
-Select Git in SCM.
+### Select Git in SCM.
 
-Add the repository URL.
+Add the repository URL: https://github.com/manikcloud/Jenkins-cicd.git
+
+ADD the branch name: 5.3-maven-jenkinsfile-pipeline
 
 Click Save.
 
@@ -89,4 +91,3 @@ Jenkins will now build your pipeline and output the logs.
 ## Reference repositories:
 
 * https://github.com/manikcloud/Jenkins-cicd.git
-* https://github.com/manikcloud/5.3-maven-jenkinsfile-pipeline.git
