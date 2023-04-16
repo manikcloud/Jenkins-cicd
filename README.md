@@ -72,7 +72,10 @@ done
 Save the job configuration.
 
 ## Usage
-To use the job, simply go to the Jenkins web interface and run the job. Enter the desired values for the parameters and click "Build". The job will launch the specified number of EC2 instances with the specified configuration.
+* To use the job, simply go to the Jenkins web interface and run the job. 
+* Enter the desired values for the parameters and click "Build". 
+
+The job will launch the specified number of EC2 instances with the specified configuration.
 
 
 
