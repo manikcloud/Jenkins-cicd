@@ -28,6 +28,7 @@ Before you can use this job, you will need:
 
 ## script:
 
+
 ```
 #!/bin/bash
 
@@ -76,6 +77,85 @@ Save the job configuration.
 * Enter the desired values for the parameters and click "Build". 
 
 The job will launch the specified number of EC2 instances with the specified configuration.
+_________________________________________________
+
+# Jenkins Parameterized Job for EC2 Instance Deletion
+This guide will walk you through the process of creating a Jenkins parameterized job that uses AWS CLI to delete EC2 instances.
+
+## Prerequisites
+Before proceeding with the steps below, you will need:
+
+* An EC2 instance(s) running on AWS
+* AWS CLI installed on the Jenkins server
+* AWS CLI configured with access key and secret key
+* Jenkins server installed and running
+
+## Step 1: Creating a Jenkins Parameterized Job
+1. Open your Jenkins dashboard and click on "New Item"
+2. Enter a name for your new job and select "Freestyle project" as the job type
+3. Check the "This build is parameterized" box
+4. Click "Add Parameter" and select "String Parameter"
+5. Enter "INSTANCE_ID" as the name and leave the default value blank
+6. Click "Save"
+
+## Step 2: Configuring the Jenkins Job
+In the "Build" section, click "Add build step" and select "Execute shell"
+
+Enter the following script:
+
+```
+
+#!/bin/bash
+
+# AMI_ID="ami-0c55b159cbfafe1f0"
+# INSTANCE_TYPE="t2.micro"
+# KEY_NAME="<key_pair_name>"
+# TAG_NAME="awscli"
+# COUNT=3
+# REGION="us-east-1"
+
+INSTANCE_IDS=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=$TAG_NAME" \
+    --query 'Reservations[*].Instances[*].InstanceId' \
+    --output text \
+    --region $REGION)
+
+echo "Terminating instances: $INSTANCE_IDS"
+aws ec2 terminate-instances --instance-ids $INSTANCE_IDS --region $REGION
+
+echo "Waiting for instances to terminate..."
+sleep 20
+
+for INSTANCE_ID in $INSTANCE_IDS; do
+    INSTANCE_STATE=$(aws ec2 describe-instances \
+        --instance-ids $INSTANCE_ID \
+        --query 'Reservations[0].Instances[0].State.Name' \
+        --output text \
+        --region $REGION)
+
+    if [ "$INSTANCE_STATE" = "terminated" ]; then
+        echo "Instance $INSTANCE_ID has been terminated."
+    else
+        echo "Instance $INSTANCE_ID has not been terminated. Something went wrong."
+    fi
+done
+
+```
+Click "Save"
+
+## Step 3: Running the Jenkins Job
+* Click "Build with Parameters"
+* Enter the instance ID of the EC2 instance you want to delete
+* Click "Build"
+* The job will run and terminate the specified EC2 instance.
+
+
+# Verifying the EC2 Instance Termination
+Log in to your AWS console
+Navigate to the EC2 dashboard
+Verify that the specified EC2 instance has been terminated.
+
+Congratulations! You have successfully created a Jenkins parameterized job that uses AWS CLI to delete EC2 instances.
 
 
 
