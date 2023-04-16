@@ -1,30 +1,27 @@
 pipeline {
 	agent any
-	tools {
-    	maven 'my_mvn'
-	}
+
 	stages {
-    	stage("Checkout") {   
+    	stage("Hello") {   
         	steps {               	 
-            	git branch: 'session5.2_pipeline', url: 'https://github.com/manikcloud/Jenkins-cicd.git'        	 
-           	 
+            	sh echo "hello- world"
         	}    
     	}
-    	stage('clean') {
-        	steps {
-        	sh "mvn clean"  	 
-        	}
-    	}
-    	stage('Build') {
-        	steps {
-        	sh "mvn compile"  	 
-        	}
-    	}
+    	// stage('clean') {
+        // 	steps {
+        // 	sh "mvn clean"  	 
+        // 	}
+    	// }
+    	// stage('Build') {
+        // 	steps {
+        // 	sh "mvn compile"  	 
+        // 	}
+    	// }
    	 
-    	stage("Unit test") {          	 
-        	steps {  	 
-            	sh "mvn test"          	 
-       	}
+    	// stage("Unit test") {          	 
+        // 	steps {  	 
+        //     	sh "mvn test"          	 
+       	// }
 }
 }
-}
+
