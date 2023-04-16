@@ -11,20 +11,20 @@ Before you can use this job, you will need:
 * A default VPC and a default subnet in your AWS account.
 
 ## Configuration
-Open the Jenkins web interface and create a new job.
+* Open the Jenkins web interface and create a new job.
 
-Set the job type to "Freestyle project".
+* Set the job type to "Freestyle project".
 
-Under "General" settings, check "This project is parameterized" and add the following parameters:
+* Under "General" settings, check "This project is parameterized" and add the following parameters:
 
-instance_type: the instance type (e.g. t2.micro)
-ami_id: the AMI ID for the instance
-key_pair: the name of the key pair to use for SSH access
-security_group: the name of the security group to use for the instance
-count: the number of instances to launch (default: 1)
-Under "Source Code Management", select your Git repository and branch.
+1. instance_type: the instance type (e.g. t2.micro)
+2. ami_id: the AMI ID for the instance
+3. key_pair: the name of the key pair to use for SSH access
+4. security_group: the name of the security group to use for the instance
+5. count: the number of instances to launch (default: 1)
+* Under "Source Code Management", select your Git repository and branch.
 
-Under "Build", add a new "Execute shell" build step and paste the following 
+* Under "Build", add a new "Execute shell" build step and paste the following 
 
 ## script:
 
