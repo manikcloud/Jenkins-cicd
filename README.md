@@ -1,142 +1,59 @@
-# Jenkins-cicd 
-PG DO - CI/CD Pipeline with Jenkins Simplilearn 
+# Lesson 4 Demo 4: Post-Build Actions
 
-# AWS Ubuntu VM Provisioning steps
--	Step 1:  Click on Launch Instance 
--	Step 2 : Click on Software Image (AMI)
--	Select Ubuntu 
--	Step 4: Key pair name – required
--	Click on Create new key pair
--	Put key pair name Jenkins-sl
--	& Download it 
--	Step 5 : Click on Launch Instance 
--	Step 6 : Select your VM and Click connect 
--	Step 7 :  You can see the terminal 
--	Step: Showing Github example
+This section will guide you to:
+- Configure post-build actions
 
-# Git Status
-```
-git --version 
-```
-## cretae Dir 
-```
-mkdir demo 
-cd  demo 
-```
-## GIT & Ubuntu SSH connection
-```
-ssh-keygen 
+This lab has two sub-sections, namely:
+1. Configuring SMTP settings to enable email alerts in Jenkins
+2. Defining post-build actions in a build and testing the SMTP settings
 
-"Hit enter button 3 time"
+## Step 1: Configure SMTP settings to enable email alerts in Jenkins
+- Go to Jenkins dashboard.
+- Click on Manage Jenkins in the Jenkins dashboard and select Configure System.
 
-cat ~/.ssh/id_rsa.pub 
-git clone git@github.com:manikcloud/Jenkins-cicd.git
-history 
-history | cut -c 8- 
-```
+- Scroll down to the end of the page to the Email Notification section.
+- Click on the Advanced button to reveal advanced settings.
+- Fill the fields with appropriate values as shown below:
 
-# Jenkins installation on UBUNTU 18.04 & Ubuntu 22.04 (Please skip the step 2 & 3 for 22.04)
+SMTP server: smtp.gmail.com
+Default user email suffix: @gmail.com
+User Name: <your email Id>
+Password: <your Gmail app password>
+Tick the Use SSL checkbox
+Port: 465
 
-### Step 1
-```
-sudo apt-get update -y && sudo apt install openjdk-8-jdk -y
-```
-### Step 2: Downloading Key
-```
-sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add
-```
+Reference: https://varunmanik1.medium.com/devops-jenkins-aws-series-part-3-jenkins-notifications-and-gmail-integration-a-step-by-step-bb2cac5dbd4c
 
-### Step 3: Adding Key
-```
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-```
+- Select the Test configuration by sending test e-mail and enter a recipient email to test the configuration.
+- Click Save
 
-### Step 4: Jenkins Package installation
-```
-sudo apt-get update -y
-sudo apt install jenkins -y
-sudo /etc/init.d/jenkins start
-sudo service jenkins status 
-```
-### Step 5: Jenkins default password
-```
-sudo cat /home/labsuser/jenkins/secrets/initialAdminPassword
-```
-### Step 6: History command
+## Step 2: Defining post-build actions in a build and testing the SMTP settings
+- Go to Jenkins dashboard.
+- Click on New Item.
+- Enter a name for your build job.
+- Select Freestyle project as the build job type.
 
-```
-history | cut -c 8- 
+- Click OK.
 
-```
-# Jenkins URL with port 8080
-- http://x.x.x.x:8080/
+- Scroll down to the Source Code Management section and select Git.
+- Enter the link to the repository in the field that appears.
 
-Replace x with your ip 
+- Scroll down to the Build section and click on Add build step.
+- Select Execute Shell from the drop down that appears.
+- Enter the following maven command in the textbox that appears:
+mvn compile
 
-# Change Security group rule for Jenkins 
-```
--	Select your instance 
--	Down below select your security tab 
--	Click on the Security groups sg-0c51908b5fa4abf75 (launch-wizard-2)
--	Click on the action 
--	Click on EDIT INBOUND RULE
--	Select custom TCP and put port 8080
--	Custom ip should be 0.0.0.0/0
--	Click on Save the rule
-```
+- Scroll down to the Post-build Actions tab and click on the Add post-build action button.
+- From the drop down, select Email notification and fill the recipient address in the textbox that appears.
 
-# Common error
+- Click on the Add post-build action button.
+- From the drop down, select Delete workspace when build is done.
+- Click Save.
 
-```
-getting "E: Unable to locate package openjdk-8-jdk" message on java update
-```
+- Introduce an error in the Maven project to be built and commit to Git. An extra build tag is added in the pom.xml below.
 
-# Resolution 
-Run this command
+- Click Build Now in the project window to make sure that the build works. Jenkins will now build your project.
+- Click on the Build History to view the build results.
+- Click on the Console Output to view the build logs.
 
-```
-sudo apt update -y
-```
-# Plugin Installation 
-dashboard>manage>jenkins>manage plugins>maven integration
-
-
-
-# Jenkins Setting
-
-```
-Java_Home
-/usr/lib/jvm/java-8-openjdk-amd64/
-```
-
-# Post Build Step
-
-```
-java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
-
-```
-
-# This project is parameterized
-```
-echo "User First name is : $First_Name"
-echo "User Last name is : $Last_Name"
-echo "User Gender is : $Sex"
-
-```
-# References: 
-1. https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
-2. https://maven.apache.org/download.cgi
-
-
-| Feature                   | Scripted Pipeline                                            | Declarative Pipeline                                         |
-|---------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
-| Syntax                    | Groovy-based DSL                                             | YAML-based DSL                                               |
-| Structure                 | Procedural style, with stages defined as functions           | Declarative style, with stages defined as steps               |
-| Stage definition          | Defined using `stage` step and block                         | Defined using `stages` section and `stage` steps             |
-| Parallel stages           | Defined using `parallel` step and block                      | Defined using `parallel` directive                            |
-| Agent definition          | Defined using `node` step and block                          | Defined using `agent` directive                               |
-| Environment variables     | Defined using `env` map at the top of the script             | Defined using `environment` directive                         |
-| Post-build actions        | Defined using `post` section                                 | Defined using `post` directive                                |
-| Flow control              | Uses traditional `if-else` statements and loops              | Uses a declarative `when` directive for flow control          |
-| Error handling            | Uses `try-catch-finally` statements for error handling        | Uses `catchError` and `error` directives for error handling   |
-| Shared libraries support  | Supported                                                     | Supported                                                     |
+- Check the email to see the notification.
