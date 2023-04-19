@@ -55,9 +55,9 @@ resource "aws_instance" "ubuntu" {
     timeout     = "10m"
   }
 
-    provisioner "local-exec" {
-    command = "ansible-playbook -i ${self.private_ip}, -u ${var.jenkins_admin_user} --private-key=${file("./deployer")} ansible/jenkins.yaml --extra-vars 'admin_user=${var.jenkins_admin_user} admin_password=${var.jenkins_admin_password}'"
-  }
+provisioner "local-exec" {
+  command = "sleep 30 && ansible-playbook -i ${self.public_ip}, -u ubuntu --private-key=${file("./deployer")} ansible/jenkins.yaml --extra-vars 'admin_user=${var.jenkins_admin_user} admin_password=${var.jenkins_admin_password}'"
+}
 
   depends_on = [
     aws_key_pair.deployer,
