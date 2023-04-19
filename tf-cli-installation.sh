@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the desired Terraform version
-TERRAFORM_VERSION="1.4.4"
+TERRAFORM_VERSION="1.4.5"
 
 # Download Terraform
 wget "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
