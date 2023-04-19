@@ -1,0 +1,57 @@
+---
+- name: Install and configure Jenkins
+  hosts: jenkins-server
+  become: true
+  
+  vars:
+    jenkins_admin_username: admin
+    jenkins_admin_password: MySecurePassword
+    jenkins_plugin_name: some-plugin-name
+  
+  tasks:
+    - name: Install Jenkins
+      apt:
+        name: openjdk-8-jdk
+        state: present
+      become: true
+    
+    - name: Add Jenkins apt key
+      apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+        state: present
+      become: true
+
+    - name: Add Jenkins apt repository
+      apt_repository:
+        repo: deb https://pkg.jenkins.io/debian-stable binary/
+        state: present
+      become: true
+    
+    - name: Install Jenkins
+      apt:
+        name: jenkins
+        state: present
+      become: true
+
+    - name: Wait for Jenkins to start
+      wait_for:
+        port: 8080
+        timeout: 60
+
+    - name: Install Jenkins plugin
+      jenkins_plugin:
+        name: "{{ jenkins_plugin_name }}"
+        state: present
+        url_username: "{{ jenkins_admin_username }}"
+        url_password: "{{ jenkins_admin_password }}"
+        url: "http://localhost:8080"
+      become: true
+
+    - name: Create Jenkins admin user
+      jenkins_user:
+        name: "{{ jenkins_admin_username }}"
+        password: "{{ jenkins_admin_password }}"
+        state: present
+        role: admin
+        url: "http://localhost:8080"
+      become: true
