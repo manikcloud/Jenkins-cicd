@@ -43,7 +43,7 @@ resource "aws_instance" "ubuntu" {
   key_name               = aws_key_pair.deployer.key_name
   vpc_security_group_ids = ["${aws_security_group.allow_SSH_ubuntu_1.id}"]
   tags = {
-    "Name" = "Jenkins-UBUNTU-22-04"
+    "Name" = "Jenkins-UBUNTU-22-04-ansible"
     "ENV"  = "Dev"
   }
 
