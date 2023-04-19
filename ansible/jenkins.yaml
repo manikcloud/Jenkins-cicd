@@ -1,5 +1,5 @@
 - name: Install and configure Jenkins
-  hosts: jenkins-server
+  hosts: all
   become: true
   
   vars:
@@ -38,10 +38,26 @@
       become: true
 
     - name: Create Jenkins admin user
-      jenkins_user:
-        name: "{{ jenkins_admin_username }}"
-        password: "{{ jenkins_admin_password }}"
-        state: present
-        role: admin
+      jenkins_script:
         url: "http://localhost:8080"
+        user: "{{ jenkins_admin_username }}"
+        password: "{{ jenkins_admin_password }}"
+        script: |
+          import jenkins.model.*
+          import hudson.security.*
+          import org.jenkinsci.plugins.*
+
+          def instance = Jenkins.getInstance()
+
+          def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+          instance.setSecurityRealm(hudsonRealm)
+
+          def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+          instance.setAuthorizationStrategy(strategy)
+
+          instance.save()
+
+          def user = hudsonRealm.createAccount('{{ jenkins_admin_username }}', '{{ jenkins_admin_password }}')
+          user.save()
       become: true
+
