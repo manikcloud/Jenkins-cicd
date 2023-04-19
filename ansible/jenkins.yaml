@@ -8,6 +8,12 @@
     jenkins_plugin_name: some-plugin-name
   
   tasks:
+    
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+      become: true
+      
     - name: Install Jenkins
       apt:
         name: openjdk-11-jdk
