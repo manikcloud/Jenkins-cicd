@@ -1,12 +1,12 @@
-variable "jenkins_admin_user" {
-  description = "The admin username for Jenkins"
-  default     = "admin"
-}
+# variable "jenkins_admin_user" {
+#   description = "The admin username for Jenkins"
+#   default     = "admin"
+# }
 
-variable "jenkins_admin_password" {
-  description = "The admin password for Jenkins"
-  default     = "Admin@456"
-}
+# variable "jenkins_admin_password" {
+#   description = "The admin password for Jenkins"
+#   default     = "Admin@456"
+# }
 
 resource "aws_security_group" "allow_SSH_ubuntu" {
   name        = "allow_SSH_ubuntu"
