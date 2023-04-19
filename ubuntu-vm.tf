@@ -60,7 +60,7 @@ resource "aws_instance" "ubuntu" {
     timeout     = "10m"
   }
 
-  associate_public_ip_address = true
+    associate_public_ip_address = true
 
   # Remotely execute commands to install Java, Python, Jenkins
   provisioner "remote-exec" {
@@ -72,24 +72,9 @@ resource "aws_instance" "ubuntu" {
       "sudo echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null",
       "sudo apt update",
       "sudo apt install -y jenkins",
-      # "sudo systemctl start jenkins --no-pager -l",
-      # "sudo systemctl enable --now jenkins",
-      # "sudo cat /var/lib/jenkins/secrets/initialAdminPassword",
-      "sudo systemctl start jenkins",
-      "sudo systemctl enable jenkins",
-      "sleep 30",
-      "JENKINS_CLI_CMD=\"java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://localhost:8080 -auth ${var.jenkins_admin_user}:${var.jenkins_admin_password}\"",
-      "sudo chmod +x /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar",
-      "sudo $JENKINS_CLI_CMD install-plugin git",
-      "sudo $JENKINS_CLI_CMD install-plugin pipeline-maven",
-      "sudo $JENKINS_CLI_CMD install-plugin github",
-      "sudo $JENKINS_CLI_CMD install-plugin jacoco",
-      "sudo $JENKINS_CLI_CMD install-plugin clover",
-      "sudo $JENKINS_CLI_CMD install-plugin docker-workflow",
-      "sudo $JENKINS_CLI_CMD install-plugin ws-cleanup",
-      "sudo $JENKINS_CLI_CMD restart",
-      "sleep 30",
-      "echo \"jenkins.model.Jenkins.instance.securityRealm.createAccount('${var.jenkins_admin_user}', '${var.jenkins_admin_password}')\" | sudo java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://localhost:8080 -auth ${var.jenkins_admin_user}:${var.jenkins_admin_password} groovy ="
+      "sudo systemctl start jenkins --no-pager -l",
+      "sudo systemctl enable --now jenkins",
+      "sudo cat /var/lib/jenkins/secrets/initialAdminPassword",
     ]
   }
 
