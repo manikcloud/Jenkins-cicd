@@ -63,14 +63,17 @@ resource "aws_instance" "ubuntu" {
     ]
   }
 
-provisioner "local-exec" {
-  command = "ansible-playbook -i ${self.private_ip}, -u ${var.jenkins_admin_user} --private-key=${file("./deployer")} ansible/jenkins.yaml --extra-vars 'admin_user=${var.jenkins_admin_user} admin_password=${var.jenkins_admin_password}'"
+
+  provisioner "local-exec" {
+    command = "ansible-playbook -i ${self.private_ip}, -u ${var.jenkins_admin_user} --private-key=${file("./deployer")} ansible/jenkins.yaml --extra-vars 'admin_user=${var.jenkins_admin_user} admin_password=${var.jenkins_admin_password}'"
+  }
+
   depends_on = [
-    aws_instance.ubuntu
+    aws_key_pair.deployer,
+    aws_security_group.allow_SSH_ubuntu
   ]
 }
 
-}
 
 output "ubuntu" {
   value       = aws_instance.ubuntu.public_ip
