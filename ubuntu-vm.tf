@@ -10,8 +10,8 @@ variable "jenkins_admin_password" {
 }
 
 # Define security group and key pair resources
-resource "aws_security_group" "allow_SSH_ubuntu" {
-  name        = "allow_SSH_ubuntu"
+resource "aws_security_group" "allow_SSH_ubuntu_1" {
+  name        = "allow_SSH_ubuntu_1"
   description = "Allow SSH inbound traffic"
 
   ingress {
@@ -41,7 +41,7 @@ resource "aws_instance" "ubuntu" {
   ami                    = "ami-007855ac798b5175e"
   instance_type          = "t2.medium"
   key_name               = aws_key_pair.deployer.key_name
-  vpc_security_group_ids = ["${aws_security_group.allow_SSH_ubuntu.id}"]
+  vpc_security_group_ids = ["${aws_security_group.allow_SSH_ubuntu_1.id}"]
   tags = {
     "Name" = "Jenkins-UBUNTU-22-04"
     "ENV"  = "Dev"
@@ -55,25 +55,15 @@ resource "aws_instance" "ubuntu" {
     timeout     = "10m"
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "echo 'Waiting for instance to start...'",
-      "until curl http://${self.private_ip}:8080; do sleep 1; done",
-      "echo 'Instance is ready!'",
-    ]
-  }
-
-
-  provisioner "local-exec" {
+    provisioner "local-exec" {
     command = "ansible-playbook -i ${self.private_ip}, -u ${var.jenkins_admin_user} --private-key=${file("./deployer")} ansible/jenkins.yaml --extra-vars 'admin_user=${var.jenkins_admin_user} admin_password=${var.jenkins_admin_password}'"
   }
 
   depends_on = [
     aws_key_pair.deployer,
-    aws_security_group.allow_SSH_ubuntu
+    aws_security_group.allow_SSH_ubuntu_1
   ]
 }
-
 
 output "ubuntu" {
   value       = aws_instance.ubuntu.public_ip

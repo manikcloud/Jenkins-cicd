@@ -1,30 +1,25 @@
----
 - name: Install and configure Jenkins
   hosts: jenkins-server
   become: true
   
   vars:
     jenkins_admin_username: admin
-    jenkins_admin_password: MySecurePassword
+    jenkins_admin_password: Password
     jenkins_plugin_name: some-plugin-name
   
   tasks:
     - name: Install Jenkins
       apt:
-        name: openjdk-8-jdk
-        state: present
-      become: true
-    
-    - name: Add Jenkins apt key
-      apt_key:
-        url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+        name: openjdk-11-jdk
         state: present
       become: true
 
-    - name: Add Jenkins apt repository
-      apt_repository:
-        repo: deb https://pkg.jenkins.io/debian-stable binary/
-        state: present
+    - name: Add Jenkins apt key and repository with shell commands
+      shell: |
+        sudo mkdir -p /usr/share/keyrings/
+        sudo curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+        sudo echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+        sudo apt update
       become: true
     
     - name: Install Jenkins
@@ -32,16 +27,6 @@
         name: jenkins
         state: present
       become: true
-
-    # - name: Set custom fact for jenkins_started
-    #   set_fact:
-    #     jenkins_started: true
-
-    # - name: Wait for Jenkins to start
-    #   wait_for:
-    #     port: 8080
-    #     timeout: 60
-    #   when: jenkins_started is defined
 
     - name: Install Jenkins plugin
       jenkins_plugin:
