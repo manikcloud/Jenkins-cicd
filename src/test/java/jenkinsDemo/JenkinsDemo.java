@@ -1,21 +1,31 @@
-import org.junit.Assert;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-/**
- * Created by
- * Sample JUnit test code to integrate by
- */
-public class JenkinsDemo
-{
-    @Test
-    public void testCasePassed()
-    {
-        Assert.assertTrue(true);
+public class JenkinsDemo {
+    private static String Base_Url = "https://www.facebook.com";
+    private WebDriver driver;
+
+    @Before
+    public void setUp() {
+        driver = new ChromeDriver();
+        driver.get(Base_Url);
+    }
+
+    @After
+    public void after() {
+        driver.quit();
     }
 
     @Test
-    public void testCaseFailed()
-    {
-        Assert.assertTrue(false);
+    public void testCasePassed() {
+        // Your test logic here
+    }
+
+    @Test
+    public void testCaseFailed() {
+        // Your test logic here
     }
 }
