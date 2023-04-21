@@ -73,55 +73,56 @@
         
     </dependencies>
     
-   <build>
-    <finalName>manik-calculator</finalName>
-    <plugins>
-        <!-- Maven Compiler Plugin -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version>
-            <configuration>
-                <source>${java.version}</source>
-                <target>${java.version}</target>
-            </configuration>
-        </plugin>
+    <build>
+        <finalName>manik-calculator</finalName>
+        <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            
+            
+            <!-- Tomcat Maven Plugin -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/manik-calculator</path>
+                    <port>8090</port>
+                </configuration>
+            </plugin>
 
-        <!-- Tomcat Maven Plugin -->
-        <plugin>
-            <groupId>org.apache.tomcat.maven</groupId>
-            <artifactId>tomcat7-maven-plugin</artifactId>
-            <version>2.2</version>
-            <configuration>
-                <path>/manik-calculator</path>
-                <port>8090</port>
-            </configuration>
-        </plugin>
-
-        <!-- Jacoco Plugin -->
-        <plugin>
+            <!-- jacoco plugins -->
+            <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.7</version>
             <executions>
                 <execution>
-                    <id>prepare-agent</id>
-                    <goals>
-                        <goal>prepare-agent</goal>
-                    </goals>
+                <id>prepare-agent</id>
+                <goals>
+                    <goal>prepare-agent</goal>
+                </goals>
                 </execution>
                 <execution>
-                    <id>report</id>
-                    <phase>test</phase>
-                    <goals>
-                        <goal>report</goal>
-                    </goals>
+                <id>report</id>
+                <phase>test</phase>
+                <goals>
+                    <goal>report</goal>
+                </goals>
                 </execution>
             </executions>
-        </plugin>
+            </plugin>
 
-        <!-- Clover Plugin -->
-        <plugin>
+            <!-- clover plugins -->
+            <plugin>
             <groupId>com.atlassian.maven.plugins</groupId>
             <artifactId>maven-clover2-plugin</artifactId>
             <version>3.0.4</version>
@@ -130,28 +131,46 @@
             </configuration>
             <executions>
                 <execution>
-                    <phase>verify</phase>
-                    <goals>
-                        <goal>instrument</goal>
-                        <goal>clover</goal>
-                    </goals>
+                <phase>verify</phase>
+                <goals>
+                    <goal>instrument</goal>
+                    <goal>clover</goal>
+                </goals>
                 </execution>
             </executions>
-        </plugin>
+            </plugin>
 
-        <!-- Dockerfile Maven Plugin -->
-        <plugin>
+ <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>${dockerfile-maven-plugin.version}</version>
+        <configuration>
+            <repository>varunmanik/manik-calculator</repository>
+            <tag>${project.version}</tag>
+            <contextDirectory>${project.basedir}</contextDirectory>
+        </configuration>
+    </plugin>
+
+
+        </plugins>
+
+
+<extensions>
+        <extension>
             <groupId>com.spotify</groupId>
-            <artifactId>dockerfile-maven-plugin</artifactId>
-            <version>${dockerfile-maven-plugin.version}</version>
+            <artifactId>dockerfile-maven-extension</artifactId>
+            <version>1.4.13</version>
             <configuration>
                 <repository>varunmanik/manik-calculator</repository>
                 <tag>${project.version}</tag>
                 <contextDirectory>${project.basedir}</contextDirectory>
             </configuration>
-        </plugin>
-    </plugins>
-</build>
+        </extension>
+    </extensions>
+    
 
+
+
+    </build>
     
 </project>
