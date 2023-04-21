@@ -1,5 +1,27 @@
-# Tomcat Project 
-0. Git clone & 
+# Address Book Application
+
+This is a simple Address Book web application developed using Vaadin 7 and Java. It demonstrates basic CRUD operations and serves as a starting point for learning how to use the Vaadin framework.
+
+## Features
+
+- Create, update, and delete contacts
+- Filter contacts by name or email
+- Vaadin UI components with Java backend
+- Maven build and test automation
+
+## Project Structure
+
+The project follows a standard Maven structure, with `src/main` containing the main application code and `src/test` containing test code.
+
+- `src/main/java/com/manikdemo/tutorial/addressbook`: Contains the main application code, including UI components and backend classes.
+- `src/main/pmd`: Contains PMD configuration files for static code analysis.
+- `src/test/java/com/edurekademo/utilities`: Contains test classes for utility classes in the main application.
+
+## How to Run
+
+1. Clone the repository and checkout the `8.1-addressbook` branch:
+
+
 
 ```
 git clone https://github.com/manikcloud/Jenkins-cicd.git
@@ -15,6 +37,25 @@ cd Jenkins-cicd
 ```
 git switch  8.1-addressbook  
 ```
+
+
+2. Build the project and run the tests:
+
+```
+mvn clean verify
+```
+
+3. Run the application:
+
+```
+mvn jetty:run
+```
+
+4. Open a web browser and navigate to http://localhost:8090 to access the Address Book application.
+
+# Continuous Integration and Deployment (CI/CD)
+
+This project can be easily integrated with Jenkins for CI/CD. Check the `Jenkinsf
 1. Install tomcat
  ```
 sudo apt update -y
