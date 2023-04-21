@@ -1,149 +1,71 @@
-# Lesson 6 Demo 1: CI with Junit in Jenkins
-
-This section will guide you to:
-
-●	Connect Git and GitHub repository with Jenkins along with Junit tests
-
-This guide has four subsections, namely:
-1.	Logging into Jenkins
-2.	Adding Junit dependencies and classes in Maven project
-3.	Creating a Jenkins job for Maven project
-4.	Building the Jenkins job
-
-## Step 1: Logging into Jenkins
+# Please click on below URL 
+https://github.com/manikcloud/manik-calculator
 
 
-●	Open your browser and navigate to localhost:8081
+Setting up Jenkins to run unit tests and publish Surefire reports
+In this tutorial, we will cover how to configure Jenkins to run unit tests and publish Surefire reports for a Java project.
 
-●	Provide your username and password and click on Login
+## Prerequisites:
+A Jenkins server with a Java plugin installed
+A Java project with unit tests and a build tool (such as Maven or Gradle) configured
+The surefire-report:report goal added to the build configuration
+The junit dependency added to the project
+## Steps:
+Open your Jenkins server and navigate to the desired job.
 
-## Step 2: Adding Junit dependencies and classes in Maven project
+Click on the job and select "Configure" from the left-hand menu.
 
+Scroll down to the "Build" section and click on "Add build step".
 
-●	Create a maven project by executing the following command in the terminal of your lab:
+Select "Invoke top-level Maven targets" from the dropdown menu.
+
+In the "Goals" field, enter clean test surefire-report:report.
+
+Click on "Add post-build action" and select "Publish JUnit test result report" from the dropdown menu.
+
+In the "Test report XMLs" field, enter the path to the Surefire reports. For example: 
 ```
-mvn archetype:generate -DgroupId=jenkinsDemo -DartifactId=jenkinsDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-```
-●	Run the below commands to navigate inside the maven project:
-
-```
-cd /home/labsuser/jenkinsDemo
-vi pom.xml
-``` 
-
-●	Add the below code in the <dependencies> section of the pom.xml file of your Maven project
-```
-<dependency>
-<groupId>junit</groupId>
-<artifactId>junit</artifactId>
-<version>4.12</version>
-</dependency>
-<dependency>
-<groupId>org.seleniumhq.selenium</groupId>
-<artifactId>selenium-java</artifactId>
-<version>3.10.0</version>
-</dependency>
-```
-
-●	Save the file and exit using the command [esc] shift+:wq
-
-●	Delete the src/main folder using the commands given below:
+**/target/surefire-reports/TEST-*.xml
 
 ```
-cd /home/labsuser/jenkinsDemo/src
-rm -r main
-```
+Save the configuration and run the job.
 
-●	Considering you are in the src folder, navigate to src/test/java, and create a file JenkinsDemo.java using the following commands:
+Your Jenkins job should now run the unit tests and publish Surefire reports for the project.
 
-```
-cd /home/labsuser/jenkinsDemo/src/test/java
-vi JenkinsDemo.java
-```
+Note: If you are using a different build tool or testing framework, the exact steps may vary. However, the general approach of adding a build step to run the tests and a post-build action to publish the results should be the same.
 
-●	Add the following code in JenkinsDemo.java:
+### Additional Steps for Pipeline Jobs:
+If you are using a Pipeline job in Jenkins, you can use the Junit step to publish the Surefire reports. Here's an example of how to do it:
 
 ```
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-/**
- * Created by 
- * Sample junit test code to integrate by
- */
-public class JenkinsDemo
-{
-    private static String Base_Url = "https://www.facebook.com";
-    private WebDriver driver;
-
-    @Before
-    public void setUp()
-    {
-        driver = new ChromeDriver();
-        driver.get(Base_Url);
-    }
-
-    @After
-    public void after()
-    {
-        driver.quit();
-    }
-
-    @Test
-    public void testCasePassed()
-    {
-        Assert.assertTrue(driver.findElement(By.xpath("//form[@id='login_form']")).isDisplayed());
-    }
-
-    @Test
-    public void testCaseFailed()
-    {
-        Assert.assertTrue(driver.findElement(By.xpath("//form[@id='failed case']")).isDisplayed());
-    }
-
-    @Ignore
-    @Test
-    public void testCaseIgnored()
-    {
-        Assert.assertTrue(driver.findElement(By.xpath("//form[@id='ignored case']")).isDisplayed());
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                // Build the project with Maven
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Run the tests and generate the Surefire reports
+                sh 'mvn clean test surefire-report:report'
+            }
+            post {
+                // Publish the JUnit test results
+                junit '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
     }
 }
-```
-
-●	Save the file and exit using the command [esc] shift+:wq
-
-●	Your directory structure should only have these files. 
-
-●	Run the following command to delete any unnecessary files or folder structures:
 
 ```
-rm -r jenkinsDemo
+This Pipeline will run the build and test stages, and publish the JUnit test results using the junit step. Replace the path to the Surefire reports with the appropriate value for your project.
 
-```
-## Step 3: Creating a Jenkins job for Maven project
-
-
-●	To create a new job in Jenkins, open the Jenkins dashboard with your Jenkins URL. 
-For example, http://localhost:8081/
-
-●	Click on New Item. Enter the item name, select Maven Project, and click OK.
-
-●	Once you click OK, the page will be redirected to its project form. 
-
-●	In the Build section of your job, for Root POM give the path of the pom.xml in your local system as shown: 
-```
-/home/labsuser/jenkinsDemo/pom.xml
-```
-
-## Step 4: Building the Jenkins job
+That's it! Your Jenkins Pipeline should now run the unit tests and publish the Surefire reports.
 
 
-●	Build the job and check the status on the console for the test cases executed.
 
- 
+
