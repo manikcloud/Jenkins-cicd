@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the GitHub repository
+                git branch: '6.03-Jacoco-pipeline-job', url: 'https://github.com/manikcloud/Jenkins-cicd.git'
+            }
+        }
+        stage("Build and Test") {
+            steps {
+                sh "mvn clean install test"
+            }
+        }
+        // stage("JUnit report") {
+        //     steps {
+        //         junit '**/target/surefire-reports/*.xml'
+        //     }
+        // }
+        stage("JaCoCo report") {
+            steps {
+                step([$class: 'JacocoPublisher',
+                    execPattern: 'target/*.exec',
+                    classPattern: 'target/classes',
+                    sourcePattern: 'src/main/java',
+                    exclusionPattern: 'src/test*'
+                ])
+            }
+        }
+        // stage("Clover report") {
+        //     steps {
+        //         publishCoverage adapters: [clover('target/site/clover/clover.xml')]
+        //     }
+        // }
+    }
+}
