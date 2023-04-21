@@ -37,7 +37,7 @@ cd manik-calculator
 Change the branch in Git 
 
 ```
-git switch -c 7.3-sonarcube-docker
+git switch  7.3-sonarcube-docker
 ```
 
 
