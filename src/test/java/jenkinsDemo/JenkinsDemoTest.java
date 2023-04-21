@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class JenkinsDemo {
+public class JenkinsDemoTest {
     private static String Base_Url = "https://www.facebook.com";
     private WebDriver driver;
 
