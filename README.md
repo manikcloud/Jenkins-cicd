@@ -1,126 +1,216 @@
-# Integration of Sonarqube Docker with Jenkins on EC2 instance 
-### Minimum 8 GB RAM required for seamless performance
+# Manik Calculator - Java Web Application
+
+Manik Calculator is a Java-based web application that allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, and division. The application features a user-friendly GUI and is built using Spring MVC.
+
+## Features
+
+- Perform addition, subtraction, multiplication, and division operations
+- User-friendly web interface
+- Error handling for invalid inputs
+- Spring MVC framework
+- Maven for build automation
+- Docker support for containerization
+- JMeter tests for load testing
+- Smoke testing script
+- No IDE required, fully configured for CLI usage
+
+## Prerequisites
+
+- Java Development Kit (JDK) installed on your system
+- Maven installed on your system
+- Docker installed on your system
+
+## Installation
+
+1. Clone the repository:
 
 ```
-docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
-
-```
-#### Once your instance is up and running, Log in to http://localhost:9000 using System Administrator credentials:
-
-- login: admin
-- password: admin
-
-# Integration of Sonarqube 7.8 version with Jenkins on EC2 instance 
-### Minimum 8 GB RAM required for seamless performance
-This section will guide you to:
-●	Integrate SonarQube with Jenkins
-```
-This guide has three subsections, namely:
-1.	Installing SonarQube 7.8 
-2.	Installing and configuring SonarQube plugin in Jenkins
-3.	Creating a Jenkins job and running Sonarqube Scanner 
+git clone https://github.com/manikcloud/manik-calculator.git
 ```
 
-## Downlaod your Sonarqube package 
-### NOTE: Make sure you have SUDO rights on EC2 virtual machine 
-- sudo -i before doing anythin in this project
+Navigate to the project directory:
 
 ```
-sudo -i 
-
-sudo apt install unzip wget -y
-
-cd /opt/
-
-wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip
-
-unzip sonarqube-7.8.zip 
-ll
-mv sonarqube-7.8 sonarqube
-ll
-```
-### Add Sonar User & Change Ownership of sonarqube diretory 
-```
-sudo useradd sonar
-
-sudo chown -R sonar:sonar /opt/sonarqube
+cd manik-calculator
 ```
 
-### Add this line in sonar.sh file 
+Build the project using Maven:
 ```
-vim /opt/sonarqube/bin/linux-x86-64/sonar.sh 
-
-RUN_AS_USER=sonar
-```
-### Run Sonarqube
+mvn clean install
 
 ```
-/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+Build the Docker image using Maven:
 
-OR
-
-/opt/sonarqube/bin/linux-x86-64/sonar.sh console
+```
+mvn clean docker:build
 ```
 
-### Note: Closing this terminal window will stop/kill the sonarqube process. Do not close this terminal window till you complete the demo.
+Run the Docker container:
 
-●	Open the browser and navigate to http://localhost:9000 OR  http://your_vm_ip:9000 (ex: http://3.91.21.117:9000/)
- 
-●	Log in to sonarqube server with System Administrator credentials (admin/admin) 
-●	Go to Administration > Security > Users > Tokens 
-
- 
-●	Click on token and generate a token with name: Jenkins as shown below:
- 
-●	Copy the generated token and note it down. It will be used in Jenkins for Sonar authentication
-
-## Step 2: Installing and configuring SonarQube plugin in Jenkins
-
-●	Go to Manage Jenkins > Manage Plugins > Available > search for SonarQube Scanner> Click on install without restart
- 
- 
-
-●	Go to Jenkins dashboard > Manage Jenkins > Manage Credentials
- 
-●	Click on Jenkins as shown above and in the Global credentials unrestricted page, click on  Add Credentials
- 
-●	Select the kind as Secret text from the drop-down. Paste the token that you had earlier copied from the sonarqube server into the Secret field. Give the ID and description as shown below and click on ok.
- 
-You will see the credentials added in the Global credentials page
- 
-●	Go to Jenkins dashboard > Manage Jenkins > Configure system > SonarQube servers section > Click on the checkbox Enable injection of sonarqube server configuration as build environment variable
-●	Click on Add SonarQube > provide a name (ex: LocalSonarQube) and Server URL as http://localhost:9000. Select the authentication token from the list and click on Apply and Save as shown below:
- 
-●	Go to Manage Jenkins > Global Tool Configuration > Scroll for SonarQube Scanner > Add SonarQube Scanner > provide a name (ex: LocalSonarScanner), check Install automatically and select the version 3.2.0 from the drop-down list as shown below:
- 
-
-## Step 3: Creating a Jenkins job and running Sonarqube Scanner
-
-●	Create a new job > provide a name (ex: Sonar-Jenkins), and select project type as freestyle
-●	Under SCM select Git and enter the git repository of the simple-java-maven-app that we had created earlier in the demo 4 of lesson 3
-
- 
-●	In the build section click on Add a build step and select the option Execute SonarQube Scanner from the drop-down list.
- 
-
-●	Enter the details in the Analysis properties section as shown below:
 ```
-#Required metadata
-sonar.projectKey=com.mycompany.app:my-app
-sonar.projectName=my-app
-sonar.projectVersion=1.0
-#Path to Source directory
-sonar.sources= ./src
-sonar.java.binaries=.
+docker run -d -p 8080:8080 --name manik-calculator-container manik-calculator
+
 ```
- 
-●	Click on Apply and Save
 
-●	Build the job
+Access the application in your browser at http://localhost:8080.
 
-●	On successful completion of the build from the console output you can see the project in the sonarqube server by clicking the link as shown in the output
- 
+## Testing
+### Smoke Test
+A smoke test script is provided in the project. To run the smoke test, execute the following command in the project root directory:
+
+```
+./smoke-test.sh
+```
+
+### JMeter Load Test
+A JMeter load test plan is provided in the jmeter-tests directory. To run the load test, open JMeter, load the calculator_load_test.jmx file, and execute the test plan.
+
+# Jenkins Integration
+
+This section describes how to set up a Jenkins job to build, test, and deploy the manik-calculator project.
+
+## Prerequisites
+
+- Jenkins installed on your system or available through a remote server
+- JDK and Maven installed on the Jenkins build agent
+- Docker installed on the Jenkins build agent, if you plan to build and deploy Docker images
+
+## Installing Required Plugins
+
+Before creating a Jenkins job, ensure that the following plugins are installed:
+
+1. Maven Integration plugin
+2. Git plugin
+3. JaCoCo plugin
+4. Clover plugin (optional)
+5. Docker Pipeline plugin
 
 
-- You can also check the report on the sonarqube server. From the job dashboard, click on the sonarqube icon, and then click on Projects. You can see the report as shown below:
- 
+To install the plugins, go to `Manage Jenkins` > `Manage Plugins` > `Available` tab, search for the plugins, select them, and click `Install without restart`.
+
+## Creating a Jenkins Job
+
+1. In the Jenkins dashboard, click on `New Item` in the top-left corner.
+2. Enter a name for the job, e.g., `manik-calculator-job`, choose `Freestyle project`, and click `OK`.
+3. In the `Source Code Management` section, select `Git` and enter the repository URL. Configure the credentials if required.
+4. In the `Build Triggers` section, choose the desired build trigger, e.g., `Poll SCM` or `GitHub hook trigger for GITScm polling`.
+5. In the `Build` section, click `Add build step` and select `Invoke top-level Maven targets`. Enter the Maven goals as `clean install`.
+6. In the `Post-build Actions` section, add the following actions:
+   - Click `Add post-build action` and choose `Record JaCoCo coverage report`. Leave the default settings.
+   - (Optional) Click `Add post-build action` and choose `Clover Coverage Report`. Leave the default settings.
+   - If you want to build and deploy the Docker image, click `Add post-build action` and choose `Docker Build and Publish`. Configure the repository, Dockerfile location, and other settings as needed.
+7. Click `Save`.
+
+Now, you can manually trigger the job or wait for the configured trigger to start the build. Jenkins will build, test, and deploy the manik-calculator project based on the provided configuration.
+
+## Monitoring the Jenkins Job
+
+To monitor the progress and results of the Jenkins job:
+
+1. In the Jenkins dashboard, click on the job name, e.g., `manik-calculator-job`.
+2. In the `Build History` section, click on the build number to see its details.
+3. On the build details page, you can view the console output, test results, code coverage reports, and other information related to the build.
+
+
+# Manik-Calculator: SonarQube, Maven and Jenkins Integration
+
+This readme provides a step-by-step guide for installing SonarQube and configuring Jenkins job to integrate with the Manik-Calculator project.
+
+## SonarQube Docker Installation
+
+* Before installing SonarQube using Docker, ensure that your system meets the following prerequisites:
+
+- **Minimum 8GB RAM to run SonarQube container smoothly.**
+
+If you meet the prerequisites, follow these steps to install SonarQube using Docker:
+
+1. Ensure Docker is installed on your system. If it's not installed, download and install Docker from above mentioned command. 
+
+
+## SonarQube Docker Installation
+
+1. Ensure Docker is installed on your system. If it's not installed, download and install Docker from the official Docker website.
+
+2. Open your terminal and run the following command to download the SonarQube Docker image:
+
+```
+docker pull sonarqube
+```
+
+3. Once the image is downloaded, run the following command to start a SonarQube container:
+
+```
+docker run -d --name sonarqube -p 9000:9000 sonarqube
+```
+
+4. Access the SonarQube web interface by opening your web browser and navigating to `http://44.206.250.166:9000`.
+
+5. Once the SonarQube web interface is up and running, log in using the default credentials:
+
+- Username: `admin`
+- Password: `admin`
+
+6. Create a new project in SonarQube by following the instructions on the SonarQube web interface. 
+
+## Jenkins Job Configuration
+
+1. Ensure Jenkins is installed on your system. If it's not installed, download and install Jenkins from the official Jenkins website.
+
+2. Open your Jenkins dashboard and navigate to `Manage Jenkins` > `Manage Plugins`. 
+
+3. Install the following plugins:
+
+- SonarQube Scanner
+- Git
+
+4. Once the plugins are installed, create a new Jenkins job by clicking on `New Item` and selecting `Freestyle project`.
+
+5. In the `General` section, give your job a name and specify the Git repository URL for the Manik-Calculator project.
+
+6. In the `Build` section, add the following build step:
+
+```
+mvn clean package sonar:sonar -Dsonar.host.url=http://44.206.250.166:9000 -Dsonar.login=admin -Dsonar.password=admin
+```
+
+This command will run the `mvn` command to build the Manik-Calculator project and then run the SonarQube Scanner to analyze the code and send the results to the SonarQube server running at `http://44.206.250.166:9000`.
+
+7. Save your Jenkins job and run it. Once the job has finished running, you can view the SonarQube analysis report by logging in to the SonarQube web interface and navigating to the project you created in step 6 of the SonarQube Docker installation section.
+
+## Hiding SonarQube Password in Jenkins
+
+To hide your SonarQube password in Jenkins, you can use the Jenkins credentials plugin to store your password securely and reference it in your Jenkins job configuration. Here are the steps to do so:
+
+1. Install the Jenkins credentials plugin if it's not already installed.
+
+2. Go to Jenkins dashboard and navigate to `Credentials` > `System` > `Global credentials` > `Add Credentials`.
+
+3. Choose `Username with password` as the kind of credentials.
+
+4. Enter your SonarQube username in the `Username` field.
+
+5. Enter your SonarQube password in the `Password` field.
+
+6. Give the credentials an `ID` and a `Description` for future reference.
+
+7. In your Jenkins job configuration, replace the `sonar.login` and `sonar.password` arguments in the `mvn` command with the following:
+
+```
+-Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASSWORD}
+```
+
+This will reference the SonarQube username and password stored in the Jenkins credentials plugin.
+
+8. Under `Build Environment` section of your Jenkins job configuration, add the `Use secret text(s) or file(s)` option.
+
+9. In the `Bindings` section, click on `Add` and choose `Username and password (separated)` option.
+
+10. In the `Username Variable` field, enter `SONAR_USER`.
+
+11. In the `Password Variable` field, enter `SONAR_PASSWORD`.
+
+12. In the `Username Credentials` dropdown, choose the credentials you created in step 2.
+
+13. Save your Jenkins job and run it. The SonarQube password will now be securely stored in Jenkins and not visible in your job configuration.
+
+Congratulations! You have successfully integrated the Manik-Calculator project with SonarQube and Jenkins.
