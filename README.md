@@ -45,6 +45,17 @@ git switch  7.3-sonarcube-docker
 
 This readme provides a step-by-step guide for installing SonarQube and configuring Jenkins job to integrate with the Manik-Calculator project.
 
+## Docker installation Ubuntu
+
+```
+
+  sudo apt install docker.io
+  sudo systemctl status docker
+  sudo systemctl start docker
+  sudo systemctl enable  docker
+
+```
+
 ## SonarQube Docker Installation
 
 * Before installing SonarQube using Docker, ensure that your system meets the following prerequisites:
