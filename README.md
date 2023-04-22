@@ -100,9 +100,11 @@ docker run -d --name sonarqube -p 9000:9000 sonarqube
 
 3. Install the following plugins:
 
-- SonarQube Scanner
-- Git
+```
+SonarQube Scanner
 
+Git
+```
 4. Once the plugins are installed, create a new Jenkins job by clicking on `New Item` and selecting `Freestyle project`.
 
 5. In the `General` section, give your job a name and specify the Git repository URL for the Manik-Calculator project.
