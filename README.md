@@ -112,7 +112,7 @@ Git
 6. In the `Build` section, add the following build step:
 
 ```
-clean package sonar:sonar -Dsonar.host.url=http://44.206.250.166:9000 -Dsonar.login=admin -Dsonar.password=admin
+clean install compile test verify sonar:sonar -Dsonar.host.url=http://44.206.250.166:9000 -Dsonar.login=admin -Dsonar.password=Admin
 ```
 
 This command will run the `mvn` command to build the Manik-Calculator project and then run the SonarQube Scanner to analyze the code and send the results to the SonarQube server running at `http://44.206.250.166:9000`.
