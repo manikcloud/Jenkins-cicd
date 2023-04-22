@@ -101,7 +101,7 @@ docker run -d --name sonarqube -p 9000:9000 sonarqube
 3. Install the following plugins:
 
 ```
-SonarQube Scanner
+SonarQube Scanner for Jenkins
 
 Git
 ```
