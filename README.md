@@ -101,3 +101,39 @@ sudo systemctl restart jenkins
 With these changes in place, the Jenkins user should now have the necessary permissions to deploy applications to the Tomcat server.
 
 
+## Step 4: Creating an EC2 instance
+
+1. Log in to the AWS lab account provided.
+2. Click on Services at the top left to view the drop-down list of resources.
+3. Click on EC2 under the Compute menu from the drop-down list.
+4. Click on the Launch Instance button and select Launch Instance from the menu.
+5. Choose an Amazon Machine Image (AMI) from the list of AMIs and click on Select.
+6. Choose an Instance Type and click Review and Launch.
+7. Click on Launch.
+8. In the pop-up menu, select Create a new key-value pair.
+9. Click on Download Key. You’ll need this key to SSH to the VM later.
+10. Click on Launch.
+11. Navigate to the security groups console.
+12. Add a rule to the security group to which the instance belongs to allow SSH, with the following settings:
+   - Type: SSH
+   - Protocol: TCP
+   - Port Range: 22
+   - Source: Anywhere 0.0.0.0/0
+13. Add a rule to the security group to which the instance belongs to allow http traffic to port 8081, with the following settings:
+   - Type: Custom TCP Rule
+   - Protocol: TCP
+   - Port Range: 8081
+   - Source: Anywhere 0.0.0.0/0
+
+## Step 5: Installing Tomcat on EC2
+
+1. Open the terminal.
+2. Navigate to the location where the AWS key is stored.
+3. Make the key file executable with the command `chmod 400 <key-name>.pem`
+4. SSH to the EC2 instance with the command `sudo ssh -i <key-name>.pem ubunutu@<public-dns>`
+5. Run the following commands to install Java, Maven, Tomcat, and Tomcat admin:
+
+```
+sudo apt update -y
+sudo apt install maven tomcat9 tomcat9-admin -y
+```
