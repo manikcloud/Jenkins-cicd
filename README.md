@@ -203,6 +203,23 @@ Open this file and below lines
 ```
 sudo systemctl restart tomcat9
 ```
+## Enable JNLP in Jenkins Configuration and Set Port Number to 9007
+
+1. Go to the Jenkins dashboard and click on 'Manage Jenkins'.
+
+2. Click on 'Configure Global Security'.
+
+3. Scroll down to the 'Agents' section.
+
+4. Select the 'TCP port for inbound agents' option.
+
+5. Choose 'Fixed' from the drop-down menu and set the port number to '9007'.
+
+`TCP port for inbound agents: Fixed (9007`
+
+6. Scroll down and click on 'Save' to apply the changes.
+
+7. Restart Jenkins for the changes to take effect. The JNLP port will now be set to 9007, allowing inbound agents to communicate with Jenkins on that port.
 
 ## log in to this url 
 
