@@ -37,24 +37,38 @@ Prerequisite:
 
 This README file contains the necessary steps for setting up a Jenkins CI/CD pipeline for a Java Spring Boot project using Tomcat as the application server. We will be using the sample project at https://github.com/manikcloud/manik-calculator.git.
 
-## Part 1: Setup Jenkins and Tomcat
 
-1. Install Jenkins and Tomcat on your server.
-2. Clone the repository:
-
-```
-git clone https://github.com/manikcloud/manik-calculator.git
-```
-3. Set user permissions for Jenkins and Tomcat.
 
 ## Part 2: Create a Jenkins Job for Deployment with the Deploy to Container Plugin
 
 1. Go to the Jenkins dashboard and click on 'New Item'.
 2. Enter a name for your build job and select 'Freestyle project' as the build job type.
 3. In the configuration page, scroll down to the 'Source Code Management' section and select 'Git'.
-4. Add the repository URL: https://github.com/manikcloud/manik-calculator.git
-5. Install and configure the 'Deploy to Container' plugin.
-6. Configure the build triggers, build steps, and post-build actions for the deployment job.
+
+
+```
+git clone https://github.com/manikcloud/manik-calculator.git
+```
+4. Install and configure the 'Deploy to Container' plugin:
+- Go to 'Manage Jenkins' > 'Manage Plugins'.
+- Click on the 'Available' tab and search for 'Deploy to container'.
+- Select the 'Deploy to container Plugin' checkbox and click on 'Install without restart'.
+
+5. Configure the build triggers, build steps, and post-build actions for the deployment job:
+- Build Triggers: Choose the desired build trigger, such as 'Build after other projects are built', 'Poll SCM', or 'Build periodically'.
+- Build Steps: 
+    - Click on 'Add build step' and select 'Invoke top-level Maven targets'.
+    - Set the 'Maven Version' and enter 'clean package' in the 'Goals' field.
+- Post-build Actions:
+    - Click on 'Add post-build action' and select 'Deploy war/ear to a container'.
+    - In the 'WAR/EAR files' field, enter '**/*.war'.
+    - Click 'Add Container' and choose 'Tomcat 9.x'.
+    - Enter the 'Tomcat URL' (e.g., http://localhost:8080).
+    - Add the credentials for the Tomcat manager (username and password).
+    - Set the 'Context path' for the deployed application (e.g., /manik-calculator).
+
+6. Save the configuration and click on 'Build Now' to start the deployment job.
+
 
 ## Part 3: Set User Permissions for Jenkins and Tomcat
 
