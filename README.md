@@ -6,9 +6,8 @@ This branch contains Terraform code to create EC2 instances in AWS.
 
 Before you start, make sure you have the following:
 
-- An AWS account
-- AWS CLI installed and configured on your local machine
-- Terraform installed on your local machine
+- An AWS account, with ec2 full access permission 
+- And Linux Terminal, wher you can run all these commands 
 
 ## Files
 
@@ -34,7 +33,46 @@ To create EC2 instances with Terraform, follow these steps:
 
 You will be prompted to enter values for the variables defined in the `variables.tf` file. 
 
+
+Create an AWS Account
+shell
+Copy code
+1. Go to the AWS website and click on the "Create an AWS Account" button.
+2. Follow the on-screen instructions to create your account.
+3. Once your account is created, log in to the AWS Management Console.
+Create Access Keys in IAM
+shell
+Copy code
+1. In the AWS Management Console, navigate to the IAM service.
+2. Click on "Users" in the left sidebar, and then click on the "Add User" button.
+3. Enter a user name and select "Programmatic Access" as the access type.
+4. Click on the "Next: Permissions" button.
+5. Choose the appropriate permissions for your user, or attach an existing policy.
+6. Click on the "Next: Tags" button.
+7. Add any tags (optional) and click on the "Next: Review" button.
+8. Review your settings and click on the "Create User" button.
+9. Once the user is created, take note of the access key ID and secret access key. You will need these later to configure the AWS CLI.
+Install AWS CLI and Configure it
+shell
+Copy code
+1. Install AWS CLI using the following command: 
+```
+sudo apt-get install awscli
+```
+2. Run the command `aws configure` to configure your access key ID, secret access key, default region, and output format.
+Install Terraform
+1. Set the desired Terraform version: `TERRAFORM_VERSION="1.4.5"`
+2. Download Terraform: `wget "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"`
+3. Install unzip if not installed: `sudo apt-get update && sudo apt-get install -y unzip`
+4. Unzip the Terraform package: `unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"`
+5. Move the Terraform binary to the /usr/local/bin folder: `sudo cp terraform /usr/local/bin/ && sudo mv terraform /usr/bin/`
+6. Clean up the downloaded zip file: `rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"`
+7. Verify the installation: `terraform --version`
+That's it! With an AWS account, access keys, AWS CLI, and Terraform installed and configured, you're ready to use Terraform to create AWS resources.
+
+
 After the Terraform code has finished executing, you can choose one of the following options to install Jenkins:
+
 
 ### Option 1: Manually Install Jenkins
 
