@@ -1,6 +1,6 @@
 # Jenkins-CICD (Simplilearn Tutorial)
 
-This 24-hour hands-on instructor-led training program covers Jenkins and CI/CD concepts, with topics distributed across 9 lessons. This GitHub repository contains all the hands-on lab materials on different branches.
+It's 24-hours hands-on instructor-led training program covers Jenkins and CI/CD concepts, with topics distributed across 9 lessons. This GitHub repository contains all the hands-on lab materials on different branches.
 
 ## Course Outline
 
@@ -18,7 +18,10 @@ This 24-hour hands-on instructor-led training program covers Jenkins and CI/CD c
 
 For detailed information on each lesson, see the full course outline below.
 
+
 ## Repository Structure
+
+Each branch in the Jenkins-CICD Simplilearn tutorial can have its own README file with step-by-step instructions for completing the hands-on exercises.
 
 This repository contains hands-on lab materials on different branches:
 
@@ -57,6 +60,26 @@ This repository contains hands-on lab materials on different branches:
 
 GitHub repository: [https://github.com/manikcloud/Jenkins-cicd.git](https://github.com/manikcloud/Jenkins-cicd.git)
 
+
+Here's a template you can use as a starting point for each branch's README file:
+## Branch Name - Hands-on Lab
+
+### Overview
+
+Provide a brief overview of the hands-on exercise and its objectives.
+
+### Prerequisites
+
+List any prerequisites for the exercise, including software installations, system configurations, or prior knowledge.
+
+### Step-by-Step Instructions
+
+1. **Step 1:** Describe the first step in the exercise.
+2. **Step 2:** Describe the second step in the exercise.
+3. **Step 3:** Describe the third step in the exercise.
+4. ...
+
+-----------------------------------------------------------------------------------------------------------
 ## Full Course Outline
 
 <details>
