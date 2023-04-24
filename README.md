@@ -2,6 +2,25 @@
 
 It's 24-hours hands-on instructor-led training program covers Jenkins and CI/CD concepts, with topics distributed across 9 lessons. This GitHub repository contains all the hands-on lab materials on different branches.
 
+
+## INDEX:
+
+1. [How to Use this Repository and Branches](#how-to-use-this-repository-and-branches)
+2. [Repository Structure](#repository-structure)
+3. [Branch Name - Hands-on Lab](#branch-name-hands-on-lab)
+4. [Full Course Outline](#full-course-outline)
+5. [Lesson 1: Course Introduction](#lesson-1-course-introduction)
+6. [Lesson 2: Introduction to CI/CD](#lesson-2-introduction-to-cicd)
+7. [Lesson 3: Getting Started With Jenkins](#lesson-3-getting-started-with-jenkins)
+8. [Lesson 4: Build Jobs and Configurations](#lesson-4-build-jobs-and-configurations)
+9. [Lesson 5: Configuring Build Pipelines](#lesson-5-configuring-build-pipelines)
+10. [Lesson 6: Automated Testing In Jenkins](#lesson-6-automated-testing-in-jenkins)
+11. [Lesson 7: Code Quality Improvement using Jenkins](#lesson-7-code-quality-improvement-using-jenkins)
+12. [Lesson 8: Automated Deployment and Continuous Delivery](#lesson-8-automated-deployment-and-continuous-delivery)
+13. [Lesson 9: Distributed System In Jenkins](#lesson-9-distributed-system-in-jenkins)
+14. [References](#references)
+15. [Disclaimer](#disclaimer)
+
 ## Course Outline
 
 - Lesson 1: Course Introduction
