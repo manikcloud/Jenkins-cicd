@@ -31,48 +31,41 @@ For detailed information on each lesson, see the full course outline below.
 
 Each branch in the Jenkins-CICD Simplilearn tutorial can have its own README file with step-by-step instructions for completing the hands-on exercises.
 
+
+This repository contains hands-on lab materials on different branches:
+
 | Sl. No. | Branch Name             | Details | Link                                                                                             |
 |---------|-------------------------|---------|--------------------------------------------------------------------------------------------------|
 | 1       | main                    |         | [main](https://github.com/manikcloud/Jenkins-cicd/tree/main)                                     |
 | 2       | 0.1_create_ec2_tf       |         | [0.1_create_ec2_tf](https://github.com/manikcloud/Jenkins-cicd/tree/0.1_create_ec2_tf)           |
 | 3       | 0.2_ansible_install_jenkins |     | [0.2_ansible_install_jenkins](https://github.com/manikcloud/Jenkins-cicd/tree/0.2_ansible_install_jenkins) |
 | 4       | 3.1-free-style          |         | [3.1-free-style](https://github.com/manikcloud/Jenkins-cicd/tree/3.1-free-style)                 |
-| 
-
-This repository contains hands-on lab materials on different branches:
-
-- main
-- 0.1_create_ec2_tf
-- 0.2_ansible_install_jenkins
-- 3.1-free-style
-- 3.1.1-maven-style
-- 3.1.2-free-style
-- 4.4_email_notification
-- 4.5-gradle
-- 4.6_string_parameter
-- 4.7_tag_parameter
-- 4.8_remote_trigger
-- 4.9_enabling_security
-- 5.1-helloworld-pipeline
-- 5.2-pipeline-no-jenkinsfile
-- 5.3-maven-jenkinsfile-pipeline
-- 5.4-snippet-generator
-- 5.5_restarting_pipeline
-- 6.01-junit-maven
-- 6.02-jacoco
-- 6.03-Jacoco-pipeline-job
-- 6.03-JacocoPublisher
-- 6.04-Clover
-- 7.0-sonarqube-lab
-- 7.1-sonarqube-ec2
-- 7.3-sonarcube-docker
-- 7.4-findbug-pmd-checkstyle
-- 7.5complexity-scatter-plot
-- 8.1-addressbook
-- 8.2-python-flask-app
-- 8.3-php-docker
-- 9.1-master-slave
-- 9.2-final-project
+| 5       | 3.1.1-maven-style       |         | [3.1.1-maven-style](https://github.com/manikcloud/Jenkins-cicd/tree/3.1.1-maven-style)           |
+| 6       | 3.1.2-free-style        |         | [3.1.2-free-style](https://github.com/manikcloud/Jenkins-cicd/tree/3.1.2-free-style)             |
+| 7       | 4.4_email_notification  |         | [4.4_email_notification](https://github.com/manikcloud/Jenkins-cicd/tree/4.4_email_notification) |
+| 8       | 4.5-gradle              |         | [4.5-gradle](https://github.com/manikcloud/Jenkins-cicd/tree/4.5-gradle)                         |
+| 9       | 4.6_string_parameter    |         | [4.6_string_parameter](https://github.com/manikcloud/Jenkins-cicd/tree/4.6_string_parameter)     |
+| 10      | 4.7_tag_parameter       |         | [4.7_tag_parameter](https://github.com/manikcloud/Jenkins-cicd/tree/4.7_tag_parameter)           |
+| 11      | 4.8_remote_trigger      |         | [4.8_remote_trigger](https://github.com/manikcloud/Jenkins-cicd/tree/4.8_remote_trigger)         |
+| 12      | 4.9_enabling_security   |         | [4.9_enabling_security](https://github.com/manikcloud/Jenkins-cicd/tree/4.9_enabling_security)   |
+| 13      | 5.1-helloworld-pipeline |         | [5.1-helloworld-pipeline](https://github.com/manikcloud/Jenkins-cicd/tree/5.1-helloworld-pipeline) |
+| 14      | 5.2-pipeline-no-jenkinsfile |     | [5.2-pipeline-no-jenkinsfile](https://github.com/manikcloud/Jenkins-cicd/tree/5.2-pipeline-no-jenkinsfile) |
+| 15      | 5.3-maven-jenkinsfile-pipeline |   | [5.3-maven-jenkinsfile-pipeline](https://github.com/manikcloud/Jenkins-cicd/tree/5.3-maven-jenkinsfile-pipeline) |
+| 16      | 5.4-snippet-generator   |         | [5.4-snippet-generator](https://github.com/manikcloud/Jenkins-cicd/tree/5.4-snippet-generator)     |
+| 17      | 5.5_restarting_pipeline |         | [5.5_restarting_pipeline](https://github.com/manikcloud/Jenkins-cicd/tree/5.5_restarting_pipeline) |
+| 18      | 6.01-junit-maven        |         | [6.01-junit-maven](https://github.com/manikcloud/Jenkins-cicd/tree/6.01-junit-maven)               |
+| 19      | 6.02-jacoco             |         | [6.02-jacoco](https://github.com/manikcloud/Jenkins-cicd/tree/6.02-jacoco)                         |
+| 20      | 6.03-Jacoco-pipeline-job|         | [6.03-Jacoco-pipeline-job](https://github.com/manikcloud/Jenkins-cicd/tree/6.03-Jacoco-pipeline-job)|
+| 21      | 6.03-JacocoPublisher    |         | [6.03-JacocoPublisher](https://github.com/manikcloud/Jenkins-cicd/tree/6.03-JacocoPublisher)       |
+| 22      | 6.04-Clover             |         | [6.04-Clover](https://github.com/manikcloud/Jenkins-cicd/tree/6.04-Clover)                         |
+| 23      | 7.0-sonarqube-lab       |         | [7.0-sonarqube-lab](https://github.com/manikcloud/Jenkins-cicd/tree/7.0-sonarqube-lab)             |
+| 24      | 7.1-sonarqube-ec2       |         | [7.1-sonarqube-ec2](https://github.com/manikcloud/Jenkins-cicd/tree/7.1-sonarqube-ec2)             |
+| 25      | 7.3-sonarcube-docker    |         | [7.3-sonarcube-docker](https://github.com/manikcloud/Jenkins-cicd/tree/7.3-sonarcube-docker)       |
+| 26      | 7.4-findbug-pmd-checkstyle |       | [7.4-findbug-pmd-checkstyle](https://github.com/manikcloud/Jenkins-cicd/tree/7.4-findbug-pmd-checkstyle) |
+| 27      | 7.5complexity-scatter-plot |       | [7.5complexity-scatter-plot](https://github.com/manikcloud/Jenkins-cicd/tree/7.5complexity-scatter-plot) |
+| 28      | 8.1-addressbook         |         | [8.1-addressbook](https://github.com/manikcloud/Jenkins-cicd/tree/8.1-addressbook)                 |
+| 29      | 8.2-python-flask-app    |         | [8.2-python-flask-app](https://github.com/manikcloud/Jenkins-cicd/tree/8.2-python-flask-app)       |
+| 30      | 8.3-php-docker          |         | [8.3-php-docker](https://github.com/manikcloud/Jenkins-cicd/tree/8.
 
 GitHub repository: [https://github.com/manikcloud/Jenkins-cicd.git](https://github.com/manikcloud/Jenkins-cicd.git)
 
