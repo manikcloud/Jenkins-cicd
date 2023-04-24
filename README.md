@@ -2,6 +2,14 @@
 
 It's 24-hours hands-on instructor-led training program covers Jenkins and CI/CD concepts, with topics distributed across 9 lessons. This GitHub repository contains all the hands-on lab materials on different branches.
 
+# Disclaimer
+
+Please note that the entire repository is owned and maintained by Varun Kumar Manik. While every effort has been made to ensure the accuracy and reliability of the information and resources provided in this repository, Varun Kumar Manik takes full responsibility for any errors or inaccuracies that may be present.
+
+Simplilearn is not responsible for the content or materials provided in this repository and disclaims all liability for any issues, misunderstandings, or claims that may arise from the use of the information or materials provided. By using this repository, you acknowledge that Varun Kumar Manik is solely accountable for its content, and you agree to hold Simplilearn harmless from any claims or liabilities that may arise as a result of your use or reliance on the information provided herein.
+
+It is important to understand that this repository contains educational materials for a training course, and users are expected to apply their own judgment and discretion when utilizing the provided resources. Neither Varun Kumar Manik nor Simplilearn can guarantee specific results or outcomes from following the materials in this repository.
+
 ## Course Outline
 
 - Lesson 1: Course Introduction
@@ -85,13 +93,13 @@ List any prerequisites for the exercise, including software installations, syste
 <details>
 <summary>Click to expand the full course outline</summary>
 
-### Lesson 1: Course Introduction
+## Lesson 1: Course Introduction
 - Course Objectives
 - Course Outline
 - Prerequisites of this course
 - Highlights of this course
 
-### Lesson 2: Introduction to CI/CD
+## Lesson 2: Introduction to CI/CD
 
 By the end of this lesson, you will be able to explain:
 
@@ -130,7 +138,7 @@ By the end of this lesson, you will be able to explain:
 14. Knowledge checks and quizzes
 
 
-### Lesson 3: Getting Started With Jenkins
+## Lesson 3: Getting Started With Jenkins
 
 By the end of this lesson, you will be able to explain:
 
@@ -168,23 +176,263 @@ By the end of this lesson, you will be able to explain:
 21. Assisted Practice/Demo: Exploring Jenkins and BlueOcean
 
 
-### Lesson 4: Build Jobs and Configurations
-...
+## Lesson 4: Build Jobs and Configurations
 
-### Lesson 5: Configuring Build Pipelines
-...
+By the end of this lesson, you will be able to explain:
 
-### Lesson 6: Automated Testing In Jenkins
-...
+- Jenkins Build Jobs
+- Freestyle Build Jobs
+- Creating a Freestyle Build
+- Build Triggers
+- Scheduled Build Jobs
+- Polling the SCM
+- Build Steps
+- Jenkins Environment Variables
+- Post-build Actions
+- Building Other Projects
+- Using Jenkins with Other Languages
+- Gradle build
+- Parameterized Build Jobs
+- Parameterized Build Jobs
+- Building from Tags
+- Remote Triggering Parameterized Builds
+- Enabling Security in Jenkins
+- Enabling Security in Jenkins
+- Build Pipelines and Promotions
 
-### Lesson 7: Code Quality Improvement using Jenkins
-...
+### Learning Objectives
 
-### Lesson 8: Automated Deployment and Continuous Delivery
-...
+1. Creation of Jenkins build jobs
+2. Types of Jenkins build jobs
+3. Freestyle Build Jobs
+   - General Configuration
+   - Advanced Configurations
+4. Configuring Source Code Management
+   - Working with Subversion
+   - Working with Git
+   - Assisted Practice/Demo: Source Code Management
+5. Build Triggers
+   - Start a Build Job After Another
+   - Scheduled Build Jobs
+   - Assisted Practice/Demo: Build Triggers
+6. Poll the SCM
+7. Trigger Builds Remotely
+   - Assisted Practice/Demo: Remote Triggering
+8. Manual Build jobs
+9. Build Steps
+   - Maven Build Steps
+   - Ant Build Steps
+10. Using Jenkins Environment Variables in Your Builds
+11. Post-build Actions
+    - Reporting on Test Results
+    - Archiving Build Results
+    - Stable and Successful Builds
+    - Notifications
+    - Assisted Practice/Demo: Post-build Actions
+12. Using Jenkins with Other Languages
+    - Building Projects with Grails
+    - Building Projects with Gradle
+    - Assisted Practice/Demo: Building with Other Languages
+13. Incremental Builds
+14. Parameterized Build Jobs
+    - Creating a Parameterized Build Job
+    - Assisted Practice/Demo: Parameterized Build Jobs
+15. Adapting Builds for Parameterized Build Scripts
+16. Building from a Subversion Tag
+17. Building from a Git Tag
+    - Assisted Practice/Demo: Building from Tags
+18. Starting a Parameterized Build Job Remotely
+19. Parameterized Build Job History
+20. Parameterized Triggers
+    - Assisted Practice/Demo: Parameterized Triggers
+21. Enabling Security in Jenkins
+    - Different Levels of Authentication
+    - Matrix-based Security
+    - User Permissions
+    - Role-based Security
+    - Project-based Security
+    - Assisted Practice/Demo: Enabling Security
+22. Build Promotions
+23. Build Pipelines
 
-### Lesson 9: Distributed System In Jenkins
-...
+
+## Lesson 5: Configuring Build Pipelines
+
+By the end of this lesson, you will be able to explain:
+
+- Pipelines
+- Pipeline Structure
+- Defining a Pipeline
+- Declarative Pipeline Syntax
+- Scripted Pipeline Syntax
+- Building a Pipeline
+- Continuous Integration Pipeline
+- Continuous Integration Pipelines
+- Building Pipelines from Jenkinsfile
+- Jenkinsfile
+- Snippet Generator
+- Snippet Generator
+- Global Variable Reference
+- Declarative Directive Generator
+- Restarting a pipeline
+
+### Learning Objectives
+
+1. Pipelines
+   - Why Pipeline?
+   - Advantages of Pipeline
+   - Pipeline Workflow
+   - Pipeline Terminology
+2. Defining a Pipeline
+   - Benefits of Jenkinsfile
+   - Scripted vs. Declarative Syntax
+3. Declarative Pipeline Syntax
+   - Pipeline Keywords
+4. Scripted Pipeline Syntax
+   - Assisted Practice/Demo: Scripted Pipeline Syntax
+5. Building a Pipeline
+   - Building Pipelines with Blue Ocean
+   - Building Pipelines with the Classic UI
+6. Commit Pipeline
+   - Assisted Practice/Demo: Commit Pipeline
+7. Jenkinsfile
+   - Creating Jenkinsfile
+   - Running Pipeline from Jenkinsfile
+   - Build with Jenkinsfile
+   - Test with Jenkinsfile
+   - Deploy with Jenkinsfile
+   - Assisted Practice/Demo: Jenkinsfile
+8. Snippet Generator
+   - Unassisted Practice/Demo: Snippet Generator
+9. Global Variable Reference
+10. Declarative Directive Generator
+11. Restarting a pipeline
+   - Unassisted Practice/Demo: Restarting a pipeline
+12. Pipeline Development Tools
+
+
+## Lesson 6: Automated Testing In Jenkins
+
+By the end of this lesson, you will be able to explain:
+
+- Jenkins as an Automation Testing tool
+- CI with JUnit in Jenkins
+- Code Coverage using JaCoCo
+- Code Coverage using Clover
+- Acceptance and Performance Tests in Jenkins
+- Integrate JMeter with Jenkins
+
+### Learning Objectives
+
+1. Introduction
+2. Automating Your Unit and Integration Tests
+   - Configuring Test Reports in Jenkins
+   - Displaying Test Results
+   - Assisted Practice/Demo: Test Results
+3. Ignoring Tests
+4. Measuring Code Coverage with JaCoCo
+   - Assisted Practice/Demo: JaCoCo
+5. Measuring Code Coverage with Clover
+   - Assisted Practice/Demo: Clover
+6. Automated Acceptance Tests
+7. Automated Performance Tests with JMeter
+   - Assisted Practice/Demo: JMeter Integration
+
+
+## Lesson 7: Code Quality Improvement using Jenkins
+
+By the end of this lesson, you will be able to explain:
+
+- Code Quality and Jenkins
+- Internals of Jenkins Jobs
+- FindBugs
+- Code Complexity
+- Reporting on Code Complexity
+- Open Tasks
+- SonarQube
+- Integrate SonarQube with Jenkins
+
+### Learning Objectives
+
+1. Introduction
+2. Code Quality in Your Build Process
+   - Popular Java and Groovy Code Quality Analysis Tools
+   - Checkstyle, PMD/CPD, FindBugs
+3. Reporting on Code Quality Issues with the Violations Plugin
+   - Working with Freestyle Build Jobs
+   - Working with Maven Build Jobs
+   - Using the Checkstyle, PMD, and FindBugs Reports
+   - Assisted Practice/Demo: Code Quality Reports
+4. Reporting on Code Complexity
+   - Assisted Practice/Demo: Code Complexity Reports
+5. Reporting on Open Tasks
+6. Integrating with SonarQube
+   - Assisted Practice/Demo: SonarQube Integration
+
+
+## Lesson 8: Automated Deployment and Continuous Delivery
+
+By the end of this lesson, you will be able to explain:
+
+- Building the Continuous Delivery Process
+- Implementing Automated and Continuous Deployment
+- Deploying a Python application
+- Tomcat and Jenkins
+- PHP and Jenkins
+
+### Learning Objectives
+
+1. Introduction to Automated Deployment and Continuous Delivery
+   - Continuous Delivery
+   - Benefits of Continuous Delivery
+2. Automated Deployment
+   - Benefits of Automated Deployment
+   - Automated Deployment Pipeline
+   - Phases of Automated Deployment Pipeline
+   - Tools Used
+   - Automated Deployment System
+3. Implementing Automated and Continuous Deployment
+   - The Deployment Script
+   - Database Updates
+   - Smoke Test
+4. Jenkins and Docker
+5. AWS Pipeline
+6. Deploying a Python application to an application server
+   - Assisted Practice/Demo: Python Application Deployment
+7. Tomcat and Jenkins
+   - Assisted Practice/Demo: Deploying a Java Application with Tomcat and Jenkins
+8. PHP and Jenkins
+   - Assisted Practice/Demo: Deploying a PHP Application with Jenkins
+
+
+## Lesson 9: Distributed System in Jenkins
+
+By the end of this lesson, you will be able to explain:
+
+- Distributed Architecture
+- Create multiple slave nodes
+- Deep Diving Jenkins Master/Slave Architecture
+- Build job with a slave machine
+
+### Learning Objectives
+
+1. Introduction
+   - The Jenkins Distributed Build Architecture
+   - Master/Slave Strategies in Jenkins
+2. Why Label Node?
+   - Assisted Practice/Demo: Labeling Nodes
+3. Creating Multiple Slave Nodes
+   - The Master Starts the Slave Agent Using SSH
+   - Starting the Slave Agent Manually Using Java Web Start
+   - Associating a Build Job with a Slave or Group of Slaves
+   - Assisted Practice/Demo: Setting Up and Managing Slave Nodes
+4. Deep Diving Jenkins Master/Slave Architecture
+   - Benefits and Use Cases for Distributed Builds
+   - Managing and Monitoring Slave Nodes
+5. Build Job with a Slave Machine
+   - Configuring Build Jobs for Specific Slave Nodes or Labels
+   - Assisted Practice/Demo: Running a Build Job on a Slave Machine
+
 
 </details>
 
