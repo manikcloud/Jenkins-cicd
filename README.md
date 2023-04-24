@@ -92,7 +92,43 @@ List any prerequisites for the exercise, including software installations, syste
 - Highlights of this course
 
 ### Lesson 2: Introduction to CI/CD
-...
+
+By the end of this lesson, you will be able to explain:
+
+- Traditional Software Development
+- Continuous Integration
+- Continuous Delivery
+- Continuous Deployment
+- Building the continuous deployment process
+- Automated Deployment Pipeline
+- CI/CD Tool Selection
+
+### Learning Objectives
+
+1. The traditional delivery process
+2. Drawbacks of the traditional delivery process
+3. Introduction to Continuous Integration
+4. Advantages of Continuous Integration
+5. Continuous Delivery and Continuous Deployment
+6. Continuous Delivery
+7. Continuous Deployment
+8. Advantages of Continuous Deployment
+9. Pre-requisites to CI/CD
+10. Introducing Tools for Continuous Delivery Process
+11. Stages of a CI/CD pipeline
+    - Source Stage
+    - Build Stage
+    - Test Stage
+    - Deploy Stage
+12. Implementation of CI/CD
+13. CI/CD Tool Selection
+    - Jenkins
+    - TeamCity
+    - Bamboo
+    - Travis CI
+    - Circle CI
+14. Knowledge checks and quizzes
+
 
 ### Lesson 3: Getting Started With Jenkins
 ...
