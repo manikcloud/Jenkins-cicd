@@ -2,7 +2,6 @@
 
 It's 24-hours hands-on instructor-led training program covers Jenkins and CI/CD concepts, with topics distributed across 9 lessons. This GitHub repository contains all the hands-on lab materials on different branches.
 
-
 ## Course Outline
 
 - Lesson 1: Course Introduction
@@ -19,6 +18,26 @@ It's 24-hours hands-on instructor-led training program covers Jenkins and CI/CD 
 
 For detailed information on each lesson, see the full course outline below.
 
+## How to Use this Repository and Branches
+
+To use this repository, you need to fork it and make sure to enable the "Include all branches" option. Follow these steps:
+
+1. Navigate to the repository:  [Jenkins-cicd](https://github.com/manikcloud/Jenkins-cicd/tree/main)
+2. In the top-right corner of the page, click the "Fork" button.
+3. A dialog box will appear, asking you to select the account where you want to fork the repository. Choose your desired account.
+4. In the "Include all branches" section of the dialog box, make sure to check the box next to "Include all branches."
+5. Click "Fork repository" to create a copy of the repository with all the branches included in your account.
+6. Now, you have successfully forked the repository with all its branches. You can now use the different branches for various learning purposes.
+
+To switch between branches in your forked repository, follow these steps:
+
+1. Go to your forked repository on GitHub.
+2. Click on the "Branch" dropdown button, which is located in the top-left corner of the page, under the repository name.
+3. In the dropdown menu, you'll see a list of all the available branches. Click on the desired branch to switch to it.
+
+With this guide, you should be able to use the repository and its branches effectively. 
+
+`Happy learning!`
 
 ## Repository Structure
 
