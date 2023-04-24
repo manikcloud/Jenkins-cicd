@@ -31,6 +31,14 @@ For detailed information on each lesson, see the full course outline below.
 
 Each branch in the Jenkins-CICD Simplilearn tutorial can have its own README file with step-by-step instructions for completing the hands-on exercises.
 
+| Sl. No. | Branch Name             | Details | Link                                                                                             |
+|---------|-------------------------|---------|--------------------------------------------------------------------------------------------------|
+| 1       | main                    |         | [main](https://github.com/manikcloud/Jenkins-cicd/tree/main)                                     |
+| 2       | 0.1_create_ec2_tf       |         | [0.1_create_ec2_tf](https://github.com/manikcloud/Jenkins-cicd/tree/0.1_create_ec2_tf)           |
+| 3       | 0.2_ansible_install_jenkins |     | [0.2_ansible_install_jenkins](https://github.com/manikcloud/Jenkins-cicd/tree/0.2_ansible_install_jenkins) |
+| 4       | 3.1-free-style          |         | [3.1-free-style](https://github.com/manikcloud/Jenkins-cicd/tree/3.1-free-style)                 |
+| 
+
 This repository contains hands-on lab materials on different branches:
 
 - main
