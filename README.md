@@ -1,3 +1,81 @@
+# Create EC2 instances with Terraform
+
+This branch contains Terraform code to create EC2 instances in AWS. 
+
+## Prerequisites
+
+Before you start, make sure you have the following:
+
+- An AWS account
+- AWS CLI installed and configured on your local machine
+- Terraform installed on your local machine
+
+## Files
+
+- `README.md`: This file, providing an overview of the branch.
+- `deployer` and `deployer.pub`: SSH keys for accessing the EC2 instances.
+- `history.txt`: A text file with a record of changes to this project.
+- `jenkins-installation-ubuntu.sh`: A shell script to install Jenkins on the EC2 instance.
+- `main.tf`: The main Terraform configuration file that creates the AWS resources.
+- `slave-vm.tf`: A Terraform configuration file that creates a Jenkins slave instance.
+- `tf-cli-installation.sh`: A shell script to install the Terraform CLI on the EC2 instance.
+- `ubuntu-vm.tf`: A Terraform configuration file that creates an Ubuntu EC2 instance.
+
+## Usage
+
+To create EC2 instances with Terraform, follow these steps:
+
+1. Clone this repository to your local machine by running the command: `git clone https://github.com/manikcloud/Jenkins-cicd.git`.
+2. Switch to the `0.1_create_ec2_tf` branch by running the command: `git checkout 0.1_create_ec2_tf`.
+3. Navigate to the `terraform` directory by running the command: `cd terraform`.
+4. Initialize Terraform by running the command: `terraform init`.
+5. Create an execution plan by running the command: `terraform plan`.
+6. Apply the execution plan by running the command: `terraform apply`.
+
+You will be prompted to enter values for the variables defined in the `variables.tf` file. 
+
+After the Terraform code has finished executing, you can choose one of the following options to install Jenkins:
+
+### Option 1: Manually Install Jenkins
+
+To manually install Jenkins, follow these steps:
+
+1. SSH into the Ubuntu EC2 instance created by Terraform by running the command: `ssh -i deployer ubuntu@<public-ip-of-instance>`.
+2. Install Java by running the command: `sudo apt-get update && sudo apt-get install default-jdk`.
+3. Add the Jenkins repository key by running the command: `wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -`.
+4. Add the Jenkins repository by running the command: `sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'`.
+5. Update the package list by running the command: `sudo apt-get update`.
+6. Install Jenkins by running the command: `sudo apt-get install jenkins`.
+
+### Option 2: Use Terraform to Install Jenkins
+
+To use Terraform to install Jenkins, follow these steps:
+
+1. SSH into the Ubuntu EC2 instance created by Terraform by running the command: `ssh -i deployer ubuntu@<public-ip-of-instance>`.
+2. Run the Jenkins installation script by running the command: `sudo sh /home/ubuntu/jenkins-installation-ubuntu.sh`.
+3. The script will install Jenkins and its dependencies. Once the installation is complete, Jenkins will be running on the EC2 instance.
+
+## Clean Up
+
+To destroy the EC2 instances and associated resources, run the command: `terraform destroy`
+
+Note: This will delete all resources created by Terraform in this branch.
+
+## Contributions
+
+If you'd like to contribute to this project, feel free to submit a pull request.
+
+
+├── README.md
+├── deployer
+├── deployer.pub
+├── history.txt
+├── jenkins-installation-ubuntu.sh
+├── main.tf
+├── slave-vm.tf
+├── tf-cli-installation.sh
+└── ubuntu-vm.tf
+
 # Jenkins-cicd
 PG DO - CI/CD Pipeline with Jenkins Simplilearn 
 
