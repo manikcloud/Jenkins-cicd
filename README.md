@@ -1,3 +1,101 @@
+# Jenkins-CICD (Simplilearn Tutorial)
+
+This 24-hour hands-on instructor-led training program covers Jenkins and CI/CD concepts, with topics distributed across 9 lessons. This GitHub repository contains all the hands-on lab materials on different branches.
+
+## Course Outline
+
+- Lesson 1: Course Introduction
+- Lesson 2: Introduction to CI/CD
+- Lesson 3: Getting Started With Jenkins
+- Lesson 4: Build Jobs and Configurations
+- Lesson 5: Configuring Build Pipelines
+- Lesson 6: Automated Testing In Jenkins
+- Lesson 7: Code Quality Improvement using Jenkins
+- Lesson 8: Automated Deployment and Continuous Delivery
+- Lesson 9: Distributed System In Jenkins
+- Course-end project
+- QnA
+
+For detailed information on each lesson, see the full course outline below.
+
+## Repository Structure
+
+This repository contains hands-on lab materials on different branches:
+
+- main
+- 0.1_create_ec2_tf
+- 0.2_ansible_install_jenkins
+- 3.1-free-style
+- 3.1.1-maven-style
+- 3.1.2-free-style
+- 4.4_email_notification
+- 4.5-gradle
+- 4.6_string_parameter
+- 4.7_tag_parameter
+- 4.8_remote_trigger
+- 4.9_enabling_security
+- 5.1-helloworld-pipeline
+- 5.2-pipeline-no-jenkinsfile
+- 5.3-maven-jenkinsfile-pipeline
+- 5.4-snippet-generator
+- 5.5_restarting_pipeline
+- 6.01-junit-maven
+- 6.02-jacoco
+- 6.03-Jacoco-pipeline-job
+- 6.03-JacocoPublisher
+- 6.04-Clover
+- 7.0-sonarqube-lab
+- 7.1-sonarqube-ec2
+- 7.3-sonarcube-docker
+- 7.4-findbug-pmd-checkstyle
+- 7.5complexity-scatter-plot
+- 8.1-addressbook
+- 8.2-python-flask-app
+- 8.3-php-docker
+- 9.1-master-slave
+- 9.2-final-project
+
+GitHub repository: [https://github.com/manikcloud/Jenkins-cicd.git](https://github.com/manikcloud/Jenkins-cicd.git)
+
+## Full Course Outline
+
+<details>
+<summary>Click to expand the full course outline</summary>
+
+### Lesson 1: Course Introduction
+- Course Objectives
+- Course Outline
+- Prerequisites of this course
+- Highlights of this course
+
+### Lesson 2: Introduction to CI/CD
+...
+
+### Lesson 3: Getting Started With Jenkins
+...
+
+### Lesson 4: Build Jobs and Configurations
+...
+
+### Lesson 5: Configuring Build Pipelines
+...
+
+### Lesson 6: Automated Testing In Jenkins
+...
+
+### Lesson 7: Code Quality Improvement using Jenkins
+...
+
+### Lesson 8: Automated Deployment and Continuous Delivery
+...
+
+### Lesson 9: Distributed System In Jenkins
+...
+
+</details>
+
+
+---------------------------------------------------------------------------------------------------------
 # Jenkins-cicd 
 PG DO - CI/CD Pipeline with Jenkins Simplilearn 
 
