@@ -438,6 +438,10 @@ By the end of this lesson, you will be able to explain:
 
 
 ---------------------------------------------------------------------------------------------------------
+<details>
+<summary>Click to expand to see: mannula provision a AWS VM  & jenkins installation </summary>
+
+
 # Jenkins-cicd 
 PG DO - CI/CD Pipeline with Jenkins Simplilearn 
 
@@ -563,6 +567,9 @@ echo "User Last name is : $Last_Name"
 echo "User Gender is : $Sex"
 
 ```
+</details>
+
+
 # References: 
 1. https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 2. https://maven.apache.org/download.cgi
