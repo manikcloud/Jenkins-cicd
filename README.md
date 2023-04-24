@@ -131,7 +131,42 @@ By the end of this lesson, you will be able to explain:
 
 
 ### Lesson 3: Getting Started With Jenkins
-...
+
+By the end of this lesson, you will be able to explain:
+
+- Setting Up Git
+- Connecting Git Repository
+- Setting Up Jenkins
+- Jenkins Installation and configuration
+- Maven Set Up
+- Adding Maven functionality
+- Exploring Jenkins
+- Building a Maven Project
+
+### Learning Objectives
+
+1. Preparing your environment
+2. Configuring Version Control Tools
+3. Installing and Setting Up Git
+4. Configuring SSH Keys
+5. Forking the Sample Repository
+6. Assisted Practice/Demo: Working with Git
+7. Introduction to Jenkins
+8. Jenkins Configuration
+9. Downloading and Installing Jenkins
+10. Preparing a Build Server for Jenkins
+11. Starting Up Jenkins
+12. Assisted Practice/Demo: Setting Up Jenkins
+13. Configuring the Dev Tools
+14. Configuring Your Maven Setup
+15. Configuring the JDK
+16. Assisted Practice/Demo: Configuring Dev Tools
+17. Understanding Jenkins Architecture
+18. Plugins, Notifications, Backup, and Security
+19. Pipelines
+20. Introduction to BlueOcean
+21. Assisted Practice/Demo: Exploring Jenkins and BlueOcean
+
 
 ### Lesson 4: Build Jobs and Configurations
 ...
