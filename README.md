@@ -85,7 +85,7 @@ Now, the tag is added to your local Git repository and pushed to the remote repo
 - Add a default value (main).
 - Scroll down to the Source Code Management section and select Git.
 - Enter the link to the repository in the field that appears: https://github.com/manikcloud/Jenkins-cicd.git
-- In the Branches to Build field, enter the variable name as, ${tag}
+- **In the Branches to Build field, enter the variable name as, ${tag}**
 - Click Save.
 - Click Build With Parameters in the project window to make sure the build works.
 - In the page that appears, accept the defaults if correct or enter the tag value, and click the Build button. Jenkins will now build your project.
