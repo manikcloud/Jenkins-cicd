@@ -26,9 +26,9 @@ This guide will walk you through creating a Jenkins free-style job for the follo
    - Click on `Add build step` and select `Execute shell` (for Linux/Mac) or `Execute Windows batch command` (for Windows).
    - In the command input box, enter the following command:
 
-     \```bash
+     ```
      mvn clean install
-     \```
+     ```
 
 5. **Configure post-build actions**: (Optional) If you want to perform any post-build actions, such as archiving artifacts or publishing test results, configure them in the `Post-build Actions` section.
 
