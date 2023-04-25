@@ -164,7 +164,7 @@ To destroy the EC2 instances and associated resources, run the command: `terrafo
 Note: This will delete all resources created by Terraform in this branch.
 
 
-For More info on lab machine plz expend below:
+## For More info on lab machine plz expend below:
 
 <details>
 # Jenkins-cicd
