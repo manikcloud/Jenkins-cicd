@@ -136,17 +136,15 @@ sudo curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo 
 
 sudo echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
 
-    ```
-
+```
 5. Update the package list by running the command,
 
 6. Install Jenkins by running the command:
 
 ```
-
 sudo apt-get update
 sudo apt-get install jenkins
-   
+   ```
 ### Option 2: Use Terraform to Install Jenkins
 
 To use Terraform to install Jenkins, follow these steps:
@@ -165,6 +163,10 @@ To destroy the EC2 instances and associated resources, run the command: `terrafo
 
 Note: This will delete all resources created by Terraform in this branch.
 
+
+For More info on lab machine plz expend below:
+
+<details>
 # Jenkins-cicd
 PG DO - CI/CD Pipeline with Jenkins Simplilearn 
 
@@ -289,6 +291,20 @@ echo "User Last name is : $Last_Name"
 echo "User Gender is : $Sex"
 
 ```
+</details>
+
 # References: 
 1. https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 2. https://maven.apache.org/download.cgi
+
+## Connect & Follow
+
+For more info, please connect and follow me:
+
+- Github: [https://github.com/manikcloud](https://github.com/manikcloud)
+- LinkedIn: [https://www.linkedin.com/in/vkmanik/](https://www.linkedin.com/in/vkmanik/)
+- Email: [varunmanik1@gmail.com](mailto:varunmanik1@gmail.com)
+- Facebook: [https://www.facebook.com/cloudvirtualization/](https://www.facebook.com/cloudvirtualization/)
+- YouTube: [https://bit.ly/32fknRN](https://bit.ly/32fknRN)
+- Twitter: [https://twitter.com/varunkmanik](https://twitter.com/varunkmanik)
+
