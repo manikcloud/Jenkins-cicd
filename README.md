@@ -150,6 +150,8 @@ X.X.X.X | SUCCESS => {
 }
 ```
 4. Update the `hosts` file in the `ansible` directory with the public IP address of your EC2 instance.
+
+## Run the ansible playbok to install Jenkins
 5. Run the Ansible playbook to install Jenkins using the deployer key pair by running the command:
 
 ```
@@ -159,7 +161,9 @@ ansible-playbook -i X.X.X.X,  --private-key=../deployer ansible/jenkins.yaml
 
 Note: Replace the path to the deployer key pair with the correct path if necessary.
 
+7. Now follow the scrrnshot to complete the installation from this block 
 
+https://varunmanik1.medium.com/devsecops-cicd-java-tomcat-project-141d6b73e436
 # Disclaimer
 <details>
 
