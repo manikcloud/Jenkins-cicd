@@ -2,6 +2,13 @@
 
 This branch contains Terraform code to create EC2 instances in AWS. 
 
+## Related Blog Posts By Author:
+
+- [DevSecOps CI/CD Java Tomcat Project](https://varunmanik1.medium.com/devsecops-cicd-java-tomcat-project-141d6b73e436)
+- [DevOps Jenkins AWS Series Part 1: How to Install Jenkins on AWS Ubuntu 22.04](https://varunmanik1.medium.com/devops-jenkins-aws-series-part-1-how-to-install-jenkins-on-aws-ubuntu-22-04-cb0c3cdb055)
+- [DevOps Jenkins AWS Series Part 2: Setup AWS CloudShell, Install Terraform in Persistent](https://varunmanik1.medium.com/devops-jenkins-aws-series-part-2-setup-aws-cloudshell-install-terraform-in-persistent-425dc0537cf5)
+
+
 ## Prerequisites
 
 Before you start, make sure you have the following:
@@ -35,14 +42,13 @@ You will be prompted to enter values for the variables defined in the `variables
 
 
 Create an AWS Account
-shell
-Copy code
+
 1. Go to the AWS website and click on the "Create an AWS Account" button.
 2. Follow the on-screen instructions to create your account.
 3. Once your account is created, log in to the AWS Management Console.
-Create Access Keys in IAM
-shell
-Copy code
+
+### Create Access Keys in IAM
+
 1. In the AWS Management Console, navigate to the IAM service.
 2. Click on "Users" in the left sidebar, and then click on the "Add User" button.
 3. Enter a user name and select "Programmatic Access" as the access type.
@@ -52,9 +58,9 @@ Copy code
 7. Add any tags (optional) and click on the "Next: Review" button.
 8. Review your settings and click on the "Create User" button.
 9. Once the user is created, take note of the access key ID and secret access key. You will need these later to configure the AWS CLI.
-Install AWS CLI and Configure it
-shell
-Copy code
+
+### Install AWS CLI and Configure it
+
 1. Install AWS CLI using the following command: 
 ```
 sudo apt-get install awscli
@@ -62,12 +68,30 @@ sudo apt-get install awscli
 2. Run the command `aws configure` to configure your access key ID, secret access key, default region, and output format.
 Install Terraform
 1. Set the desired Terraform version: `TERRAFORM_VERSION="1.4.5"`
-2. Download Terraform: `wget "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"`
-3. Install unzip if not installed: `sudo apt-get update && sudo apt-get install -y unzip`
-4. Unzip the Terraform package: `unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"`
-5. Move the Terraform binary to the /usr/local/bin folder: `sudo cp terraform /usr/local/bin/ && sudo mv terraform /usr/bin/`
-6. Clean up the downloaded zip file: `rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"`
-7. Verify the installation: `terraform --version`
+2. Download Terraform: 
+```
+wget "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+```
+3. Install unzip if not installed: 
+```
+sudo apt-get update && sudo apt-get install -y unzip
+```
+4. Unzip the Terraform package: 
+```
+unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+```
+5. Move the Terraform binary to the /usr/local/bin folder: 
+```
+sudo cp terraform /usr/local/bin/ && sudo mv terraform /usr/bin/
+```
+6. Clean up the downloaded zip file: 
+```
+rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+```
+7. Verify the installation: 
+```
+terraform --version
+```
 That's it! With an AWS account, access keys, AWS CLI, and Terraform installed and configured, you're ready to use Terraform to create AWS resources.
 
 
@@ -78,19 +102,34 @@ After the Terraform code has finished executing, you can choose one of the follo
 
 To manually install Jenkins, follow these steps:
 
-1. SSH into the Ubuntu EC2 instance created by Terraform by running the command: `ssh -i deployer ubuntu@<public-ip-of-instance>`.
-2. Install Java by running the command: `sudo apt-get update && sudo apt-get install default-jdk`.
-3. Add the Jenkins repository key by running the command: `wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -`.
-4. Add the Jenkins repository by running the command: `sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'`.
-5. Update the package list by running the command: `sudo apt-get update`.
-6. Install Jenkins by running the command: `sudo apt-get install jenkins`.
+1. SSH into the Ubuntu EC2 instance created by Terraform by running the command:
+ `ssh -i deployer ubuntu@<public-ip-of-instance>`.
+
+2. Install Java by running the command:
+ `sudo apt-get update && sudo apt-get install default-jdk`.
+
+3. Add the Jenkins repository key by running the command:
+ `wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -`.
+
+4. Add the Jenkins repository by running the command: 
+`sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'`.
+
+5. Update the package list by running the command:
+ `sudo apt-get update`.
+
+6. Install Jenkins by running the command:
+ `sudo apt-get install jenkins`.
 
 ### Option 2: Use Terraform to Install Jenkins
 
 To use Terraform to install Jenkins, follow these steps:
 
-1. SSH into the Ubuntu EC2 instance created by Terraform by running the command: `ssh -i deployer ubuntu@<public-ip-of-instance>`.
-2. Run the Jenkins installation script by running the command: `sudo sh /home/ubuntu/jenkins-installation-ubuntu.sh`.
+1. SSH into the Ubuntu EC2 instance created by Terraform by running the command: 
+`ssh -i deployer ubuntu@<public-ip-of-instance>`.
+
+2. Run the Jenkins installation script by running the command:
+`sudo sh /home/ubuntu/jenkins-installation-ubuntu.sh`.
+
 3. The script will install Jenkins and its dependencies. Once the installation is complete, Jenkins will be running on the EC2 instance.
 
 ## Clean Up
