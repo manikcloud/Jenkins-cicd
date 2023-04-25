@@ -30,18 +30,90 @@ sudo apt install ansible
 
 ## Installing Jenkins using Ansible Playbook
 
-1. Clone the repository to your local machine, if you haven't already, by running the command:
+0. Clone the repository to your local machine, if you haven't already, by running the command:
 
-2. Switch to the `0.2_ansible_install_jenkins` branch by running the command:
+1. Switch to the `0.2_ansible_install_jenkins` branch by running the command:
 
-3. Navigate to the `ansible` directory by running the command:
 
 ```
 git clone https://github.com/manikcloud/Jenkins-cicd.git
+```
+2. To get the public IP of the VM created by Terraform, run the following command:
+
+```
+terraform output
+```
 git checkout 0.2_ansible_install_jenkins
+```
+3. Navigate to the `ansible` directory by running the command:
 cd ansible
 
 ```
+
+## Replace the VM ip from XXXX 
+
+Replace the ip in files named `inventory.ini` and a host variables file named `host_vars.yml` in the same directory as your Ansible playbook. Here's an example of both files:
+
+**inventory.ini**
+```
+[my_servers]
+my_server ansible_host=X.X.X.X
+```
+Replace X.X.X.X with the public IP address of your VM.
+
+**host_vars.yml**
+
+```
+---
+ansible_user: ubuntu
+ansible_ssh_private_key_file: path/to/deployer
+```
+Replace path/to/deployer with the correct path to your deployer key pair.
+
+Now, update your Ansible playbook to use the my_servers group:
+
+---
+- name: Install Jenkins on Ubuntu
+  hosts: my_servers
+  become: yes
+  gather_facts: yes
+  ...
+
+  ```
+To run the playbook, use the following command:
+
+```
+ansible-playbook -i inventory.ini jenkins_installation.yaml
+```
+This command will use the inventory file inventory.ini and the playbook jenkins_installation.yaml. The inventory file contains the server IP address and the host variables file contains the SSH user and private key file, so you don't need to specify them in the command.
+
+## Optionl ! Click below for ansible configuration file 
+<details>
+You can create a local Ansible configuration file, named `ansible.cfg`, in the same directory as your inventory file and playbook. This configuration file can contain custom settings for your project. Here's an example ansible.cfg file:
+
+```
+[defaults]
+inventory = inventory.ini
+remote_user = ubuntu
+private_key_file = path/to/deployer
+host_key_checking = False
+retry_files_enabled = False
+```
+Replace path/to/deployer with the correct path to your deployer key pair.
+
+With this configuration file in place, you can run the Ansible playbook without specifying the inventory file in the command:
+
+```
+ansible-playbook jenkins_installation.yaml
+
+```
+
+The ansible.cfg file tells Ansible to use the specified inventory file and settings by default, so you don't need to include them in the command.
+
+</details>
+
+
+
 ## Check the connectivity from remote VM
 
 1. To get the public IP of the VM created by Terraform, run the following command:
@@ -83,6 +155,7 @@ Note: Replace the path to the deployer key pair with the correct path if necessa
 
 
 # Disclaimer
+<details>
 
 Please note that the entire repository is owned and maintained by [Varun Kumar Manik](https://www.linkedin.com/in/vkmanik/). While every effort has been made to ensure the accuracy and reliability of the information and resources provided in this repository, Varun Kumar Manik takes full responsibility for any errors or inaccuracies that may be present.
 
@@ -90,6 +163,7 @@ Simplilearn is not responsible for the content or materials provided in this rep
 
 It is important to understand that this repository contains educational materials for a training course, and users are expected to apply their own judgment and discretion when utilizing the provided resources. Neither Varun Kumar Manik nor Simplilearn can guarantee specific results or outcomes from following the materials in this repository.
 
+</details>
 
 ## Connect & Follow
 
