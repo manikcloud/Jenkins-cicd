@@ -2,6 +2,9 @@
 ## Overview
 This Jenkins job allows you to provision AWS EC2 instances on-demand using a parameterized build. You can specify the instance type, AMI ID, key pair, security group, and other options as parameters when running the job.
 
+Repository: https://github.com/manikcloud/Jenkins-cicd.git
+Branch: 3.1.2-free-style
+
 ## Prerequisites
 Before you can use this job, you will need:
 
@@ -9,6 +12,35 @@ Before you can use this job, you will need:
 * AWS CLI installed on the Jenkins server.
 * An AWS IAM user with the necessary permissions to launch and terminate EC2 instances.
 * A default VPC and a default subnet in your AWS account.
+
+## Clone Repository and Checkout Branch
+
+This guide will walk you through cloning the following GitHub repository and checking out the specified branch:
+
+- Repository: https://github.com/manikcloud/Jenkins-cicd.git
+- Branch: 4.6_string_parameter
+
+Follow these steps to clone the repository and checkout the branch:
+
+1. Open the terminal.
+
+2. Clone the repository:
+
+   ```
+   git clone https://github.com/manikcloud/Jenkins-cicd.git
+   ```
+
+3. Navigate to the cloned repository:
+
+   ```
+   cd Jenkins-cicd
+   ```
+
+4. Checkout the desired branch:
+
+   ```
+   git checkout 4.6_string_parameter
+   ```
 
 ## Configuration
 * Open the Jenkins web interface and create a new job.
