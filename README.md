@@ -1,114 +1,123 @@
-# Lesson 4 Demo 5: Building Projects with Gradle
+# Build Projects with Gradle in Jenkins
 
-This section will guide you to: 
-Build projects with Gradle in jenkins
+This guide will walk you through building projects with Gradle in Jenkins, using the following GitHub repository and branch:
+
+- Repository: https://github.com/manikcloud/Jenkins-cicd.git
+- Branch: 4.5-gradle
 
 This lab has three sub-sections, namely:
-   1. Configuring Gradle plugin for Jenkins
-   2. Creating a Gradle project
-   3. Building a project with Gradle in Jenkins
-     
-Please Note: Gradle plugin is installed by default. In case you don’t have it installed, you can install the same by following the step 1.
 
-## Step 1:  Configuring Gradle plugin for Jenkins
+1. Configuring Gradle plugin for Jenkins
+2. Creating a Gradle project
+3. Building a project with Gradle in Jenkins
 
+**Note**: Gradle plugin is installed by default. In case you don’t have it installed, you can install the same by following the steps :
 
-⦁	Go to Jenkins dashboard.
+## Gradle Installation on Ubuntu
 
-⦁	Click on Manage Jenkins and select Manage Plugins.
- 
+Before creating a Gradle project, ensure that Gradle is installed on your Ubuntu system. Follow these steps to install Gradle:
 
-⦁	Under the Available tab, select Gradle.
- 
+1. Update package lists for upgrades and package dependencies:
 
-⦁	Click on Install without restart and the plugin will be installed.
- 
+   ```
+   sudo apt-get update
+   ```
 
-⦁	Click on Manage Jenkins and select Global Tool Configuration.
+2. Install the required software-properties-common package:
 
-⦁	Scroll down to the Gradle section and click on Add Gradle.
- 
-⦁	Check the Install automatically box and specify a name for the installation.
- 
+   ```
+   sudo apt-get install software-properties-common
+   ```
 
-⦁	Click Save.
+3. Add the official Gradle PPA (Personal Package Archive) to your system:
 
-## Step 2:  Creating a Gradle project
+   ```
+   sudo add-apt-repository ppa:cwchien/gradle
+   ```
 
-⦁	Open the terminal.
+4. Update package lists to include the Gradle PPA:
 
-⦁	If you don’t have gradle installed, run sudo apt-get install gradle command
+   ```
+   sudo apt-get update
+   ```
 
-⦁	Create a new directory and navigate to it
+5. Install Gradle:
 
-```
-mkdir gradle-demo  
-cd gradle-demo
-```
+   ```
+   sudo apt-get install gradle
+   ```
 
-⦁	Run gradle init to create a sample gradle project.
- 
+6. Verify the Gradle installation:
 
-⦁	Go to github.com and create a new repository.
- 
+   ```
+   gradle -v
+   ```
 
-⦁	Push the gradle project to the repository as shown below:
- 
-```
-git init
-git add .
-git commit -m “First Commit”
-git remote add origin <your repository URL>
-git push -u origin master
-```
- 
-
-## Step 3:  Building a project with Gradle in Jenkins
+Once Gradle is installed, you can proceed with creating a Gradle project as described in the guide.
 
 
-⦁	Go to Jenkins dashboard.
-
-⦁	Click on New Item.
-
-⦁	Enter a name for your build job.
-
-⦁	Select Freestyle project as the build job type.
- 
-
-⦁	Click OK.
-
-⦁	Scroll down to the Source Code Management section and select Git.
-
-⦁	Enter the link to the repository in the field that appears.
- 
-
-⦁	Scroll down to the Build section and click on Add build step.
-
-⦁	Select Invoke Gradle Script from the drop down that appears.
-
-⦁	Fill up the form as shown below:
- 
-
-⦁	Scroll down to the Post-build Actions tab and click on the Add post-build action button.
-
-⦁	From the drop down, select Email notification and fill the recipient address in the textbox that appears.
-
-⦁	Click Save.
-
-⦁	Click Build Now in the project window to make sure that the build works. Jenkins will now build your project.
-
-⦁	Click on the Build History to view the build results.
-
-⦁	Click on the Console Output to view the build logs.
 
 
-# Gradle Project on Linux terminal 
+## Gradle Project on Linux Terminal
 
-```
-mkdir my_gradle
-cd my_gradle/
-gradle init --type java-application
+1. Create a new directory and navigate to it:
 
-./gradlew run
+   ```
+   mkdir my_gradle
+   cd my_gradle/
+   ```
 
-```
+2. Initialize the Gradle project:
+
+   ```
+   gradle init --type java-application
+   ```
+
+3. Run the Gradle project:
+
+   ```
+   ./gradlew run
+   ```
+
+## Step 1: Configuring Gradle plugin for Jenkins
+
+1. Go to Jenkins dashboard.
+2. Click on `Manage Jenkins` and select `Manage Plugins`.
+3. Under the `Available` tab, select `Gradle`.
+4. Click on `Install without restart` and the plugin will be installed.
+5. Click on `Manage Jenkins` and select `Global Tool Configuration`.
+6. Scroll down to the `Gradle` section and click on `Add Gradle`.
+7. Check the `Install automatically` box and specify a name for the installation.
+8. Click `Save`.
+
+## Step 2: Creating a Gradle project
+
+1. Open the terminal.
+2. If you don’t have Gradle installed, run `sudo apt-get install gradle` command.
+3. Create a new directory and navigate to it:
+
+   ```
+   mkdir gradle-demo  
+   cd gradle-demo
+   ```
+
+## Step 3: Building a project with Gradle in Jenkins
+
+1. Go to Jenkins dashboard.
+2. Click on `New Item`.
+3. Enter a name for your build job.
+4. Select `Freestyle project` as the build job type.
+5. Click `OK`.
+6. Scroll down to the `Source Code Management` section and select `Git`.
+7. Enter the link to the repository in the field that appears.
+8. Scroll down to the `Build` section and click on `Add build step`.
+9. Select `Invoke Gradle Script` from the drop-down that appears.
+10. In the form, choose the Gradle installation configured in step 1, and enter the tasks you want to run (e.g., `clean build`) in the `Tasks` field.
+
+11. Scroll down to the `Post-build Actions` tab and click on the `Add post-build action` button.
+12. From the drop-down, select `Email notification` and fill the recipient address in the textbox that appears.
+13. Click `Save`.
+14. Click `Build Now` in the project window to make sure that the build works. Jenkins will now build your project.
+15. Click on the `Build History` to view the build results.
+16. Click on the `Console Output` to view the build logs.
+
