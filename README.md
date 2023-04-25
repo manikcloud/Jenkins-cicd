@@ -66,7 +66,17 @@ Create an AWS Account
 sudo apt-get install awscli
 ```
 2. Run the command `aws configure` to configure your access key ID, secret access key, default region, and output format.
-Install Terraform
+
+## Install Terraform from SH Script
+
+```
+sudo chmod 755  chmod 755 tf-cli-installation.sh 
+sudo sh  chmod 755 tf-cli-installation.sh 
+
+```
+# OR
+
+## Install Terraform Manual 
 1. Set the desired Terraform version: `TERRAFORM_VERSION="1.4.5"`
 2. Download Terraform: 
 ```
@@ -97,8 +107,14 @@ That's it! With an AWS account, access keys, AWS CLI, and Terraform installed an
 
 After the Terraform code has finished executing, you can choose one of the following options to install Jenkins:
 
+### Option 1.1 : Install Jenkins by SH Script
 
-### Option 1: Manually Install Jenkins
+```
+chmod 755 jenkins-installation-ubuntu.sh
+sudh sh jenkins-installation-ubuntu.sh
+```
+
+### Option 1.2 : Manually Install Jenkins
 
 To manually install Jenkins, follow these steps:
 
@@ -109,17 +125,25 @@ To manually install Jenkins, follow these steps:
  `sudo apt-get update && sudo apt-get install default-jdk`.
 
 3. Add the Jenkins repository key by running the command:
- `wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -`.
-
+ 
 4. Add the Jenkins repository by running the command: 
-`sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'`.
 
-5. Update the package list by running the command:
- `sudo apt-get update`.
+```
+
+sudo mkdir -p /usr/share/keyrings
+
+sudo curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+sudo echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
+```
+
+5. Update the package list by running the command,
 
 6. Install Jenkins by running the command:
- `sudo apt-get install jenkins`.
-
+  ```
+sudo apt-get update
+sudo apt-get install jenkins
+    ```
 ### Option 2: Use Terraform to Install Jenkins
 
 To use Terraform to install Jenkins, follow these steps:
