@@ -43,14 +43,20 @@ git clone https://github.com/manikcloud/Jenkins-cicd.git
 ```
 terraform output
 ```
+
+## Switch the branch 
+
+```
 git checkout 0.2_ansible_install_jenkins
 ```
+
 3. Navigate to the `ansible` directory by running the command:
-cd ansible
 
 ```
+cd ansible
+```
 
-## Replace the VM ip from XXXX 
+## Replace the VM ip from `terraform output` Output 
 
 Replace the ip in files named `inventory.ini` and a host variables file named `host_vars.yml` in the same directory as your Ansible playbook. Here's an example of both files:
 
