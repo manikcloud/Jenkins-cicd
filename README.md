@@ -1,107 +1,70 @@
-# Java
-## References: 
-- https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 
+# Install Maven on Ubuntu and Create a Simple Maven Project
 
-⦁	 Build with Maven option in jenkins 
+### Previous Branch Details
 
-⦁	 pom.xml file required
+In the previous branch, we created a simple Java HelloWorld program using the Java command line. You can review the previous branch for more information.
 
-⦁	Commands
+### Clone the Repository and Switch to the `3.1.1-maven-style` Branch
 
-# Creating a Project
-You need somewhere for your project to reside. Create a directory somewhere and start a shell in that directory. On your command line, execute the following Maven goal:
+1. Clone the repository to your local machine by running the following command:
+```
+git clone https://github.com/manikcloud/Jenkins-cicd.git
+```
+2. Navigate to the cloned repository:
+```
+cd Jenkins-cicd/
+```
+3. Switch to the `3.1.1-maven-style` branch by running the following command:
 
 ```
-mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
-
+git switch 3.1.1-maven-style
 ```
 
-You will notice that the generate goal created a directory with the same name given as the artifactId. Change into that directory.
+Now that you have switched to the `3.1.1-maven-style` branch.
 
-```
-cd my-app
+# Maven Installation on Ubuntu
 
-```
+1. Install Maven on your Ubuntu machine by running the following command:
 
-## Build the Project
-```
-mvn package
+2. Verify the Maven installation by running:
 
-```
+3. Create a simple Maven project using the following command:
 
-- validate
-- generate-sources
-- process-sources
-- generate-resources
-- process-resources
-- compile
+4. Install the `tree` package to view the project structure:
 
+5. Navigate to the `my-app` directory:
 
-You may test the newly compiled and packaged JAR with the following command:
-```
+6. Display the project structure using the `tree` command:
+
+7. Build the Maven project by running:
+
+8. Execute the Java program from the Maven project:
+
 java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
-Which will print the quintessential:
+
+
+### Next Steps
+
+In the next step, we will configure Maven in Jenkins and create a Maven job in Jenkins to build and run the project.
+
+
+
+
+
 ```
-Hello World!
+sudo apt install maven
+mvn --version
 
-# Lesson 3 Demo 3: Maven Setup
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+sudo apt install tree -y
 
-This section will guide you to: 
-⦁	Configure build tools and JDK versions
+cd my-app/
 
-This lab has two sub-sections, namely:
-⦁	    Configuring the Maven setup 
-⦁	    Configuring the JDK
-     
-## Step 1:  Configuring the Maven setup 
-⦁	Open the terminal and go to Jenkins dashboard by typing localhost:8081 in your browser
-⦁	Click on Manage Jenkins. From the list of options, choose Manage Plugins.
+tree
+mvn install
 
- 
-
-⦁	Under the Available tab, select Maven Integration
- 
-
-⦁	Click on Install without restart and the plugin will be installed
-
- 
-
-⦁	Go to https://maven.apache.org/download.cgi and download the binary zip file
- 
-
-⦁	Unzip and extract the file and copy the path.
+tree
+java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 ```
-$ cd /home/labsuser/Downloads
-$ unzip apache-maven-3.6.3-bin.zip
-```
-⦁	Go to Manage Jenkins from the Jenkins dashboard and select Global Tool Configuration
 
-⦁	Scroll down to the Maven section and click on Add Maven
- 
-⦁	You can choose to install automatically by ticking the checkbox and specifying the version, or uncheck the box and enter the local path if you want to configure manually.
-
-⦁	Enter a name for the installation (For Example: my_maven)
-
-⦁	Uncheck the Install automatically checkbox.
-
-⦁	Paste the path to the Maven file in the MAVEN_HOME field (/home/labsuser/Downloads/apache-maven-3.6.
-
-⦁	click Save
-
- 
-⦁	You can now find Maven project as an option under New Item.
- 
-
-
-			
-## Step 2:   Configuring the JDK
-⦁	Go to Manage Jenkins from the Jenkins dashboard and select Global Tool Configuration
-
-⦁	Scroll down to the JDK Section and click on Add JDK
- 
-
-⦁	You can choose to install automatically by ticking the checkbox and specifying the version. Uncheck the box if you want to enter the JDK path manually
-
- 
-⦁	Enter the path to the JDK in the JAVA_HOME field (/usr/lib/jvm/java-8-openjdk-amd64/) and click Save
