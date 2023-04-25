@@ -1,22 +1,7 @@
-1. JENKINS installation 
-2. git integation with Jenkins
-3. java integration with Jenkins 
-
-
-
-git clone https://github.com/manikcloud/Jenkins-cicd.git
-cd Jenkins-cicd/
-ll
-git switch create_ec2_tf 
-chmod 755 jenkins-installation-ubuntu.sh 
-sh jenkins-installation-ubuntu.sh 
-
-cat jenkins-installation-ubuntu.sh 
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-
 
 sudo apt install maven
 mvn --version
+
 mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 sudo apt install tree -y
 
