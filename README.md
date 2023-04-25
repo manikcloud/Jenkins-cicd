@@ -5,7 +5,7 @@ This guide will walk you through configuring post-build actions and email notifi
 - Repository: https://github.com/manikcloud/Jenkins-cicd.git
 - Branch: 4.4_email_notification
 
-For a more detailed guide and examples, refer to this blog post: [DevOps Jenkins AWS Series Part 3: Jenkins Notifications and Gmail Integration - A Step-by-Step Guide](https://varunmanik1.medium.com/devops-jenkins-aws-series-part-3-jenkins-notifications-and-gmail-integration-a-step-by-step-bb2cac5dbd4c)
+## For a more detailed guide and examples, refer to this blog post: [DevOps Jenkins AWS Series Part 3: Jenkins Notifications and Gmail Integration - A Step-by-Step Guide](https://varunmanik1.medium.com/devops-jenkins-aws-series-part-3-jenkins-notifications-and-gmail-integration-a-step-by-step-bb2cac5dbd4c)
 
 ## Prerequisites
 
