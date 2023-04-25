@@ -143,9 +143,10 @@ sudo echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]   https://pkg.
 6. Install Jenkins by running the command:
 
 ```
+
 sudo apt-get update
 sudo apt-get install jenkins
-    ```
+   
 ### Option 2: Use Terraform to Install Jenkins
 
 To use Terraform to install Jenkins, follow these steps:
