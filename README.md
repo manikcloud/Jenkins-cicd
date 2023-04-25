@@ -42,11 +42,40 @@ git checkout 0.2_ansible_install_jenkins
 cd ansible
 
 ```
+## Check the connectivity from remote VM
+
+1. To get the public IP of the VM created by Terraform, run the following command:
+
+```
+terraform output
+```
+
+This will display the output variables from your Terraform configuration. Look for the variable containing the public IP address and copy it.
+
+2. Use the Ansible ad-hoc `ping` command to check the connectivity to the EC2 instance by running the command:
+
+```
+ansible all -i 'X.X.X.X,' --private-key=path/to/deployer -m ping
+```
+
+Replace `X.X.X.X` with the public IP address you just copied, and `path/to/deployer` with the correct path to your deployer key pair.
+
+If the connectivity is successful, you will see output similar to the following:
+
+```
+X.X.X.X | SUCCESS => {
+"ansible_facts": {
+"discovered_interpreter_python": "/usr/bin/python3"
+},
+"changed": false,
+"ping": "pong"
+}
+```
 4. Update the `hosts` file in the `ansible` directory with the public IP address of your EC2 instance.
 5. Run the Ansible playbook to install Jenkins using the deployer key pair by running the command:
 
 ```
-ansible-playbook -i hosts --private-key=../deployer jenkins.yaml
+ansible-playbook -i X.X.X.X,  --private-key=../deployer ansible/jenkins.yaml
 ```
 6. Once the playbook is executed, Jenkins will be installed on the EC2 instance.
 
