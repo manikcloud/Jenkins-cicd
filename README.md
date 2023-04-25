@@ -1,59 +1,78 @@
-# Lesson 4 Demo 4: Post-Build Actions
+# Jenkins Email Notifications
 
-This section will guide you to:
-- Configure post-build actions
+This guide will walk you through configuring post-build actions and email notifications for a Jenkins Maven job, using the following GitHub repository and branch:
 
-This lab has two sub-sections, namely:
-1. Configuring SMTP settings to enable email alerts in Jenkins
-2. Defining post-build actions in a build and testing the SMTP settings
+- Repository: https://github.com/manikcloud/Jenkins-cicd.git
+- Branch: 4.4_email_notification
 
-## Step 1: Configure SMTP settings to enable email alerts in Jenkins
-- Go to Jenkins dashboard.
-- Click on Manage Jenkins in the Jenkins dashboard and select Configure System.
+For a more detailed guide and examples, refer to this blog post: [DevOps Jenkins AWS Series Part 3: Jenkins Notifications and Gmail Integration - A Step-by-Step Guide](https://varunmanik1.medium.com/devops-jenkins-aws-series-part-3-jenkins-notifications-and-gmail-integration-a-step-by-step-bb2cac5dbd4c)
 
-- Scroll down to the end of the page to the Email Notification section.
-- Click on the Advanced button to reveal advanced settings.
-- Fill the fields with appropriate values as shown below:
+## Prerequisites
 
-SMTP server: smtp.gmail.com
-Default user email suffix: @gmail.com
-User Name: <your email Id>
-Password: <your Gmail app password>
-Tick the Use SSL checkbox
-Port: 465
+1. Jenkins should be installed and running on your system.
+2. Make sure the Email Extension Plugin is installed in Jenkins. If not, navigate to `Manage Jenkins` > `Manage Plugins` > `Available`, search for "Email Extension Plugin" and install it.
 
-Reference: https://varunmanik1.medium.com/devops-jenkins-aws-series-part-3-jenkins-notifications-and-gmail-integration-a-step-by-step-bb2cac5dbd4c
+## Step-by-Step Guide
 
-- Select the Test configuration by sending test e-mail and enter a recipient email to test the configuration.
-- Click Save
+### Configure SMTP settings to enable email alerts in Jenkins
 
-## Step 2: Defining post-build actions in a build and testing the SMTP settings
-- Go to Jenkins dashboard.
-- Click on New Item.
-- Enter a name for your build job.
-- Select Freestyle project as the build job type.
+1. **Configure SMTP settings**: Navigate to `Manage Jenkins` > `Configure System`.
+   - Scroll down to the `Extended E-mail Notification` section.
+   - Fill in the following details:
+     - SMTP server: *your SMTP server address*
+     - Default user email suffix: *your email domain suffix* (e.g., @gmail.com)
+     - Use SMTP Authentication: *check if required*
+     - Username: *your email address*
+     - Password: *your email password or app-specific password*
+     - Use SSL: *check if required*
+     - SMTP Port: *your SMTP server port* (e.g., 465 for Gmail with SSL)
+     - Reply-To Address: *your reply-to email address*
+   - Click `Advanced` to reveal more settings and configure the following:
+     - Charset: *UTF-8*
+     - Default Content Type: *text/html*
+     - Default Subject: *your default email subject*
+     - Default Recipients: *email addresses of default recipients, separated by commas*
 
-- Click OK.
+2. **Test email configuration**: Click `Test configuration by sending test e-mail`, enter a recipient email address, and click `Test configuration`. Verify that the test email is received.
 
-- Scroll down to the Source Code Management section and select Git.
-- Enter the link to the repository in the field that appears.
+### Define post-build actions in a build and test the SMTP settings
 
-- Scroll down to the Build section and click on Add build step.
-- Select Execute Shell from the drop down that appears.
-- Enter the following maven command in the textbox that appears:
-mvn compile
+1. **Navigate to your Jenkins job**: Open the Jenkins job configuration page for the project associated with the GitHub repository and branch mentioned above.
 
-- Scroll down to the Post-build Actions tab and click on the Add post-build action button.
-- From the drop down, select Email notification and fill the recipient address in the textbox that appears.
+2. **Configure post-build actions**:
+   - In the job configuration page, navigate to the `Post-build Actions` section.
+   - Click on `Add post-build action` and select `Editable Email Notification`.
+   - Configure the following settings:
+     - Recipients: *email addresses of recipients, separated by commas*
+     - Reply To List: *your reply-to email address*
+     - Attachments: *list of file patterns to attach, separated by commas (e.g., `*.log, *.txt`)*
+     - Content Type: *text/html*
+     - Subject: *your email subject*
+     - Body: *your email body content*
 
-- Click on the Add post-build action button.
-- From the drop down, select Delete workspace when build is done.
-- Click Save.
+3. **Save the job configuration**: Click `Save` to apply the configuration changes.
 
-- Introduce an error in the Maven project to be built and commit to Git. An extra build tag is added in the pom.xml below.
+4. **Trigger a build and verify email notifications**: Click on `Build Now` to start the build process. Once the build is completed, verify that the email notification is received by the specified recipients.
 
-- Click Build Now in the project window to make sure that the build works. Jenkins will now build your project.
-- Click on the Build History to view the build results.
-- Click on the Console Output to view the build logs.
+# Disclaimer
+<details>
 
-- Check the email to see the notification.
+Please note that the entire repository is owned and maintained by [Varun Kumar Manik](https://www.linkedin.com/in/vkmanik/). While every effort has been made to ensure the accuracy and reliability of the information and resources provided in this repository, Varun Kumar Manik takes full responsibility for any errors or inaccuracies that may be present.
+
+Simplilearn is not responsible for the content or materials provided in this repository and disclaims all liability for any issues, misunderstandings, or claims that may arise from the use of the information or materials provided. By using this repository, you acknowledge that Varun Kumar Manik is solely accountable for its content, and you agree to hold Simplilearn harmless from any claims or liabilities that may arise as a result of your use or reliance on the information provided herein.
+
+It is important to understand that this repository contains educational materials for a training course, and users are expected to apply their own judgment and discretion when utilizing the provided resources. Neither Varun Kumar Manik nor Simplilearn can guarantee specific results or outcomes from following the materials in this repository.
+
+</details>
+
+## Connect & Follow
+
+For more info, please connect and follow me:
+
+- Github: [https://github.com/manikcloud](https://github.com/manikcloud)
+- LinkedIn: [https://www.linkedin.com/in/vkmanik/](https://www.linkedin.com/in/vkmanik/)
+- Email: [varunmanik1@gmail.com](mailto:varunmanik1@gmail.com)
+- Facebook: [https://www.facebook.com/cloudvirtualization/](https://www.facebook.com/cloudvirtualization/)
+- YouTube: [https://bit.ly/32fknRN](https://bit.ly/32fknRN)
+- Twitter: [https://twitter.com/varunkmanik](https://twitter.com/varunkmanik)
+
