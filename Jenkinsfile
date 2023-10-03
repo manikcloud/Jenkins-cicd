@@ -7,7 +7,7 @@ pipeline {
         stage("Checkout") {   
             steps {               	 
                 git branch: '8.1-addressbook', url: 'https://github.com/manikcloud/Jenkins-cicd.git'        	 
-             }    
+            }    
         }
         stage('Maven Clean') {
             steps {
